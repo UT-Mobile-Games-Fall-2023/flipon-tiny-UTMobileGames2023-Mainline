@@ -10,14 +10,25 @@ public class CurrencyManagerEditor : Editor
 
         CurrencyManager myScript = (CurrencyManager)target;
 
-        if (GUILayout.Button("Add Currency"))
+        if (GUILayout.Button("Add 10000 Currency"))
         {
-            myScript.AddCurrency(100); 
+            myScript.AddCurrency(10000);
         }
 
-        if (GUILayout.Button("Remove Currency"))
+        if (GUILayout.Button("Add 1000 Currency"))
+        {
+            myScript.AddCurrency(1000); 
+        }
+
+        if (GUILayout.Button("Remove 100 Currency"))
         {
             myScript.RemoveCurrency(100); 
+        }
+
+        if (GUILayout.Button("Set Currency to 0"))
+        {
+            int curr = myScript.GetCurrentCurrency();
+            myScript.RemoveCurrency(curr);
         }
     }
 }
