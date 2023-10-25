@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: It's Time to Stop
   description: Freezes time for 3 seconds, allowing you to freely move blocks and
     set up combos!
-  price: 12500
+  price: 40000
   icon: {fileID: 21300000, guid: 1d9849a3fe9894a47a36035def6ea010, type: 3}
   isPurchased: 0
   isEnabled: 0
