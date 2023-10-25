@@ -17,6 +17,7 @@ public class DailyRewards : MonoBehaviour
         public string dateLastOpened; // calendar date (1st - 31st)
         public int dayLastOpened; // reward day number (Day 1 - 7)
         public int daysRemaining;
+        public bool dailyRewardsLoaded;
     }
 
     private bool isNewDay;
@@ -84,6 +85,7 @@ public class DailyRewards : MonoBehaviour
             firstDayData.dateLastOpened = DateTime.Now.ToString("d");
             firstDayData.dayLastOpened = 1;
             firstDayData.daysRemaining = 7;
+            firstDayData.dailyRewardsLoaded = false;
 
             // DATA IS SAVED
             SaveLoginData(firstDayData);
@@ -107,8 +109,12 @@ public class DailyRewards : MonoBehaviour
             print(data.dateLastOpened);
             print(data.daysRemaining);
 
-            if (data != null) // check that save file exists
+            if (data != null && data.dailyRewardsLoaded == false) // check that save file exists and that we haven't already done this
             {
+
+                data.dailyRewardsLoaded = true;
+                SaveLoginData(data);
+
                 // check if the days are different (one or more days have passed)
                 // CHANGE TESTDATE BACK TO DATA.DATELASTOPENED
                 if (testDate != currentDate)
@@ -201,6 +207,10 @@ public class DailyRewards : MonoBehaviour
                     }
                     LoadRewards(); // WORKS YAY
                 }
+            }
+            else
+            {
+                print("YOOOOOOOOOOOOOOOOOOOOOOO");
             }
         }
     }
@@ -445,10 +455,15 @@ public class DailyRewards : MonoBehaviour
         }
     }
 
-    /*
+    
     private void OnApplicationQuit()
     {
-        firstTimePlaying = false; // ?
+        print("CLOSING GAME");
+        LoginData data = LoadLoginData();
+        data.dateLastOpened = DateTime.Now.ToString("d");
+        data.dailyRewardsLoaded = false;
+        print(data.dateLastOpened);
+        SaveLoginData(data);
     }
-    */
+    
 }
