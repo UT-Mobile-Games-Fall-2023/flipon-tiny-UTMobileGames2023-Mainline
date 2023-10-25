@@ -512,7 +512,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 68180076}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1187873129}
+        m_TargetAssemblyTypeName: DailyRewards, Assembly-CSharp
+        m_MethodName: ClaimReward
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &74722951
 GameObject:
   m_ObjectHideFlags: 0
@@ -1467,7 +1479,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 242483495}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1187873129}
+        m_TargetAssemblyTypeName: DailyRewards, Assembly-CSharp
+        m_MethodName: ClaimReward
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &272195030 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -2772514305674388351, guid: 9d9f6e5b2557fe444aaee8e11b5fc3e6,
@@ -3006,7 +3030,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 559231615}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1187873129}
+        m_TargetAssemblyTypeName: DailyRewards, Assembly-CSharp
+        m_MethodName: ClaimReward
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &559231615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4866,7 +4902,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1017943198}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1187873129}
+        m_TargetAssemblyTypeName: DailyRewards, Assembly-CSharp
+        m_MethodName: ClaimReward
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1025720794
 GameObject:
   m_ObjectHideFlags: 0
@@ -5988,7 +6036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ebc653758858642a5b73d700f18d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testDate: 10/22/2023
+  testDate: 10/23/2023
   rewardButtons:
   - {fileID: 2119080836}
   - {fileID: 242483497}
@@ -7192,7 +7240,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1330715079}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1187873129}
+        m_TargetAssemblyTypeName: DailyRewards, Assembly-CSharp
+        m_MethodName: ClaimReward
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1345451479
 GameObject:
   m_ObjectHideFlags: 0
@@ -9691,7 +9751,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1545557262}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1187873129}
+        m_TargetAssemblyTypeName: DailyRewards, Assembly-CSharp
+        m_MethodName: ClaimReward
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6000
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1547707392
 GameObject:
   m_ObjectHideFlags: 0
