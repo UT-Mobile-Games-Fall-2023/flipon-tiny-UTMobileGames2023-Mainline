@@ -38,6 +38,8 @@ public class DailyRewards : MonoBehaviour
     // buttons
     public Button[] rewardButtons = new Button[7];
 
+    public GameObject pip;
+
     // data
     private string savePath;
 
@@ -208,12 +210,12 @@ public class DailyRewards : MonoBehaviour
     {
         /*
         // time in game (military time 00:00 - 23:59)
-        currentTimeInGame = DateTime.Now.ToString("HH");
+        currentTimeInGame = DateTime.Now.ToString("d");
         // print(currentTimeInGame);
 
-        int currHour = int.Parse(currentTimeInGame);
+        DateTime currHour = DateTime.Parse(currentTimeInGame);
 
-        // if the hour has passed 00:00 and was not tracked that it is a new day, it is now a new day
+        // if the days are different the DAY HAS CHANGED - update the previous day here!!! 
         if (currHour >= 0 && isNewDay)
         {
             if (firstTimePlaying)
@@ -245,24 +247,25 @@ public class DailyRewards : MonoBehaviour
     // runs when user clicks on button
     public void ClaimReward(int rewardAmount) // pass login data here, need to update so reward amount is in an array or something else that is editable
     {
-        // check if user is able to claim reward
-        // check if user already claimed reward
-        // check if user is on the correct reward 
-
-        // current button
-        // Button currButton = rewardButtons[currentDay - 1];
+        // get rid of pip
+        pip.GetComponent<Image>().enabled = false;
 
         if (!claimedReward)
         {
             // gain currency (use michael's system here)
             print(rewardAmount);
+            if (CurrencyManager.Instance != null)
+            {
+                CurrencyManager.Instance.AddCurrency(rewardAmount);
+                // CurrencyManager.Instance.AddCurrencyWithLimit(rewardAmount);
+            }
 
             print(currentDay);
             // make button no longer interactable 
             rewardButtons[currentDay - 1].interactable = false;
 
             // change image of button
-            // currButton.GetComponent<Image>() = 
+            rewardButtons[currentDay - 1].transform.GetChild(1).GetComponent<Image>().enabled = false;
 
             // make sure color is normal?
             /*
@@ -329,7 +332,10 @@ public class DailyRewards : MonoBehaviour
         // reset rewards if on day 1
         if (currentDay > 7 || currentDay == 1 || loadedData.daysRemaining == 0)
         {
-            ResetRewards();
+            if (!claimedReward)
+            {
+                ResetRewards();
+            }
         }
         else
         {
@@ -345,6 +351,7 @@ public class DailyRewards : MonoBehaviour
                         // change the icon to "collected" or soemthing
                         print("Loaded rewards are already claimed");
                         print(i + 1);
+                        rewardButtons[i].transform.GetChild(1).GetComponent<Image>().enabled = false;
                     }
                 }
 
@@ -360,6 +367,10 @@ public class DailyRewards : MonoBehaviour
                         rewardButtons[i].interactable = false; // all other buttons
                     }
 
+                    if (i + 1 < currentDay)
+                    {
+                        rewardButtons[i].transform.GetChild(1).GetComponent<Image>().enabled = false;
+                    }
                 }
             }
         }

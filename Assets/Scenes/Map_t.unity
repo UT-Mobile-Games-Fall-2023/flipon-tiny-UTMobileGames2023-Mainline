@@ -6045,6 +6045,7 @@ MonoBehaviour:
   - {fileID: 1017943200}
   - {fileID: 1545557264}
   - {fileID: 559231614}
+  pip: {fileID: 1219965436}
 --- !u!4 &1187873130
 Transform:
   m_ObjectHideFlags: 0
