@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class DailyRewards : MonoBehaviour
 {
@@ -36,10 +37,10 @@ public class DailyRewards : MonoBehaviour
 
     public string testDate; // date that can be changed for testing
 
-    // buttons
+    // UI
     public Button[] rewardButtons = new Button[7];
-
     public GameObject pip;
+    public GameObject daysRemainingText;
 
     // data
     private string savePath;
@@ -275,7 +276,7 @@ public class DailyRewards : MonoBehaviour
             rewardButtons[currentDay - 1].interactable = false;
 
             // change image of button
-            rewardButtons[currentDay - 1].transform.GetChild(1).GetComponent<Image>().enabled = false;
+            rewardButtons[currentDay - 1].transform.GetChild(3).GetComponent<Image>().enabled = false;
 
             // make sure color is normal?
             /*
@@ -283,8 +284,6 @@ public class DailyRewards : MonoBehaviour
             colors.pressedColor = new Color(0f, 0f, 0f, 0f);
             btn.colors = colors;
             */
-
-            // remove notification/red dot thing
 
             claimedReward = true; // NOTE FOR LATER: NEED TO UPDATE THE DATA SOMEHOW
             firstTimePlaying = false;
@@ -320,24 +319,19 @@ public class DailyRewards : MonoBehaviour
             rewardButtons[currentDay - 1].interactable = true;
         }
 
-        
+        // update data
         data.claimedReward = false;
         data.dayLastOpened = currentDay;
         SaveLoginData(data);
-
-        // update data, reward is no longer claimed bc it just unlocked
-        // return false;
     }
 
 
     // NOTE FOR LATER: NEED TO EDIT ICONS IN THIS FUNCTION, DIFFERENT THAN JUST UNLOCKING I THINK IDK
-    public void LoadRewards() // WANT TO LOAD EACH TIME THE BUTTON IS PRESSED??? AGH
+    public void LoadRewards()
     {
         LoginData loadedData = LoadLoginData();
         claimedReward = loadedData.claimedReward;
         currentDay = loadedData.dayLastOpened;
-        print("DAYS REMAINING TO COLLECT REWARDS");
-        print(loadedData.daysRemaining);
 
         // reset rewards if on day 1
         if (currentDay > 7 || currentDay == 1 || loadedData.daysRemaining == 0)
@@ -352,19 +346,15 @@ public class DailyRewards : MonoBehaviour
             // if claimed reward, everything is not interactable but some buttons need a different icon
             if (claimedReward)
             {
-
                 for (int i = 0; i < rewardButtons.Length; i++)
                 {
                     rewardButtons[i].interactable = false;
                     if (i + 1 <= currentDay) // include the current day
                     {
-                        // change the icon to "collected" or soemthing
-                        print("Loaded rewards are already claimed");
-                        print(i + 1);
-                        rewardButtons[i].transform.GetChild(1).GetComponent<Image>().enabled = false;
+                        // change the icon to "collected"
+                        rewardButtons[i].transform.GetChild(3).GetComponent<Image>().enabled = false;
                     }
                 }
-
             }
             // if not claimed reward, only unlock the current day reward and make sure icons are correct 
             else
@@ -379,10 +369,22 @@ public class DailyRewards : MonoBehaviour
 
                     if (i + 1 < currentDay)
                     {
-                        rewardButtons[i].transform.GetChild(1).GetComponent<Image>().enabled = false;
+                        rewardButtons[i].transform.GetChild(3).GetComponent<Image>().enabled = false;
                     }
                 }
             }
+        }
+
+        // reload data
+        LoginData updatedData = LoadLoginData();
+        // set text for remaining days after things have been updated with days remaining
+        if (updatedData.daysRemaining == 1)
+        {
+            daysRemainingText.GetComponent<TextMeshProUGUI>().text = updatedData.daysRemaining.ToString() + " Day Remaining!"; // spelling
+        }
+        else
+        {
+            daysRemainingText.GetComponent<TextMeshProUGUI>().text = updatedData.daysRemaining.ToString() + " Days Remaining!";
         }
     }
 
@@ -418,6 +420,7 @@ public class DailyRewards : MonoBehaviour
         }
     }
 
+    // returns number of days that have passed since today and the last date they opened the game rewards
     public int CalculateDateChange(DateTime currentDate, DateTime previousDate)
     {
         TimeSpan interval = currentDate - previousDate;
@@ -455,7 +458,7 @@ public class DailyRewards : MonoBehaviour
         }
     }
 
-    
+    // save data when exiting the game 
     private void OnApplicationQuit()
     {
         print("CLOSING GAME");
