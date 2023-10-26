@@ -3248,7 +3248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5ebc653758858642a5b73d700f18d31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testDate: 10/26/2023
+  testDate: 10/20/2023
   rewardButtons:
   - {fileID: 2119080836}
   - {fileID: 242483497}
@@ -11607,6 +11607,31 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
+    - target: {fileID: 477668762916892022, guid: aec3d460129853442a52fbcbfd144688,
+        type: 3}
+      propertyPath: m_ChildAlignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 477668762916892022, guid: aec3d460129853442a52fbcbfd144688,
+        type: 3}
+      propertyPath: m_ChildScaleHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 477668762916892022, guid: aec3d460129853442a52fbcbfd144688,
+        type: 3}
+      propertyPath: m_ChildControlWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 477668762916892022, guid: aec3d460129853442a52fbcbfd144688,
+        type: 3}
+      propertyPath: m_ChildControlHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 477668762916892022, guid: aec3d460129853442a52fbcbfd144688,
+        type: 3}
+      propertyPath: m_ChildForceExpandHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 496722562059609357, guid: aec3d460129853442a52fbcbfd144688,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -11626,6 +11651,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -245.10733
+      objectReference: {fileID: 0}
+    - target: {fileID: 749911730065552423, guid: aec3d460129853442a52fbcbfd144688,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1611334596827261614, guid: aec3d460129853442a52fbcbfd144688,
         type: 3}
@@ -12092,6 +12122,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -245.10733
       objectReference: {fileID: 0}
+    - target: {fileID: 7302838737813529295, guid: aec3d460129853442a52fbcbfd144688,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7470012133207365874, guid: aec3d460129853442a52fbcbfd144688,
         type: 3}
       propertyPath: m_TargetGraphic
@@ -12131,6 +12166,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 8142301787412450045, guid: aec3d460129853442a52fbcbfd144688,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8160237303353473722, guid: aec3d460129853442a52fbcbfd144688,
         type: 3}

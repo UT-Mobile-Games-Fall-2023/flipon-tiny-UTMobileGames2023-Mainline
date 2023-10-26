@@ -16,7 +16,9 @@ namespace Pon
     public static BlockDefinitionBank Instance;
     private static sbyte LastId = 1;
 
+    
     public BlockDefinition[] definitions;
+    public BlockDefinition[] fruitCosmetics;
     public Sprite unknowBlockSprite;
 
     #region Timeline

@@ -152,13 +152,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57ee89ff7994edf46addeb84f7e1091c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventory: {fileID: 869807469}
+  inGameInventory: {fileID: 0}
   cursorPrefabs:
   - {fileID: 11416508, guid: 0fabce79a76fba346b9b3d9fa57c56c4, type: 3}
   - {fileID: 11416508, guid: cd015a7ef86dda54aae2fa60938e08fd, type: 3}
   musicSource: {fileID: 1932628401}
   winMusic: {fileID: 8300000, guid: 8720751d2d6d48e41a946dcdbe105f91, type: 3}
   loseMusic: {fileID: 8300000, guid: 42f031f2fd5e83f479d64a1368a60071, type: 3}
+  isTutorial: 0
 --- !u!4 &562245209
 Transform:
   m_ObjectHideFlags: 0
@@ -1280,6 +1281,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e2e2a7118fc6c30408dd90466474145f, type: 2}
   - {fileID: 11400000, guid: ae6e4a1fdf74e4e448b54a12048f7878, type: 2}
   - {fileID: 11400000, guid: 41ef10fa8d5d6834ca4aa23cb7640d0f, type: 2}
+  fruitCosmetics:
+  - {fileID: 11400000, guid: 2fd63bdaca7cd204682c18c00ca7da60, type: 2}
+  - {fileID: 11400000, guid: 2fd63bdaca7cd204682c18c00ca7da60, type: 2}
+  - {fileID: 11400000, guid: 2fd63bdaca7cd204682c18c00ca7da60, type: 2}
+  - {fileID: 11400000, guid: 2fd63bdaca7cd204682c18c00ca7da60, type: 2}
   unknowBlockSprite: {fileID: 21300000, guid: 42a3933239b07c74b8ee53d930f054d5, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

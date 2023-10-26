@@ -91,6 +91,17 @@ namespace Pon
                 inGameInventory.LoadInventory();
                 inventoryItems = inGameInventory.GetItems();
                 ApplyItemEffects(inventoryItems);
+
+				// not necessary here?
+				// apply cosmetic items
+				foreach (Item item in inventoryItems)
+                {
+					if (item.itemType == ItemType.Cosmetic)
+                    {
+						print(item.name);
+					}
+					
+                }
             }
             else
             {
@@ -489,6 +500,39 @@ namespace Pon
                             settings.players[0].power = PowerType.TimeFreeze;
                         }
                         break;
+
+					// cosmetics
+					case "CosmeticFruit":
+						if (item.isEnabled)
+                        {
+							print("FRUITS ENABLED");
+
+							// get the Data > Block Definition Bank Script > Definitions > Block
+							if (BlockDefinitionBank.Instance != null)
+                            {
+								foreach (BlockDefinition block in BlockDefinitionBank.Instance.definitions)
+                                {
+									print(block.sprite);
+                                }
+
+								for (int i = 0; i < 4; i++)
+                                {
+									BlockDefinitionBank.Instance.definitions[i] = BlockDefinitionBank.Instance.fruitCosmetics[i];
+								}
+							}
+                        }
+                        else
+                        {
+							// change it back to original blocks
+							if (BlockDefinitionBank.Instance != null)
+							{
+								for (int i = 0; i < 4; i++)
+								{
+									BlockDefinitionBank.Instance.definitions[i] = BlockDefinitionBank.Instance.fruitCosmetics[i];
+								}
+							}
+						}
+						break;
                 }
 			}
         }
