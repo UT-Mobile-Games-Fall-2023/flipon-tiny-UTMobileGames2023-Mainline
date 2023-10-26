@@ -20,7 +20,11 @@ namespace Pon
 	/// </summary>
 	public class PonGameScript : MonoBehaviour
 	{
-		private static GameObject DOTweenGameObject;
+		[Header("Inventory")]
+		public InGameInventory inGameInventory;
+		private List<Item> inventoryItems;
+
+        private static GameObject DOTweenGameObject;
 		static PonGameScript()
 		{
 			UnityLog.Init();
@@ -47,14 +51,17 @@ namespace Pon
 		[SerializeField] private AudioClip winMusic;
 		[SerializeField] private AudioClip loseMusic;
 
-		private bool lostByFillingScreen = false;
+        private bool lostByFillingScreen = false;
 		private bool wonGame = false;
+    public bool isTutorial = false;
 
-		#endregion
+		private bool incPowerFillSpeed = false;
+		private float incPowerFillSpeedPerc = 0;
+        #endregion
 
-		#region Timeline
+        #region Timeline
 
-		string currentLevelName;
+        string currentLevelName;
 		PlayerScript player;
 		private void Awake()
 		{
@@ -65,11 +72,12 @@ namespace Pon
 				// set game settings based on level
 				currentLevelName = MapUIScript.mapInstance.currentLevelName;
 			}
+			
 
 			musicSource = GameObject.FindGameObjectWithTag("MusicSource").GetComponent<AudioSource>();
 		}
 
-		private void Start()
+        private void Start()
 		{
 
 			// Threads
@@ -77,13 +85,25 @@ namespace Pon
 
 			GetSettings();
 
-			PrepareUI();
+            if (InGameInventory.Instance != null)
+            {
+                inGameInventory = InGameInventory.Instance;
+                inGameInventory.LoadInventory();
+                inventoryItems = inGameInventory.GetItems();
+                ApplyItemEffects(inventoryItems);
+            }
+            else
+            {
+                Debug.Log("Inventory is null :(");
+            }
+
+            PrepareUI();
 
 			CreatePlayersAndGrids();
 
 			StartGrids();
 
-			if (DOTweenGameObject == null)
+            if (DOTweenGameObject == null)
 			{
 				DOTweenGameObject = GameObject.Find("[DOTween]");
 			}
@@ -163,7 +183,7 @@ namespace Pon
 				// Give new stats, widget will check if it's relevant
 				var currentStats = new ObjectiveStats(p, timeElapsed);
 
-				for (int i = 1; i <= 4; i++)
+				for (int i = 1; i <= 6; i++)
 				{
 					GameUIScript.UpdateObjective(p, i, currentStats);
 				}
@@ -339,7 +359,13 @@ namespace Pon
 				player.cursorPrefabs = cursorPrefabs;
 				player.cam = GetCamera(player);
 				player.grid = CreateGrid(player, player.cam);
-				players.Add(player);
+
+				if (incPowerFillSpeed)
+				{
+					player.grid.IncreasePowerFillSpeed(incPowerFillSpeedPerc);
+                }
+
+                players.Add(player);
 
 				// Init UI with player
 				player.grid.ui = GameUIScript.SetPlayer(player, settings.players.Length);
@@ -398,7 +424,7 @@ namespace Pon
 			grid.OnLevelChanged += OnLevelChanged;
 			grid.OnMultiplierChange += OnMultiplierChange;
 
-			return grid;
+            return grid;
 		}
 
 		public void StartGrids()
@@ -409,11 +435,69 @@ namespace Pon
 			}
 		}
 
-		#endregion
+        private void ApplyItemEffects(List<Item> itemList)
+        {
+            foreach(Item item in itemList)
+			{
+				switch (item.itemCodeName)
+				{
+					case "ComboFreezeIncre":
+						if (item.isEnabled)
+						{
+							Debug.Log("Not implemented :( sorry ");
+                        }
+						break;
+					case "ExpandBoardUpgrade":
+						if (item.isEnabled)
+						{
+							if (settings == null)
+							{
+								Debug.Log("settings is null :(");
+								break;
+							}
+							
+							//Debug.Log("increasing width from " + settings.gridSettings.width + " to " + settings.gridSettings.width + 1);
+							settings.gridSettings.width++;
+                        }
+                        break;
+					case "HardModeUpgrade":
+                        if (item.isEnabled)
+                        {
+							settings.gridSettings.width--;
+							settings.gridSettings.previewLines--;
+							settings.gridSettings.speedUpDuration = 0.4f;
+							settings.currencyReward = (int) Math.Round(settings.currencyReward * 1.5f);
+                        }
+                        break;
+					case "PowerFillSpeedIncre":
+                        if (item.isEnabled)
+                        {
+							int amount = /*item.incLevel * 10*/ 30;
+							incPowerFillSpeed = true;
+							incPowerFillSpeedPerc = amount / 100;
+                        }
+                        break;
+					case "SimplificatorPower":
+                        if (item.isEnabled)
+                        {
+                            settings.players[0].power = PowerType.Simplificator;
+                        }
+                        break;
+					case "TimeFreezePower":
+                        if (item.isEnabled)
+                        {
+                            settings.players[0].power = PowerType.TimeFreeze;
+                        }
+                        break;
+                }
+			}
+        }
 
-		#region Public methods
+        #endregion
 
-		public void SetPause(bool paused)
+        #region Public methods
+
+        public void SetPause(bool paused)
 		{
 			if (paused == false && isOver) return;
 
@@ -442,9 +526,14 @@ namespace Pon
 					}
 				}
 			}
-		}
 
-		private void OnScoreChanged(GridScript g, long score)
+      if (isTutorial)
+      {
+        StageTracker.GetPowerUsed(true);
+      }
+    }
+
+    private void OnScoreChanged(GridScript g, long score)
 		{
 			// Update UI
 			GameUIScript.SetScore(g.player.index, score);
@@ -472,9 +561,14 @@ namespace Pon
 		{
 			// Send blocks!
 			if (players.Count > 1) GenerateGarbage(g, c);
-		}
 
-		private void GenerateGarbage(GridScript g, ComboData c)
+			if (isTutorial)
+			{
+				StageTracker.GetCombo(g, c.blockCount);
+			}
+    }
+
+    private void GenerateGarbage(GridScript g, ComboData c)
 		{
 			// Every action send garbages, but not always a lot of it.
 			int width = 0;
@@ -603,45 +697,62 @@ namespace Pon
 			Log.Warning("Game is ended.");
 			SetPause(true);
 			isOver = true;
-			MapUIScript.mapInstance.wonLastGame = wonGame;
-			// When the player wins, award them currency
-			if (wonGame)
+			if (!isTutorial)
 			{
-                // Daily Bonus checks if its first time playing
-                DailyBonusManager.Instance.AwardDailyBonus();
+				MapUIScript.mapInstance.wonLastGame = wonGame;
+				// When the player wins, award them currency
+				if (wonGame)
+				{
+					// Daily Bonus checks if its first time playing
+					DailyBonusManager.Instance.AwardDailyBonus();
 
-                // Award them the standard currency for winning
-                CurrencyManager.Instance.AddCurrencyWithLimit(settings.currencyReward);
+					// Award them the standard currency for winning
+					CurrencyManager.Instance.AddCurrencyWithLimit(settings.currencyReward);
+					if (currentLevelName != "")
+					{
+						int level = Int32.Parse(Regex.Match(currentLevelName, @"\d+").Value);
+						level++;
+						GameManager.gameManager.SaveLevel("Level " + level);
+					}
+				}
 
-                int level = Int32.Parse(Regex.Match(currentLevelName, @"\d+").Value);
-				level++;
-				GameManager.gameManager.SaveLevel("Level " + level);
+				// music for winning/losing 
+
+
+				/*
+								Firebase.Analytics.FirebaseAnalytics.LogEvent(
+								Firebase.Analytics.FirebaseAnalytics.EventLevelUp,
+								new Firebase.Analytics.Parameter[] {
+									new Firebase.Analytics.Parameter(
+										Firebase.Analytics.FirebaseAnalytics.ParameterLevel, 1),
+
+								}
+							);
+							*/
+
+				// Log Level end (user has won)
+				//GoogleAnalyticsHelper.AnalyticsLevelEnd(currentLevelName);
+				if (wonGame)
+				{
+					int level = Int32.Parse(Regex.Match(currentLevelName, @"\d+").Value);
+					level++;
+					GameManager.gameManager.SaveLevel("Level " + level);
+				}
+				// level ends, go back to map scene
+				SceneManager.LoadSceneAsync("Map_t");
 			}
-
-			// music for winning/losing 
-
-
-			/*
-              Firebase.Analytics.FirebaseAnalytics.LogEvent(
-              Firebase.Analytics.FirebaseAnalytics.EventLevelUp,
-              new Firebase.Analytics.Parameter[] {
-                new Firebase.Analytics.Parameter(
-                  Firebase.Analytics.FirebaseAnalytics.ParameterLevel, 1),
-
-              }
-            );
-            */
-
-			// Log Level end (user has won)
-			//GoogleAnalyticsHelper.AnalyticsLevelEnd(currentLevelName);
-			if (wonGame)
+			else
 			{
-				int level = Int32.Parse(Regex.Match(currentLevelName, @"\d+").Value);
-				level++;
-				GameManager.gameManager.SaveLevel("Level " + level);
+				if (!wonGame)
+				{
+					StageTracker.ResetTutorial();
+					SceneManager.LoadSceneAsync("Tutorial_Game");
+				} else
+				{
+					StageTracker.SetTutorialStage(StageTracker.finalTutorialStage - 2f);
+					SceneManager.LoadSceneAsync("Tutorial_Entry");
+				}
 			}
-			// level ends, go back to map scene
-			SceneManager.LoadSceneAsync("Map_t");
 		}
 
 		#endregion
