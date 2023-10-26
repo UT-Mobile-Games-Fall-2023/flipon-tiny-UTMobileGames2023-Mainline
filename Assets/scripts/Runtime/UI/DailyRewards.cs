@@ -133,48 +133,40 @@ public class DailyRewards : MonoBehaviour
                         {
                             // reward was already claimed last time, just load the next day reward
                             currentDay = data.dayLastOpened + 1; // current day is updated 
-                            if (currentDay > 7)
+                            data.daysRemaining--;
+                            data.dayLastOpened++;
+
+                            if (currentDay > 7 || data.daysRemaining < 1)
                             {
                                 currentDay = 1;
                                 daysRemaining = 7;
+                                data.daysRemaining = 7;
+                                data.dayLastOpened = 1;
                             }
-                            else
-                            {
-                                daysRemaining = data.daysRemaining - 1;
-                            }
-                            data.daysRemaining--;
-                            data.dayLastOpened++;
                             data.claimedReward = false;
                             SaveLoginData(data);
-                            print("SAVING DATA");
-
-
                             UnlockReward(currentDay); // only unlock the NEXT day IF they have already claimed the reward, otherwise keep the original day unlocked
                                                       // change it in the data too and save
-
-                            
                         }
                         else
                         {
                             // have not yet claimed reward, keep last day's reward unlocked only and decrement days remaining
                             print("STILL NEED TO CLAIM LAST DAY'S REWARD");
                             currentDay = data.dayLastOpened;
-                            if (currentDay > 7)
+                            data.daysRemaining--; 
+                            if (currentDay > 7 || data.daysRemaining < 1)
                             {
                                 currentDay = 1;
                                 daysRemaining = 7;
+                                data.daysRemaining = 7;
+                                data.dayLastOpened = 1;
                             }
                             else
                             {
                                 daysRemaining = data.daysRemaining - 1;
                             }
-
-                            data.daysRemaining--;
                             SaveLoginData(data);
                             UnlockReward(currentDay);
-                            print("DAYS REMAINING");
-                            print(data.daysRemaining);
-                            
                         }
                         
                     }
