@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   color: {r: 0.26666668, g: 0.6627451, b: 0.82745105, a: 1}
-  sprite: {fileID: 21300000, guid: 6d96ab5bdf345f14c9b2c2da7e1f5f97, type: 3}
+  sprite: {fileID: 21300000, guid: 2febf61827c22a94d9c13d9ba380419e, type: 3}
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   minWidth: 0
   minLevel: 0

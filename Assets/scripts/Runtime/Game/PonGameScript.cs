@@ -91,17 +91,6 @@ namespace Pon
                 inGameInventory.LoadInventory();
                 inventoryItems = inGameInventory.GetItems();
                 ApplyItemEffects(inventoryItems);
-
-				// not necessary here?
-				// apply cosmetic items
-				foreach (Item item in inventoryItems)
-                {
-					if (item.itemType == ItemType.Cosmetic)
-                    {
-						print(item.name);
-					}
-					
-                }
             }
             else
             {
@@ -505,8 +494,8 @@ namespace Pon
 					case "CosmeticFruit":
 						if (item.isEnabled)
                         {
+							
 							print("FRUITS ENABLED");
-
 							// get the Data > Block Definition Bank Script > Definitions > Block
 							if (BlockDefinitionBank.Instance != null)
                             {
