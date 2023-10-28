@@ -32,8 +32,6 @@ public class DailyRewards : MonoBehaviour
     private string timeGameOpened;
     private string currentDate; 
     private string currentTimeInGame;
-    // private string timeGameClosed;
-
 
     public string testDate; // date that can be changed for testing
 
@@ -41,6 +39,9 @@ public class DailyRewards : MonoBehaviour
     public Button[] rewardButtons = new Button[7];
     public GameObject pip;
     public GameObject daysRemainingText;
+
+    // sounds 
+    public AudioSource audioSource;
 
     // data
     private string savePath;
@@ -59,6 +60,9 @@ public class DailyRewards : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
+        // audio
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -80,16 +84,14 @@ public class DailyRewards : MonoBehaviour
             LoginData firstDayData = new LoginData();
             firstDayData.firstTimePlaying = true;
             firstDayData.claimedReward = false;
-            // current date is stored ? to track when they have opened the game. Might need to do this at the end of gameplay 
             firstDayData.dateLastOpened = DateTime.Now.ToString("d");
             firstDayData.dayLastOpened = 1;
             firstDayData.daysRemaining = 7;
             firstDayData.dailyRewardsLoaded = false;
 
-            // DATA IS SAVED
             SaveLoginData(firstDayData);
 
-            // set 1st day rewards (should replace this with reset rewards)
+            // set 1st day rewards
             ResetRewards();
         }
         // if not first time opening, check how much time has passed since last log-in
@@ -104,7 +106,6 @@ public class DailyRewards : MonoBehaviour
 
             if (data != null && data.dailyRewardsLoaded == false) // check that save file exists and that we haven't already done this
             {
-
                 data.dailyRewardsLoaded = true;
                 SaveLoginData(data);
 
@@ -125,25 +126,25 @@ public class DailyRewards : MonoBehaviour
                     // check if claimed reward
                     claimedReward = data.claimedReward;
 
-                    // if only one day has passed, WE ARE GOOD YAY
+                    // one day has passed
                     if (daysPassed == 1)
                     {
-                        print("ONE DAY PASSED");
                         if (data.claimedReward)
                         {
                             // reward was already claimed last time, just load the next day reward
                             currentDay = data.dayLastOpened + 1; // current day is updated 
                             data.daysRemaining--;
                             data.dayLastOpened++;
+                            data.claimedReward = false;
 
                             if (currentDay > 7 || data.daysRemaining < 1)
                             {
                                 currentDay = 1;
+                                data.dayLastOpened = 1;
                                 daysRemaining = 7;
                                 data.daysRemaining = 7;
-                                data.dayLastOpened = 1;
                             }
-                            data.claimedReward = false;
+                            
                             SaveLoginData(data);
                             UnlockReward(currentDay); // only unlock the NEXT day IF they have already claimed the reward, otherwise keep the original day unlocked
                                                       // change it in the data too and save
@@ -151,7 +152,7 @@ public class DailyRewards : MonoBehaviour
                         else
                         {
                             // have not yet claimed reward, keep last day's reward unlocked only and decrement days remaining
-                            print("STILL NEED TO CLAIM LAST DAY'S REWARD");
+                            print("STILL NEED TO CLAIM YESTERDAY'S REWARD");
                             currentDay = data.dayLastOpened;
                             data.daysRemaining--; 
                             if (currentDay > 7 || data.daysRemaining < 1)
@@ -173,27 +174,48 @@ public class DailyRewards : MonoBehaviour
                     // if MORE THAN ONE DAY has passed, calculate days remaining in the week OR reset
                     else if (daysPassed > 1)
                     {
-                        // data should be updated
                         data.daysRemaining -= daysPassed;
+                        print(data.daysRemaining);
+
+                        // reset rewards if week is over
                         if (data.daysRemaining < 1)
                         {
+                            print("here");
                             currentDay = 1;
+                            daysRemaining = 7;
                             data.daysRemaining = 7;
                             data.dayLastOpened = 1;
+                            data.claimedReward = false; // resetting to day 1, should no longer be claimed
                         }
                         else
                         {
-                            if (claimedReward)
+                            // last reward was claimed, unlock the next one
+                            if (data.claimedReward)
                             {
                                 currentDay = data.dayLastOpened + 1; // reward they should NOW be on
+                                data.dayLastOpened++;
+                                data.claimedReward = false;
+
                                 if (currentDay > 7)
                                 {
                                     currentDay = 1;
+                                    daysRemaining = 7;
+                                    data.daysRemaining = 7;
+                                    data.dayLastOpened = 1;
                                 }
                             }
+                            // last reward was NOT claimed, keep that same one unlocked
                             else
                             {
                                 currentDay = data.dayLastOpened; // reward they should be still on
+
+                                if (currentDay > 7)
+                                {
+                                    currentDay = 1;
+                                    daysRemaining = 7;
+                                    data.daysRemaining = 7;
+                                    data.dayLastOpened = 1;
+                                }
                             }
                         }
                         SaveLoginData(data);
@@ -205,65 +227,106 @@ public class DailyRewards : MonoBehaviour
                 {
                     // check if they have claimed their reward already or not
                     claimedReward = data.claimedReward;
+                    currentDay = data.dayLastOpened;
+
                     if (claimedReward)
                     {
                         // red notification needs to be disabled
                         print("Your reward was already claimed for today!");
                         // get rid of pip
                         pip.GetComponent<Image>().enabled = false;
+                        print("current day " + currentDay.ToString());
+                        print("remaining days " + data.daysRemaining.ToString());
+                        print("day last opened " + data.dayLastOpened.ToString());
                     }
                     else
                     {
                         // still need to get their reward, data should be same as before already
                         print("Welcome back, you still have a reward to claim for today");
+                        print("current day " + currentDay.ToString());
+                        print("remaining days " + data.daysRemaining.ToString());
+                        print("day last opened " + data.dayLastOpened.ToString());
                     }
-                    LoadRewards(); // WORKS YAY
+                    
                 }
             }
             else
             {
                 print("Login/Reward data was already loaded");
             }
+
+            // update date
+            data.dateLastOpened = DateTime.Now.ToString("d");
+            SaveLoginData(data);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        // time in game (military time 00:00 - 23:59)
-        currentTimeInGame = DateTime.Now.ToString("d");
-        // print(currentTimeInGame);
+        // load data
+        LoginData data = LoadLoginData();
 
-        DateTime currHour = DateTime.Parse(currentTimeInGame);
-
-        // if the days are different the DAY HAS CHANGED - update the previous day here!!! 
-        if (currHour >= 0 && isNewDay)
+        // continually get the CURRENT time (date)
+        string currTimeInGame = DateTime.Now.ToString("d");
+        
+        // CHECK if the current date in game ever changes to be different than the saved time in game (goes to the next day at midnight)
+        if (currTimeInGame != data.dateLastOpened)
         {
-            if (firstTimePlaying)
+            print("NEW DAY - MIDNIGHT REACHED");
+            // unlock the next day, update all data
+            data.dateLastOpened = currTimeInGame;
+            data.daysRemaining--;
+
+            if (data.daysRemaining < 1)
             {
-                firstTimePlaying = false;
+                // reset rewards
+                data.daysRemaining = 7;
+                data.dayLastOpened = 1;
+                currentDay = 1;
+                daysRemaining = 7;
             }
             else
             {
-                isNewDay = false;
-
-                // new reward needs to unlock 
-                if (currentDay == 7)
+                // if last reward was claimed, unlock the next day
+                if (data.claimedReward)
                 {
-                    currentDay = 1;
+                    currentDay = data.dayLastOpened + 1;
+                    data.dayLastOpened++;
+                    data.claimedReward = false;
+
+                    if (currentDay > 7)
+                    {
+                        // reset rewards
+                        currentDay = 1;
+                        daysRemaining = 7;
+                        data.dayLastOpened = 1;
+                        data.daysRemaining = 7;
+                    }
                 }
+                // if reward was not claimed, things stay the same (only thing that updates is the text/pip)
                 else
                 {
-                    currentDay++;
-                }
 
-                // UnlockReward(currentDay);
+                }
             }
-                
+
+            // enable pip
+            pip.GetComponent<Image>().enabled = true;
+
+            // update text
+            if (data.daysRemaining == 1)
+            {
+                daysRemainingText.GetComponent<TextMeshProUGUI>().text = data.daysRemaining.ToString() + " Day Remaining!"; // spelling
+            }
+            else
+            {
+                daysRemainingText.GetComponent<TextMeshProUGUI>().text = data.daysRemaining.ToString() + " Days Remaining!";
+            }
+
+            UnlockReward(currentDay);
+            SaveLoginData(data);
         }
-        // otherwise, we are still in the same day 
-        */
     }
 
     // runs when user clicks on button
@@ -287,14 +350,7 @@ public class DailyRewards : MonoBehaviour
             // change image of button
             rewardButtons[currentDay - 1].transform.GetChild(3).GetComponent<Image>().enabled = false;
 
-            // make sure color is normal?
-            /*
-            var colors = btn.colors;
-            colors.pressedColor = new Color(0f, 0f, 0f, 0f);
-            btn.colors = colors;
-            */
-
-            claimedReward = true; // NOTE FOR LATER: NEED TO UPDATE THE DATA SOMEHOW
+            claimedReward = true;
             firstTimePlaying = false;
 
             // load data, update it, and save
@@ -345,12 +401,25 @@ public class DailyRewards : MonoBehaviour
             {
                 ResetRewards();
             }
+            else if (claimedReward)
+            {
+                for (int i = 0; i < rewardButtons.Length; i++)
+                {
+                    rewardButtons[i].interactable = false;
+                    if (i + 1 <= currentDay) // include the current day
+                    {
+                        // change the icon to "collected"
+                        rewardButtons[i].transform.GetChild(3).GetComponent<Image>().enabled = false;
+                    }
+                }
+            }
         }
         else
         {
             // if claimed reward, everything is not interactable but some buttons need a different icon
             if (claimedReward)
             {
+                print("hereererhererererherherERERE");
                 for (int i = 0; i < rewardButtons.Length; i++)
                 {
                     rewardButtons[i].interactable = false;
