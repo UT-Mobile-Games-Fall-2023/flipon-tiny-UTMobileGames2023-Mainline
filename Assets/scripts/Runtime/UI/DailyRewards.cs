@@ -21,17 +21,11 @@ public class DailyRewards : MonoBehaviour
         public bool dailyRewardsLoaded;
     }
 
-    private bool isNewDay;
-    private float currentTime;
-
     private bool firstTimePlaying; // local bool to track if it's still the player's first time playing/seeing rewards
-    private int currentDay;
-    private int daysRemaining;
-    private bool claimedReward;
-
-    private string timeGameOpened;
-    private string currentDate; 
-    private string currentTimeInGame;
+    private int currentDay; // reward day number (1-7)
+    private int daysRemaining; // 7-1
+    private bool claimedReward; 
+    private string currentDate; // calendar date
 
     public string testDate; // date that can be changed for testing
 
@@ -111,14 +105,14 @@ public class DailyRewards : MonoBehaviour
 
                 // check if the days are different (one or more days have passed)
                 // CHANGE TESTDATE BACK TO DATA.DATELASTOPENED
-                if (testDate != currentDate)
+                if (data.dateLastOpened != currentDate)
                 {
                     // test time
                     DateTime dateLastOpenedData = DateTime.Parse(data.dateLastOpened);
 
                     // NOTE FOR LATER - NEED TO SAVE WHOLE DATE (WITH MONTH ETC.) TO BE ABLE TO CALCULATE TIMESPAN LATER NOT JUST THE DAY
                     // CHANGE TESTDATE BACK TO DATELASTOPENEDDATA
-                    int daysPassed = CalculateDateChange(currDateTime, testDateTime); // how many days have passed
+                    int daysPassed = CalculateDateChange(currDateTime, dateLastOpenedData); // how many days have passed
 
                     // days remaining is days remaining - dayspassed? 
                     print("Days Passed: " + daysPassed.ToString());
@@ -255,7 +249,7 @@ public class DailyRewards : MonoBehaviour
                 print("Login/Reward data was already loaded");
             }
 
-            // update date
+            // update date so we can check for midnight
             data.dateLastOpened = DateTime.Now.ToString("d");
             SaveLoginData(data);
         }
@@ -304,11 +298,6 @@ public class DailyRewards : MonoBehaviour
                         data.daysRemaining = 7;
                     }
                 }
-                // if reward was not claimed, things stay the same (only thing that updates is the text/pip)
-                else
-                {
-
-                }
             }
 
             // enable pip
@@ -347,8 +336,10 @@ public class DailyRewards : MonoBehaviour
             // make button no longer interactable 
             rewardButtons[currentDay - 1].interactable = false;
 
-            // change image of button
-            rewardButtons[currentDay - 1].transform.GetChild(3).GetComponent<Image>().enabled = false;
+            // change image and text
+            rewardButtons[currentDay - 1].transform.GetChild(3).GetComponent<Image>().enabled = false; // money bag
+            rewardButtons[currentDay - 1].transform.GetChild(1).gameObject.SetActive(true); // text
+            rewardButtons[currentDay - 1].transform.GetChild(2).gameObject.SetActive(true); // coin icon
 
             claimedReward = true;
             firstTimePlaying = false;
@@ -410,6 +401,8 @@ public class DailyRewards : MonoBehaviour
                     {
                         // change the icon to "collected"
                         rewardButtons[i].transform.GetChild(3).GetComponent<Image>().enabled = false;
+                        rewardButtons[i].transform.GetChild(1).gameObject.SetActive(true); // text
+                        rewardButtons[i].transform.GetChild(2).gameObject.SetActive(true); // coin icon
                     }
                 }
             }
@@ -427,6 +420,9 @@ public class DailyRewards : MonoBehaviour
                     {
                         // change the icon to "collected"
                         rewardButtons[i].transform.GetChild(3).GetComponent<Image>().enabled = false;
+                        rewardButtons[i].transform.GetChild(1).gameObject.SetActive(true); // text
+                        rewardButtons[i].transform.GetChild(2).gameObject.SetActive(true); // coin icon
+                        print(i);
                     }
                 }
             }
