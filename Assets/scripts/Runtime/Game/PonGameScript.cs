@@ -57,6 +57,7 @@ namespace Pon
 
 		private bool incPowerFillSpeed = false;
 		private float incPowerFillSpeedPerc = 0;
+
         #endregion
 
         #region Timeline
@@ -435,9 +436,27 @@ namespace Pon
 			}
 		}
 
+		private bool CheckCurrentCosmetic(List<Item> itemList)
+        {
+			foreach (Item item in itemList)
+            {
+				if (item.itemType == ItemType.Cosmetic)
+                {
+					if (item.isEnabled)
+                    {
+						return true; // if ANY cosmetic is currently enabled
+                    }
+                }
+            }
+
+			return false; // no cosmetics were found active
+        }
+
         private void ApplyItemEffects(List<Item> itemList)
         {
-            foreach(Item item in itemList)
+			bool cosmeticIsApplied = CheckCurrentCosmetic(itemList);
+
+			foreach (Item item in itemList)
 			{
 				switch (item.itemCodeName)
 				{
@@ -489,9 +508,66 @@ namespace Pon
                             settings.players[0].power = PowerType.TimeFreeze;
                         }
                         break;
-                }
+
+					// cosmetics
+					case "CosmeticFruit":
+						if (item.isEnabled)
+                        {
+							ApplyCosmetics(BlockDefinitionBank.Instance.fruitCosmetics); // fruits
+						}
+                        else // only switch back to default if NO COSMETICS APPLIED
+                        {
+							if (!cosmeticIsApplied) // cosmetic is not currently applied, can go back to default
+                            {
+								ApplyCosmetics(BlockDefinitionBank.Instance.defaultBlocks); // default
+							}
+						}
+						break;
+					case "CosmeticFlower":
+						if (item.isEnabled)
+						{
+							ApplyCosmetics(BlockDefinitionBank.Instance.flowerCosmetics); // flowers
+						}
+						else
+						{
+							if (!cosmeticIsApplied) // cosmetic is not currently applied, can go back to default
+							{
+								ApplyCosmetics(BlockDefinitionBank.Instance.defaultBlocks); // default
+							}
+						}
+						break;
+					case "CosmeticCandy":
+						if (item.isEnabled)
+						{
+							ApplyCosmetics(BlockDefinitionBank.Instance.candyCosmetics); // flowers
+						}
+						else
+						{
+							if (!cosmeticIsApplied) // cosmetic is not currently applied, can go back to default
+							{
+								ApplyCosmetics(BlockDefinitionBank.Instance.defaultBlocks); // default
+							}
+						}
+						break;
+				}
 			}
         }
+
+		public void ApplyCosmetics(BlockDefinition[] cosmetics)
+        {
+			// id to keep track of block type for objectives
+			sbyte block_id = 1;
+			// get the Data > Block Definition Bank Script > Definitions > Blocks
+			if (BlockDefinitionBank.Instance != null)
+			{
+				for (int i = 0; i < 6; i++)
+				{
+					BlockDefinitionBank.Instance.definitions[i] = cosmetics[i];
+					BlockDefinitionBank.Instance.definitions[i].id = block_id;
+					block_id++;
+				}
+			}
+		}
 
         #endregion
 
