@@ -15,6 +15,7 @@ public class ShopUIManager : MonoBehaviour
     public Transform upgradesRowTransform;
     public Transform powersRowTransform;
     public Transform incrementalsRowTransform;
+    public Transform cosmeticRowTransform;
     public GameObject purchaseConfirmationPopup;
 
     private void Awake()
@@ -41,9 +42,13 @@ public class ShopUIManager : MonoBehaviour
             {
                 itemUI = Instantiate(shopItemPrefab, powersRowTransform);
             }
-            else // Assumes item is Incremental or any other type
+            else if (item.itemType == ItemType.Incremental) 
             {
                 itemUI = Instantiate(shopItemPrefab, incrementalsRowTransform);
+            }
+            else // Assumes item is Cosmetic or any other type
+            {
+                itemUI = Instantiate(shopItemPrefab, cosmeticRowTransform);
             }
 
             itemUI.transform.Find("TextContainer/PriceText").GetComponent<TextMeshProUGUI>().text = item.price.ToString();

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: CosmeticCandy
   m_EditorClassIdentifier: 
   itemName: Candy
-  description: WHOLE LOTTA CANDIES
+  description: 'Transform your gameplay! Replace the Cloudy Crystals with cute candies
+    to make your adventure sweeter! '
   price: 11400
   icon: {fileID: 21300000, guid: 5ce76978a7b073f4e8714d25e483d438, type: 3}
   isPurchased: 0

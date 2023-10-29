@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d082de2aa31fc474a9308961c6ae722b, type: 3}
-  m_Name: BlueBerry
+  m_Name: Flower3
   m_EditorClassIdentifier: 
   id: 0
-  color: {r: 0.5613208, g: 0.61154884, b: 1, a: 0}
-  sprite: {fileID: 21300000, guid: bcb7726476331624a926d00f54d0aea0, type: 3}
+  color: {r: 0.83671856, g: 0.5424528, b: 1, a: 0}
+  sprite: {fileID: 21300000, guid: 1d9849a3fe9894a47a36035def6ea010, type: 3}
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   minWidth: 0
   minLevel: 0
