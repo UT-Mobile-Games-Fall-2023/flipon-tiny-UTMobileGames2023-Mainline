@@ -43,18 +43,19 @@ public class MapTouchDetection : MonoBehaviour
 			int prevLvl = int.Parse(mapManager.currentLevelName.Remove(0, 5));
 			if (prevLvl > 1 && prevLvl <= lvlParent.childCount - 1)
 			{
-        prevLvl = prevLvl - 1;
-      } else if (prevLvl >= lvlParent.childCount)
+				prevLvl = prevLvl - 1;
+			}
+			else if (prevLvl >= lvlParent.childCount)
 			{
-        prevLvl = lvlParent.childCount - 1;
-      }
+				prevLvl = lvlParent.childCount - 1;
+			}
 			MapLvlButton prevButton = lvlParent.GetChild(prevLvl - 1).GetComponent<MapLvlButton>();
 			MapLvlButton nextButton = lvlParent.GetChild(prevLvl).GetComponent<MapLvlButton>();
-      //Debug.Log("Button To Unlock: " + nextButton.name + "; Previously Played Level: " + prevButton.name);
+			//Debug.Log("Button To Unlock: " + nextButton.name + "; Previously Played Level: " + prevButton.name);
 
-      if (mapManager.wonLastGame && !nextButton.GetUnlocked() && prevLvl < lvlParent.childCount)
+			if (mapManager.wonLastGame && !nextButton.GetUnlocked() && prevLvl < lvlParent.childCount)
 			{
-        nextButton.SetUnlocked(true);
+				nextButton.SetUnlocked(true);
 
 				GameManager.gameManager.lvlUnlocks.LvlUnlockStates[prevLvl] = nextButton.GetUnlocked();
 				GameManager.gameManager.SaveUnlocks();

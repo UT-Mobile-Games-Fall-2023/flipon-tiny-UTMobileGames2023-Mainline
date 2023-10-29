@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0475b1b23837e148ae0aaea66617c01, type: 3}
+  m_Name: Sunny Guardian (Lvl5-1)
+  m_EditorClassIdentifier: 
+  characterName: Sunny Guardian
+  dialogueEntries:
+  - sentence: "You just don't know when to quit, do you? I've already had to drag
+      myself out of my cave twice now to deal with you.\r"
+    characterSprite: {fileID: 0}
+  - sentence: "You must be truly bored with your life if you're still bothering with
+      this fool's errand. Not like anything you do will stop the inevitable cheerless
+      doom we all face.\r"
+    characterSprite: {fileID: 0}
+  - sentence: Fine, I suppose if it'll get you to leave me alone faster, I'll put
+      in some effort to end this. Though we all know nothing really matters in the
+      end anyway.
+    characterSprite: {fileID: 0}
+  csvDelimiter: 0
+  csvFile: {fileID: 4900000, guid: 76de3d3230b6ed846ad050d92c2edb2f, type: 3}

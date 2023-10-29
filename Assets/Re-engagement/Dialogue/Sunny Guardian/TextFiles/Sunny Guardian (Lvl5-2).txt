@@ -1,0 +1,5 @@
+Character Name	Emotion	Dialogue
+Sunny Guardian	Regular Sunny Guardian_Happy	Golly! I can't thank you enough for rescuing me from that gloomy spell, friend! But it seems your work of spreading cheer is only just beginning.
+Sunny Guardian	Corrupted Sunny Guardian_Neutral	Sunny Guardian
+Sunny Guardian	Corrupted Sunny Guardian_Worried	Normally he's quite the upbeat fellow, but I fear the Lord of Storms has made him rather...strict.
+Sunny Guardian	Corrupted Sunny Guardian_Optimistic	Still, with your sparkling spirit I know you'll have him beaming again in no time flat! Best of luck on your adventure, my friend - I know the sunshine will guide your way.

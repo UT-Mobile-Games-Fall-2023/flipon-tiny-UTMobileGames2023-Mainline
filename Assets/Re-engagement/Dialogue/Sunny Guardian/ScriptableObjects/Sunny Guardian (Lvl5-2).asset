@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0475b1b23837e148ae0aaea66617c01, type: 3}
+  m_Name: Sunny Guardian (Lvl5-2)
+  m_EditorClassIdentifier: 
+  characterName: Sunny Guardian
+  dialogueEntries:
+  - sentence: "Golly! I can't thank you enough for rescuing me from that gloomy spell,
+      friend! But it seems your work of spreading cheer is only just beginning.\r"
+    characterSprite: {fileID: 0}
+  - sentence: "Sunny Guardian\r"
+    characterSprite: {fileID: 0}
+  - sentence: "Normally he's quite the upbeat fellow, but I fear the Lord of Storms
+      has made him rather...strict.\r"
+    characterSprite: {fileID: 0}
+  - sentence: Still, with your sparkling spirit I know you'll have him beaming again
+      in no time flat! Best of luck on your adventure, my friend - I know the sunshine
+      will guide your way.
+    characterSprite: {fileID: 0}
+  csvDelimiter: 0
+  csvFile: {fileID: 4900000, guid: f5d9f2da1c48ff14c969a814af5e0d2e, type: 3}

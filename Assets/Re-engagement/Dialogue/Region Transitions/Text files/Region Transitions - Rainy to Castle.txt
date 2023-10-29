@@ -1,0 +1,4 @@
+Character Name	Emotion	Dialogue
+Notes: Player beats the final level of the region
+Rainy Guardian	Corrupted_Rainy_Guardian	Angy!(placeholder)																							
+Notes: Corrupted Guardian changes to Regular form + Background changes to uncorrupted version

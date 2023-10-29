@@ -1,0 +1,4 @@
+Character Name	Emotion	Dialogue
+Windy Guardian	Corrupted_Windy_Guardian_Rage	I've just about HAD IT with you!!!
+Windy Guardian	Corrupted_Windy_Guardian_Sinister	If you insist of wrecking my fun, I might as well wreck yours.
+Windy Guardian	Corrupted_Windy_Guardian_Crazy	Oh this is gonna be fun. HAHAHAHAHA!!!

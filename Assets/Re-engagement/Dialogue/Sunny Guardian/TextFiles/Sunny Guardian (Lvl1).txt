@@ -1,0 +1,4 @@
+Character Name	Emotion	Dialogue
+Sunny Guardian	Corrupted Sunny Guardian_Annoyed	Ugh, who disrupted my rest? Can't a lion wallow in peace?
+Sunny Guardian	Corrupted Sunny Guardian_Deadpan	Wait, you must be that new Crystal Keeper. The Lord of Storms said someone might darken my cave today. Lucky me.
+Sunny Guardian 	Corrupted Sunny Guardian_Bored	Whatever, we both know you can't actually stop him. But by all means, give it your best shot...

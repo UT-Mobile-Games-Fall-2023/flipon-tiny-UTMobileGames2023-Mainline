@@ -1,0 +1,4 @@
+Character Name	Emotion	Dialogue
+Snowy Guardian	Corrupted Snowy Guardian_Stern	Halt citizen! You are in violation of His Lordship's decrees. No unauthorized personnel past this point!
+Snowy Guardian	Corrupted Snowy Guardian_Snobby	According to my daily briefing, you're the rascal responsible for turning the sunny guardian back into an unruly hooligan! Well not on my watch!
+Snowy Guardian	Corrupted Snowy Guardian_Serious	Order and discipline will be maintained, rulebreaker! I've been appointed by His Lordship to strictly enforce protocol. Your unlawful escapades end here.

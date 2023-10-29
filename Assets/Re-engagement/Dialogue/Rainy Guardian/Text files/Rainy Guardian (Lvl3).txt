@@ -1,0 +1,4 @@
+Character Name	Emotion	Dialogue
+Rainy Guardian	Corrupted_Rainy_Guardian	How did you get this far! You won't-	
+Rainy Guardian	Corrupted_Rainy_Guardian	Keep doing what you're doing man, bring back those chill vibes, my friend!	
+Rainy Guardian	Corrupted_Rainy_Guardian	NO, there will be no chill vibes, JUST FIERY FURY AND CHAOS!!!	

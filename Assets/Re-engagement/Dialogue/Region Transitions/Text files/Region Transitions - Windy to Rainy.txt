@@ -1,0 +1,4 @@
+Character Name	Emotion	Dialogue
+Notes: Player beats the final level of the region
+Windy Guardian	Corrupted_Windy_Guardian_	Dang it!!!		
+Notes: Corrupted Guardian changes to Regular form + Background changes to uncorrupted version

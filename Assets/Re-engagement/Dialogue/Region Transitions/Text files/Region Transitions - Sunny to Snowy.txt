@@ -1,0 +1,4 @@
+Character Name	Emotion	Dialogue
+Notes: Player beats the final level of the region
+Sunny Guardian	Corrupted Sunny Guardian_Deadpan	Man, what a drag.
+Notes: Corrupted Guardian changes to Regular form + Background changes to uncorrupted version

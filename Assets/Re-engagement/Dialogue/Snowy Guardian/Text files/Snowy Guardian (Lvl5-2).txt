@@ -1,0 +1,5 @@
+Character Name	Emotion	Dialogue
+Snowy Guardian	Regular Snowy Guardian_Happy	Whoaaa, major thanks for breaking that dark spell on me! Must've been totally dragging the good vibes down as Lord Buzzkill's henchman. My bad!
+Snowy Guardian	Regular Snowy Guardian_Neutral	Head to the windy region next, crystal dude - gotta save our airborne amiga from that wack storm dude.
+Snowy Guardian	Regular Snowy Guardian_Worried	Word is that he warped the wise old wind guardian's energy big time - turned her into a total loose cannon! And coming from yours truly, that's sayin' something.
+Snowy Guardian	Regular Snowy Guardian_Optimistic	But I know you got the mad skills to twist this storm around, my crystal-cool dude. Best of luck out there and hang ten, brahh!

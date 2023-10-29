@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0475b1b23837e148ae0aaea66617c01, type: 3}
+  m_Name: Windy Guardian (Lvl1)
+  m_EditorClassIdentifier: 
+  characterName: Windy Region
+  dialogueEntries:
+  - sentence: "Ugh... what are you doing here Crystal Keeper? Can't you see I'm having
+      my fun with this place?\r"
+    characterSprite: {fileID: 0}
+  - sentence: "Actually, I don't really care for what you have to say. Just leave
+      me out of... whatever you're doing.\r"
+    characterSprite: {fileID: 0}
+  - sentence: Not like you'll be able to do much. I made sure of that.
+    characterSprite: {fileID: 0}
+  csvDelimiter: 0
+  csvFile: {fileID: 4900000, guid: 5d5056a382c44614399421e081798dcc, type: 3}

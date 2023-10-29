@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
 using System;
 using UnityEngine.UI;
-
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 	public Transform lvlParent;
 	public LvlUnlockContainer lvlUnlocks;
 	public Image[] CorruptBackgrounds = null;
+
+	private int index = 0;
 	private void Awake()
 	{
 		if (gameManager == null)
@@ -36,7 +38,6 @@ public class GameManager : MonoBehaviour
 		DontDestroyOnLoad(this.gameObject);
 		savePath = Path.Combine(Application.persistentDataPath, "playerData.dat");
 		lvlUnlocks.LvlUnlockStates = new bool[lvlParent.childCount];
-
 		MapUIScript.mapInstance.currentLevelName = LoadLevel();
 
 
@@ -76,7 +77,6 @@ public class GameManager : MonoBehaviour
 	{
 		PlayerData data = new PlayerData();
 		data.level = level;
-		Debug.Log(data.level);
 		SavePlayerData(data);
 	}
 
@@ -91,13 +91,22 @@ public class GameManager : MonoBehaviour
 		else
 		{
 			// If no save file exists, return a default value.
+			LoadUnlocks("Level 1");
 			return "Level 1";
 		}
 	}
 	void LoadUnlocks(string levelString)
 	{
+		Debug.Log(levelString);
+
 		string resultString = Regex.Match(levelString, @"\d+").Value;
 		int level = Int32.Parse(resultString);
+		if (level % 5 == 1 || level % 5 == 3 || level % 5 == 5)
+		{
+			DialogueManager.dialogueManager.StartDialogue();
+			Debug.Log(level);
+		}
+
 		if (CorruptBackgrounds != null)
 		{
 			int region = level / 5;

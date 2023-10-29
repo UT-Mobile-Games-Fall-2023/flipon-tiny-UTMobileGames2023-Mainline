@@ -1,0 +1,6 @@
+Character Name	Emotion	Dialogue
+Windy Guardian	Regular_Windy_Guardian_Confused	What happened? Am I finally free from the Lord of Storm's shackles?
+Windy Guardian	Regular_Windy_Guardian_Thankful	You're the one who freed me. I can't thank you enough. I'm also very sorry for anything I may have said.
+Windy Guardian	Regular_Windy_Guardian_Encouraging	I see great power within you. If you were able to free three of us guardians, you will surely be able to free the last of us.
+Windy Guardian	Regular_Windy_Guardian_Encouraging	Continue forth and may the winds ever blow in your favor.
+Notes: Player makes their way to the rainy region
