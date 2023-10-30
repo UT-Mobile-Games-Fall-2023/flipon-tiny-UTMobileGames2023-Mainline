@@ -754,7 +754,20 @@ namespace Pon
 				}
 			}
 		}
+#if UNITY_EDITOR
+		public void SkipGame()
+		{
+			isOver = true;
+			var pWinner = players[0];
 
+			musicSource.PlayOneShot(winMusic);
+			GameOverVersus(pWinner);
+			wonGame = true;
+		}
+
+
+
+#endif
 		#endregion
 
 		#region Properties

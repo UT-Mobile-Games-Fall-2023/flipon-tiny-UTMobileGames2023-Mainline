@@ -7,7 +7,8 @@ public class DialogueManager : MonoBehaviour
 {
 	public static DialogueManager dialogueManager;
 	public SingleDialogueDataArray array;
-    public List<SingleDialogueData> dialogueEntries = new List<SingleDialogueData>();
+	public DialogueDataManager dialogueDataManager;
+	public List<SingleDialogueData> dialogueEntries = new List<SingleDialogueData>();
     private DialogueController dialogueController;
 	public bool isPlaying = false;
 	private void Awake()
@@ -42,7 +43,8 @@ public class DialogueManager : MonoBehaviour
 	public void RemoveEntry()
 	{
 		dialogueEntries.RemoveAt(0);
-		array.DialogueEntries.RemoveAt(0);
+		
+		//array.DialogueEntries.RemoveAt(0);
 	}
 	private void CheckTouch()
 	{

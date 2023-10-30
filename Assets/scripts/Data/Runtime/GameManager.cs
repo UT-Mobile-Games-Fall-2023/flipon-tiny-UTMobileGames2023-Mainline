@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour
 	public static GameManager gameManager;
 	public Transform lvlParent;
 	public LvlUnlockContainer lvlUnlocks;
+	public GameObject CorruptBackgroundsParent;
 	public Image[] CorruptBackgrounds = null;
 
 	private int index = 0;
@@ -35,16 +37,60 @@ public class GameManager : MonoBehaviour
 		{
 			lvlParent = GameObject.FindFirstObjectByType<MapTouchDetection>().lvlParent;
 		}
+		if (CorruptBackgroundsParent != null)
+		{
+			CorruptBackgrounds = CorruptBackgroundsParent.GetComponentsInChildren<Image>();
+		}
 		DontDestroyOnLoad(this.gameObject);
 		savePath = Path.Combine(Application.persistentDataPath, "playerData.dat");
 		lvlUnlocks.LvlUnlockStates = new bool[lvlParent.childCount];
-		MapUIScript.mapInstance.currentLevelName = LoadLevel();
-
-
 	}
-	public static void RevealMap(Image mask, float progression)
+	private void Start()
 	{
-		mask.fillAmount = progression;
+		MapUIScript.mapInstance.currentLevelName = LoadLevel();
+	}
+	private void Update()
+	{
+		if (SceneManager.GetActiveScene().name == "Map_t")
+		{
+			//MapUIScript.mapInstance.currentLevelName = LoadLevel();
+			if (lvlParent == null)
+			{
+				lvlParent = GameObject.Find("Level Buttons").transform;
+			}
+			if (CorruptBackgroundsParent != null && CorruptBackgrounds == null)
+			{
+				CorruptBackgrounds = CorruptBackgroundsParent.GetComponentsInChildren<Image>();
+			}
+		}
+	}
+	public void RevealMap(int level)
+	{
+		CheckIfStartDialogue(level);
+		if (CorruptBackgrounds != null)
+		{
+			int region = level / 5;
+			if (region <= 1)
+			{
+				CorruptBackgrounds[0].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
+			}
+			else if (1 < region && region <= 2)
+			{
+				CorruptBackgrounds[1].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
+			}
+			else if (2 < region && region <= 3)
+			{
+				CorruptBackgrounds[2].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
+			}
+			else if (3 < region && region <= 4)
+			{
+				CorruptBackgrounds[3].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
+			}
+			else if (region > 4)
+			{
+				CorruptBackgrounds[4].fillAmount = 0;
+			}
+		}
 	}
 	public void SavePlayerData(PlayerData data)
 	{
@@ -85,52 +131,35 @@ public class GameManager : MonoBehaviour
 		PlayerData data = LoadPlayerData();
 		if (data != null)
 		{
-			LoadUnlocks(data.level);
+			LoadUnlocks(Int32.Parse(Regex.Match(data.level, @"\d+").Value));
 			return data.level;
 		}
 		else
 		{
 			// If no save file exists, return a default value.
-			LoadUnlocks("Level 1");
+			LoadUnlocks(1);
 			return "Level 1";
 		}
 	}
-	void LoadUnlocks(string levelString)
+	public void CheckIfStartDialogue(int level)
 	{
-		Debug.Log(levelString);
-
-		string resultString = Regex.Match(levelString, @"\d+").Value;
-		int level = Int32.Parse(resultString);
-		if (level % 5 == 1 || level % 5 == 3 || level % 5 == 5)
+		if(level % 5 == 1)
 		{
 			DialogueManager.dialogueManager.StartDialogue();
-			Debug.Log(level);
 		}
-
-		if (CorruptBackgrounds != null)
+		if (level % 5 == 3 || level % 5 == 5)
 		{
-			int region = level / 5;
-			if (region <= 1)
-			{
-				CorruptBackgrounds[0].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
-			}
-			else if (1 < region && region <= 2)
-			{
-				CorruptBackgrounds[1].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
-			}
-			else if (2 < region && region <= 3)
-			{
-				CorruptBackgrounds[2].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
-			}
-			else if (3 < region && region <= 4)
-			{
-				CorruptBackgrounds[3].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
-			}
-			else if (region > 4)
-			{
-				CorruptBackgrounds[4].fillAmount = 0;
-			}
+			DialogueManager.dialogueManager.StartDialogue();
 		}
+	}
+
+	public void LoadUnlocks(int level)
+	{
+		if (SceneManager.GetActiveScene().name == "Map_t")
+		{
+			lvlParent = GameObject.Find("Level Buttons").transform;
+		}
+		RevealMap(level);
 		for (int i = 0; i < level; i++)
 		{
 			lvlUnlocks.LvlUnlockStates[i] = true;
