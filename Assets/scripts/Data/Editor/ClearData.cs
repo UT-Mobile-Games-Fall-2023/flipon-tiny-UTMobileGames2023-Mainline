@@ -12,10 +12,15 @@ public class ClearDataWindow : EditorWindow
 		{
 			File.Delete(savePath);
 		}
-    savePath = Path.Combine(Application.persistentDataPath, "tutorialData.dat");
-    if (File.Exists(savePath))
-    {
-      File.Delete(savePath);
-    }
-  }
+		savePath = Path.Combine(Application.persistentDataPath, "tutorialData.dat");
+		if (File.Exists(savePath))
+		{
+			File.Delete(savePath);
+		}
+		savePath = Path.Combine(Application.persistentDataPath, "loginData.dat");
+		if (File.Exists(savePath))
+		{
+			File.Delete(savePath);
+		}
+	}
 }
