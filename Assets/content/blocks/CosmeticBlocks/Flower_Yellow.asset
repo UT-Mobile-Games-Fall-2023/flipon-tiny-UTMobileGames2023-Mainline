@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d082de2aa31fc474a9308961c6ae722b, type: 3}
-  m_Name: Flower1
+  m_Name: Flower_Yellow
   m_EditorClassIdentifier: 
   id: 0
-  color: {r: 0.55704397, g: 1, b: 0.4481132, a: 0}
-  sprite: {fileID: 21300000, guid: 1d9ce4e0f1b82cb44892818cfd07ca6b, type: 3}
+  color: {r: 1, g: 0.84503144, b: 0.3537736, a: 0}
+  sprite: {fileID: 21300000, guid: 88b5fafd96ac7a1418f1b7b39d94c519, type: 3}
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   minWidth: 0
   minLevel: 0
