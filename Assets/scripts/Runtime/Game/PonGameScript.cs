@@ -440,7 +440,7 @@ namespace Pon
         {
 			foreach (Item item in itemList)
             {
-				if (item.itemType == ItemType.Cosmetic)
+				if (item != null && item.itemType == ItemType.Cosmetic)
                 {
 					if (item.isEnabled)
                     {
@@ -808,12 +808,6 @@ namespace Pon
 
 				// Log Level end (user has won)
 				//GoogleAnalyticsHelper.AnalyticsLevelEnd(currentLevelName);
-				if (wonGame)
-				{
-					int level = Int32.Parse(Regex.Match(currentLevelName, @"\d+").Value);
-					level++;
-					GameManager.gameManager.SaveLevel("Level " + level);
-				}
 				// level ends, go back to map scene
 				SceneManager.LoadSceneAsync("Map_t");
 			}

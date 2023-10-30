@@ -36,9 +36,10 @@ public class GameManager : MonoBehaviour
 		DontDestroyOnLoad(this.gameObject);
 		savePath = Path.Combine(Application.persistentDataPath, "playerData.dat");
 		lvlUnlocks.LvlUnlockStates = new bool[lvlParent.childCount];
-
+	}
+	void Start()
+	{
 		MapUIScript.mapInstance.currentLevelName = LoadLevel();
-
 
 	}
 	public static void RevealMap(Image mask, float progression)
