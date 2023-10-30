@@ -16,7 +16,7 @@ MonoBehaviour:
   description: 'Transform your gameplay! Replace the Cloudy Crystals with cute candies
     to make your adventure sweeter! '
   price: 11400
-  icon: {fileID: 21300000, guid: 5ce76978a7b073f4e8714d25e483d438, type: 3}
+  icon: {fileID: 21300000, guid: 7a09a1573f68641469af8590a0b3de13, type: 3}
   isPurchased: 0
   isEnabled: 0
   itemType: 3
