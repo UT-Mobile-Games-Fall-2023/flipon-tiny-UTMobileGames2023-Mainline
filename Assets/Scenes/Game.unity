@@ -1302,7 +1302,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a568ce3a4333dd84b9305f07346c7c11, type: 2}
   - {fileID: 11400000, guid: d14a8e3a96c479e4184cf91008496d14, type: 2}
   - {fileID: 11400000, guid: a568ce3a4333dd84b9305f07346c7c11, type: 2}
-  - {fileID: 11400000, guid: 5dceee187fecc314498478b7f7c7f128, type: 2}
+  - {fileID: 11400000, guid: d14a8e3a96c479e4184cf91008496d14, type: 2}
   candyCosmetics:
   - {fileID: 11400000, guid: e95fff9a3d59b89499e507a7f962544f, type: 2}
   - {fileID: 11400000, guid: 0e74b09666e8ea74fa9ea0231a1edfc9, type: 2}

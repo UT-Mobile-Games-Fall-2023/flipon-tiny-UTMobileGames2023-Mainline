@@ -33,8 +33,12 @@ public class DailyRewards : MonoBehaviour
     public Button[] rewardButtons = new Button[7];
     public GameObject pip;
     public GameObject daysRemainingText;
+    public Sprite availableRewardBg;
+    public Sprite availableBigRewardBg;
+    public Sprite unavailableRewardBg;
+    public Sprite unavailableBigRewardBg;
 
-    // sounds 
+    // sounds  
     public AudioSource audioSource;
 
     // data
@@ -321,11 +325,11 @@ public class DailyRewards : MonoBehaviour
     // runs when user clicks on button
     public void ClaimReward(int rewardAmount) // pass login data here, need to update so reward amount is in an array or something else that is editable
     {
-        // get rid of pip
-        pip.GetComponent<Image>().enabled = false;
-
         if (!claimedReward)
         {
+            // get rid of pip
+            pip.GetComponent<Image>().enabled = false;
+
             // gain currency
             if (CurrencyManager.Instance != null)
             {
@@ -340,6 +344,16 @@ public class DailyRewards : MonoBehaviour
             rewardButtons[currentDay - 1].transform.GetChild(3).GetComponent<Image>().enabled = false; // money bag
             rewardButtons[currentDay - 1].transform.GetChild(1).gameObject.SetActive(true); // text
             rewardButtons[currentDay - 1].transform.GetChild(2).gameObject.SetActive(true); // coin icon
+
+            // if reward is claimed, change bg to unavailable (purple)
+            if (currentDay < 7)
+            {
+                rewardButtons[currentDay - 1].GetComponent<Image>().sprite = unavailableRewardBg;
+            }
+            else if (currentDay == 7)
+            {
+                rewardButtons[currentDay - 1].GetComponent<Image>().sprite = unavailableBigRewardBg;
+            }
 
             claimedReward = true;
             firstTimePlaying = false;
@@ -367,8 +381,28 @@ public class DailyRewards : MonoBehaviour
             for (int i = 0; i < rewardButtons.Length; i++)
             {
                 rewardButtons[i].interactable = false;
+
+                // make all backgrounds unavailable
+                if (currentDay < 7)
+                {
+                    rewardButtons[i].GetComponent<Image>().sprite = unavailableRewardBg;
+                }
+                else if (currentDay == 7)
+                {
+                    rewardButtons[i].GetComponent<Image>().sprite = unavailableBigRewardBg;
+                }
             }
+
+            // unlock current day (make it interactable and change bg to available)
             rewardButtons[currentDay - 1].interactable = true;
+            if (currentDay < 7)
+            {
+                rewardButtons[currentDay - 1].GetComponent<Image>().sprite = availableRewardBg;
+            }
+            else if (currentDay == 7)
+            {
+                rewardButtons[currentDay - 1].GetComponent<Image>().sprite = availableBigRewardBg;
+            }
         }
 
         // update data
@@ -412,7 +446,6 @@ public class DailyRewards : MonoBehaviour
             // if claimed reward, everything is not interactable but some buttons need a different icon
             if (claimedReward)
             {
-                print("hereererhererererherherERERE");
                 for (int i = 0; i < rewardButtons.Length; i++)
                 {
                     rewardButtons[i].interactable = false;
@@ -422,14 +455,22 @@ public class DailyRewards : MonoBehaviour
                         rewardButtons[i].transform.GetChild(3).GetComponent<Image>().enabled = false;
                         rewardButtons[i].transform.GetChild(1).gameObject.SetActive(true); // text
                         rewardButtons[i].transform.GetChild(2).gameObject.SetActive(true); // coin icon
-                        print(i);
                     }
                 }
             }
             // if not claimed reward, only unlock the current day reward and make sure icons are correct 
             else
             {
-                rewardButtons[currentDay - 1].interactable = true; // day 1 button
+                rewardButtons[currentDay - 1].interactable = true; // day [current day] button
+                if (currentDay < 7)
+                {
+                    rewardButtons[currentDay - 1].GetComponent<Image>().sprite = availableRewardBg;
+                }
+                else if (currentDay == 7)
+                {
+                    rewardButtons[currentDay - 1].GetComponent<Image>().sprite = availableBigRewardBg;
+                }
+
                 for (int i = 0; i < rewardButtons.Length; i++)
                 {
                     if (i + 1 != currentDay)
