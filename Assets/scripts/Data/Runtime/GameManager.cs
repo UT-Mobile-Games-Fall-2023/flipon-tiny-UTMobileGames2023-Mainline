@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 	public LvlUnlockContainer lvlUnlocks;
 	public GameObject CorruptBackgroundsParent;
 	public Image[] CorruptBackgrounds = null;
-	public string CurrentLevel ="Level 1";
+	public string CurrentLevel = "Level 1";
 	private int index = 0;
 	private void Awake()
 	{
@@ -51,10 +51,15 @@ public class GameManager : MonoBehaviour
 	{
 		if (SceneManager.GetActiveScene().name == "Map_t")
 		{
+			//RevealMap(Int32.Parse(Regex.Match(LoadLevel(), @"\d+").Value));
 			//MapUIScript.mapInstance.currentLevelName = LoadLevel();
 			if (lvlParent == null)
 			{
 				lvlParent = GameObject.Find("Level Buttons").transform;
+			}
+			if (CorruptBackgroundsParent == null)
+			{
+				CorruptBackgroundsParent = GameObject.Find("Corrupt backgrounds");
 			}
 			if (CorruptBackgroundsParent != null && CorruptBackgrounds == null)
 			{
@@ -62,13 +67,17 @@ public class GameManager : MonoBehaviour
 			}
 		}
 	}
-	/*public string GetLevel()
-	{
-		return LoadLevel();
-	}*/
 	public void RevealMap(int level)
 	{
 		//CheckIfStartDialogue(level);
+		if (CorruptBackgroundsParent == null)
+		{
+			CorruptBackgroundsParent = GameObject.Find("Corrupt backgrounds");
+		}
+		if (CorruptBackgroundsParent != null && CorruptBackgrounds == null)
+		{
+			CorruptBackgrounds = CorruptBackgroundsParent.GetComponentsInChildren<Image>();
+		}
 		DialogueStageTracker.stageTracker.UpdateStage(level);
 		if (CorruptBackgrounds != null)
 		{
@@ -145,24 +154,48 @@ public class GameManager : MonoBehaviour
 			return "Level 1";
 		}
 	}
-/*	public void CheckIfStartDialogue(int level)
-	{
-		if(level % 5 == 1)
+	/*	public void CheckIfStartDialogue(int level)
 		{
-			DialogueManager.dialogueManager.StartDialogue();
+			if(level % 5 == 1)
+			{
+				DialogueManager.dialogueManager.StartDialogue();
+			}
+			if (level % 5 == 3 || level % 5 == 5)
+			{
+				DialogueManager.dialogueManager.StartDialogue();
+			}
 		}
-		if (level % 5 == 3 || level % 5 == 5)
-		{
-			DialogueManager.dialogueManager.StartDialogue();
-		}
-	}
-*/
+	*/
 	public void LoadUnlocks(int level)
 	{
 		if (SceneManager.GetActiveScene().name == "Map_t")
 		{
 			lvlParent = GameObject.Find("Level Buttons").transform;
 		}
+		/*if (CorruptBackgrounds != null)
+		{
+			int region = level / 5;
+			if (region <= 1)
+			{
+				CorruptBackgrounds[0].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
+			}
+			else if (1 < region && region <= 2)
+			{
+				CorruptBackgrounds[1].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
+			}
+			else if (2 < region && region <= 3)
+			{
+				CorruptBackgrounds[2].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
+			}
+			else if (3 < region && region <= 4)
+			{
+				CorruptBackgrounds[3].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
+			}
+			else if (region > 4)
+			{
+				CorruptBackgrounds[4].fillAmount = 0;
+			}
+		}*/
 		RevealMap(level);
 		for (int i = 0; i < level; i++)
 		{

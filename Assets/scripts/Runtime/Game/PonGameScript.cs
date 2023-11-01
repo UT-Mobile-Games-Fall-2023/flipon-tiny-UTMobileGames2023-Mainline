@@ -718,6 +718,7 @@ namespace Pon
 						}
 						level++;
 						GameManager.gameManager.CurrentLevel = "Level " + level;
+//						GameManager.gameManager.RevealMap(level);
 
 						GameManager.gameManager.SaveLevel("Level " + level);
 					}
