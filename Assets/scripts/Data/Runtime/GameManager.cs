@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 	public LvlUnlockContainer lvlUnlocks;
 	public GameObject CorruptBackgroundsParent;
 	public Image[] CorruptBackgrounds = null;
-
+	public string CurrentLevel ="Level 1";
 	private int index = 0;
 	private void Awake()
 	{
@@ -44,11 +44,9 @@ public class GameManager : MonoBehaviour
 		DontDestroyOnLoad(this.gameObject);
 		savePath = Path.Combine(Application.persistentDataPath, "playerData.dat");
 		lvlUnlocks.LvlUnlockStates = new bool[lvlParent.childCount];
-	}
-	private void Start()
-	{
 		MapUIScript.mapInstance.currentLevelName = LoadLevel();
 	}
+
 	private void Update()
 	{
 		if (SceneManager.GetActiveScene().name == "Map_t")
@@ -64,9 +62,14 @@ public class GameManager : MonoBehaviour
 			}
 		}
 	}
+	/*public string GetLevel()
+	{
+		return LoadLevel();
+	}*/
 	public void RevealMap(int level)
 	{
-		CheckIfStartDialogue(level);
+		//CheckIfStartDialogue(level);
+		DialogueStageTracker.stageTracker.UpdateStage(level);
 		if (CorruptBackgrounds != null)
 		{
 			int region = level / 5;
@@ -132,6 +135,7 @@ public class GameManager : MonoBehaviour
 		if (data != null)
 		{
 			LoadUnlocks(Int32.Parse(Regex.Match(data.level, @"\d+").Value));
+			gameManager.CurrentLevel = data.level;
 			return data.level;
 		}
 		else
@@ -141,7 +145,7 @@ public class GameManager : MonoBehaviour
 			return "Level 1";
 		}
 	}
-	public void CheckIfStartDialogue(int level)
+/*	public void CheckIfStartDialogue(int level)
 	{
 		if(level % 5 == 1)
 		{
@@ -152,7 +156,7 @@ public class GameManager : MonoBehaviour
 			DialogueManager.dialogueManager.StartDialogue();
 		}
 	}
-
+*/
 	public void LoadUnlocks(int level)
 	{
 		if (SceneManager.GetActiveScene().name == "Map_t")

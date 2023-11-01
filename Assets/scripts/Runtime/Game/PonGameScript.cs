@@ -711,7 +711,14 @@ namespace Pon
 					if (currentLevelName != "")
 					{
 						int level = Int32.Parse(Regex.Match(currentLevelName, @"\d+").Value);
+						if(level % 5 == 0)
+						{
+							//DialogueStageTracker.currentStage += 0.01f;
+							DialogueStageTracker.stageTracker.EndRegionDialogue();
+						}
 						level++;
+						GameManager.gameManager.CurrentLevel = "Level " + level;
+
 						GameManager.gameManager.SaveLevel("Level " + level);
 					}
 				}
@@ -732,12 +739,6 @@ namespace Pon
 
 				// Log Level end (user has won)
 				//GoogleAnalyticsHelper.AnalyticsLevelEnd(currentLevelName);
-				if (wonGame)
-				{
-					int level = Int32.Parse(Regex.Match(currentLevelName, @"\d+").Value);
-					level++;
-					GameManager.gameManager.SaveLevel("Level " + level);
-				}
 				// level ends, go back to map scene
 				SceneManager.LoadSceneAsync("Map_t");
 			}

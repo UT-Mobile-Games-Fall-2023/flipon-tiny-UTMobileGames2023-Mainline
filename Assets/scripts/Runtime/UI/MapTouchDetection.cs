@@ -58,7 +58,6 @@ public class MapTouchDetection : MonoBehaviour
 			}
 			if (mapManager.wonLastGame && !nextButton.GetUnlocked() && prevLvl < lvlParent.childCount)
 			{
-				//GameManager.gameManager.LoadUnlocks(nextButton.GetLevel());
 				GameManager.gameManager.RevealMap(nextButton.GetLevel());
 
 				nextButton.SetUnlocked(true);

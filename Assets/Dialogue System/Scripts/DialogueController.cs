@@ -18,6 +18,7 @@ public class DialogueController : MonoBehaviour
 	private int currentIndex;
 	public bool isPlaying = false;
 	private SingleDialogueData activeSingleDialogue;
+
 	void Start()
 	{
 		sentences = new List<string>();
@@ -159,7 +160,7 @@ public class DialogueController : MonoBehaviour
 		{
 			activeSingleDialogue = null;
 			isPlaying = false;
-			GetComponent<DialogueManager>().RemoveEntry();
+			GetComponent<DialogueStageTracker>().RemoveEntry();
 		}
 		DialoguePanel.SetActive(false);
 	}
