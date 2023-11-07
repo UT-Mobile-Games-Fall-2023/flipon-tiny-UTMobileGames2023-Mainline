@@ -1,4 +1,4 @@
 Character Name	Emotion	Dialogue
-Rainy Guardian	Corrupted_Rainy_Guardian	YOU!!! WHAT ARE YOU DOING IN MY PERFECT REALITY?!?! 
-Rainy Guardian	Corrupted_Rainy_Guardian	How dare you step foot in a place you DON'T belong in.
-Rainy Guardian	Corrupted_Rainy_Guardian	I'm keeping my eyes on you. You best be on your best behavior in my realm.
+Rainy Guardian	Corrupted Rainy Guardian Outraged	YOU!!! WHO DO YOU THINK YOU ARE?!?!																							
+Rainy Guardian	Corrupted Rainy Guardian Pissed	YOU THINK YOU CAN STOP THE LORD OF STORMS YOU WRETCHED FOOL!																							
+Rainy Guardian	Corrupted Rainy Guardian Pissed	I'LL MAKE SURE YOUR PATH ENDS HERE!!!		

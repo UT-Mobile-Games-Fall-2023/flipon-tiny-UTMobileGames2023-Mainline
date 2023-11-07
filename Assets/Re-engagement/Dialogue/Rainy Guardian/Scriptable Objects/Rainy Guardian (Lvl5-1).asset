@@ -15,12 +15,10 @@ MonoBehaviour:
   characterName: Rainy Guardian
   dialogueEntries:
   - sentence: AAAAAAAAAHHHHHHHHH!!!!!!!!!
-    characterSprite: {fileID: 0}
+    characterSprite: {fileID: 21300000, guid: a4ce1e9b83c40e74db7aa4a4bf52a6e9, type: 3}
   - sentence: THE LORD OF STORMS WILL NOT BE DENIED!!!
-    characterSprite: {fileID: 0}
+    characterSprite: {fileID: 21300000, guid: a4ce1e9b83c40e74db7aa4a4bf52a6e9, type: 3}
   - sentence: PREPARE TO FACE MY WRATH CRYSTAL KEEPER!!!
-    characterSprite: {fileID: 0}
-  - sentence: RAAAAAAGGGGHHHHHH!!!!!!!!!
-    characterSprite: {fileID: 0}
+    characterSprite: {fileID: 21300000, guid: a4ce1e9b83c40e74db7aa4a4bf52a6e9, type: 3}
   csvDelimiter: 0
   csvFile: {fileID: 4900000, guid: e1a318e255b8012489f28b3d08f518db, type: 3}

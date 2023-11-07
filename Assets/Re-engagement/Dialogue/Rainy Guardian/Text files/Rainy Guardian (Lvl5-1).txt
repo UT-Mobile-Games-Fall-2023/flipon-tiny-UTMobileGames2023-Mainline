@@ -1,5 +1,4 @@
 Character Name	Emotion	Dialogue
-Rainy Guardian	Corrupted_Rainy_Guardian	AAAAAAAAAHHHHHHHHH!!!!!!!!!	
-Rainy Guardian	Corrupted_Rainy_Guardian	THE LORD OF STORMS WILL NOT BE DENIED!!!	
-Rainy Guardian	Corrupted_Rainy_Guardian	PREPARE TO FACE MY WRATH CRYSTAL KEEPER!!!	
-Rainy Guardian	Corrupted_Rainy_Guardian	RAAAAAAGGGGHHHHHH!!!!!!!!!	
+Rainy Guardian	Corrupted Rainy Guardian Outraged	AAAAAAAAAHHHHHHHHH!!!!!!!!!																							
+Rainy Guardian	Corrupted Rainy Guardian Outraged	THE LORD OF STORMS WILL NOT BE DENIED!!!																							
+Rainy Guardian	Corrupted Rainy Guardian Outraged	PREPARE TO FACE MY WRATH CRYSTAL KEEPER!!!		

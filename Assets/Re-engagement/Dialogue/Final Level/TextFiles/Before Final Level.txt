@@ -1,0 +1,5 @@
+Character Name	Emotion	Dialogue
+Lord of Storms	LordOfStorms_Upset	Those useless Guardians. I give them immense power and they squandered it!																							
+Lord of Storms	LordOfStorms_Neutral	I have had enough of your meddling crystal keeper.																							
+Lord of Storms	LordOfStorms_Neutral	You will not stop me from attaining my rightful place as king.																							
+Lord of Storms	LordOfStorms_Angry	"I, the mighty LORD OF STORMS, challenge YOU Crystal Keeper! En Garde! "		

@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor;
 
+[System.Serializable]
 [CreateAssetMenu(fileName = "New Single-Character Dialogue Data", menuName = "Dialogue System/Dialogue Data for Single Character")]
 public class SingleDialogueData : ScriptableObject
 {
@@ -62,17 +64,16 @@ public class SingleDialogueData : ScriptableObject
 
 	public Sprite[] LoadSpritesFromFolder()
 	{
-		Object[] loadedObjects = Resources.LoadAll(spriteFolder);
+		//Sprite[] sprites = (Sprite[])Resources.LoadAll(spriteFolder);
 		List<Sprite> sprites = new List<Sprite>();
-
-		foreach (Object obj in loadedObjects)
+		string[] assetPaths = AssetDatabase.FindAssets("t:Sprite", new string[] { spriteFolder });
+		foreach (string assetPath in assetPaths)
 		{
-			if (obj is Sprite)
-			{
-				sprites.Add((Sprite)obj);
-			}
+			Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(AssetDatabase.GUIDToAssetPath(assetPath));
+			sprites.Add(sprite);
 		}
 		return sprites.ToArray();
+		//return sprites;
 	}
 	public void PopulateCharacterToSpriteMap()
 	{
@@ -82,6 +83,7 @@ public class SingleDialogueData : ScriptableObject
 		foreach (Sprite sprite in sprites)
 		{
 			characterToSpriteMap[sprite.name] = sprite;
+			Debug.Log($"The sprite name is: {sprite.name}");
 		}
 	}
 	public void PopulateSentencesFromCSV()
@@ -118,6 +120,7 @@ public class SingleDialogueData : ScriptableObject
 						characterName = defaultCharacterName;
 					}
 					Sprite characterSprite = GetCharacterSprite(fields[1]);
+					Debug.Log(characterSprite + " " + fields[1]);
 					if (characterSprite == null)
 					{
 						if (fields[1].Contains("_"))
@@ -153,7 +156,7 @@ public class SingleDialogueData : ScriptableObject
 					DialogueEntry entry = new DialogueEntry
 					{
 						characterSprite = characterSprite,
-						sentence = fields[2],
+						sentence = fields[2].Replace("\"", ""),
 					};
 					entries.Add(entry);
 				}
@@ -166,6 +169,9 @@ public class SingleDialogueData : ScriptableObject
 
 	public Sprite GetCharacterSprite(string characterName)
 	{
+		//Debug.Log(characterName);
+		//Debug.Log(characterToSpriteMap.ToString());
+
 		if (characterToSpriteMap.ContainsKey(characterName))
 		{
 			return characterToSpriteMap[characterName];

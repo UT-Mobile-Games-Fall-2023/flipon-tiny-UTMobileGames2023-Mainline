@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Windy Guardian
   dialogueEntries:
-  - sentence: "I've just about HAD IT with you!!!\r"
-    characterSprite: {fileID: 0}
-  - sentence: "If you insist of wrecking my fun, I might as well wreck yours.\r"
-    characterSprite: {fileID: 0}
-  - sentence: Oh this is gonna be fun. HAHAHAHAHA!!!
-    characterSprite: {fileID: 0}
+  - sentence: I've just about HAD IT with you!!!
+    characterSprite: {fileID: 21300000, guid: f7c794a8b45a75845809b99e51828695, type: 3}
+  - sentence: '"If you insist of wrecking my fun, I might as well wreck yours."'
+    characterSprite: {fileID: 21300000, guid: f7c794a8b45a75845809b99e51828695, type: 3}
+  - sentence: Oh this is gonna be awesome! HAHAHAHAHA!!!
+    characterSprite: {fileID: 21300000, guid: f7c794a8b45a75845809b99e51828695, type: 3}
   csvDelimiter: 0
   csvFile: {fileID: 4900000, guid: e2fd355157673284d97ea9c444c36a3f, type: 3}

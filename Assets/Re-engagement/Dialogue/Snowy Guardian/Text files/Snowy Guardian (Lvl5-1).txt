@@ -1,5 +1,4 @@
 Character Name	Emotion	Dialogue
-
-Snowy Guardian	Corrupted Snowy Guardian_Stern	You've got pluck, I'll grant you that. But the fun and games are over! It's time to enforce proper conduct with maximum strictness.
-Snowy Guardian	Corrupted Snowy Guardian_Seriou	You think challenging his Lordship's authority is a joke? He's restoring much needed law and order to this chaos you call a kingdom!
-Snowy Guardian	Corrupted Snowy Guardian_Serious	On your toes, crystal keeper! I've been granted full authority to contain your disruptions through any means necessary. Last chance to surrender before this gets... unpleasant.
+Snowy Guardian	Corrupted Snowy Guardian Serious	You've got pluck, I'll grant you that. But the fun and games are over! "																							
+Snowy Guardian	Corrupted Snowy Guardian Serious	You think challenging his Lordship's authority is a joke? He's restoring much needed law and order to this chaos you call a kingdom!																							
+Snowy Guardian	Corrupted Snowy Guardian Serious	Now I will give you one last chance to surrender before things get... unpleasant.	

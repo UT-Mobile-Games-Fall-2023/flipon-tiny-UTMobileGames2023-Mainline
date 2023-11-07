@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0475b1b23837e148ae0aaea66617c01, type: 3}
   m_Name: Windy Guardian (Lvl1)
   m_EditorClassIdentifier: 
-  characterName: Windy Region
+  characterName: Windy Guardian
   dialogueEntries:
-  - sentence: "Ugh... what are you doing here Crystal Keeper? Can't you see I'm having
-      my fun with this place?\r"
-    characterSprite: {fileID: 0}
-  - sentence: "Actually, I don't really care for what you have to say. Just leave
-      me out of... whatever you're doing.\r"
-    characterSprite: {fileID: 0}
+  - sentence: '"Well well well, if it isn''t the little crystal keeper, here to ruin
+      my fun."'
+    characterSprite: {fileID: 21300000, guid: fc9102198b6789f448440885c1ba938a, type: 3}
+  - sentence: '"You got lucky with the last two guardians, but me? I''m the real
+      deal!"'
+    characterSprite: {fileID: 21300000, guid: f7c794a8b45a75845809b99e51828695, type: 3}
   - sentence: Not like you'll be able to do much. I made sure of that.
-    characterSprite: {fileID: 0}
+    characterSprite: {fileID: 21300000, guid: fc9102198b6789f448440885c1ba938a, type: 3}
   csvDelimiter: 0
   csvFile: {fileID: 4900000, guid: 5d5056a382c44614399421e081798dcc, type: 3}

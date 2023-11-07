@@ -160,7 +160,15 @@ public class DialogueController : MonoBehaviour
 		{
 			activeSingleDialogue = null;
 			isPlaying = false;
-			GetComponent<DialogueStageTracker>().RemoveEntry();
+			Debug.Log(GetComponent<DialogueStageTracker>().dialogueEntries[0].name);
+			string name = GetComponent<DialogueStageTracker>().dialogueEntries[0].name;
+			DialogueStageTracker.stageTracker.SaveDialogueData(name);
+			DialogueStageTracker.stageTracker.RemoveEntry();
+
+			if (GameManager.gameManager.endRegion)
+			{
+				GameManager.gameManager.endRegion = false;
+			}
 		}
 		DialoguePanel.SetActive(false);
 	}

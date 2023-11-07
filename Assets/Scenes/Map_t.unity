@@ -2087,7 +2087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &873462173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3890,7 +3890,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -19
-  m_Sprite: {fileID: 1069160976, guid: 6abf53b80271b03478b7abcd40885b3d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 07a467ff2c3dfc349b94e777445d1ea1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5883,7 +5883,7 @@ MonoBehaviour:
   characterName: {fileID: 5906165125946889081}
   dialogueText: {fileID: 3060169751379566430}
   characterImage: {fileID: 8855416533797468602}
-  isPlaying: 0
+  isPlaying: 1
 --- !u!114 &1814537757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5900,8 +5900,10 @@ MonoBehaviour:
   dialogueDataManager: {fileID: 11400000, guid: 1e80805b7be97db49bb689b3e8753ae9,
     type: 2}
   dialoguePrefab: {fileID: 873462172}
+  currentStage: 0
   dialogueEntries: []
   isPlaying: 0
+  DOTweenGameObject: {fileID: 0}
 --- !u!1 &1843014651 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4728930348866803627, guid: 9ec21616ed8f64d468d43c809927d35a,
@@ -7665,6 +7667,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503893600392133647, guid: 9ec21616ed8f64d468d43c809927d35a,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503893600392133647, guid: 9ec21616ed8f64d468d43c809927d35a,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503893600392133647, guid: 9ec21616ed8f64d468d43c809927d35a,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503893600392133647, guid: 9ec21616ed8f64d468d43c809927d35a,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4503893600392133647, guid: 9ec21616ed8f64d468d43c809927d35a,
         type: 3}
@@ -10066,8 +10088,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This is dummy dialogue... It's not really too interesting. I'm filling
-    up the space to the max!
+  m_text: "Ugh, who disrupted my rest? Can\uFFFDt a lion wallow in peace?\""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4cafe56349c30cb4e98a4eb5ef908134, type: 2}
   m_sharedMaterial: {fileID: 1509211534756286421, guid: 4cafe56349c30cb4e98a4eb5ef908134,
@@ -13637,7 +13658,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Lord Of Storms
+  m_text: Sunny Guardian
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4cafe56349c30cb4e98a4eb5ef908134, type: 2}
   m_sharedMaterial: {fileID: 1509211534756286421, guid: 4cafe56349c30cb4e98a4eb5ef908134,
@@ -13665,7 +13686,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 68.25
+  m_fontSize: 63.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -15155,6 +15176,7 @@ MonoBehaviour:
   - {fileID: 1176026205}
   - {fileID: 1843014657}
   CurrentLevel: Level 1
+  endRegion: 0
 --- !u!1 &7244996731259497353
 GameObject:
   m_ObjectHideFlags: 0
@@ -16750,7 +16772,7 @@ PolygonCollider2D:
     m_Bits: 4294967295
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 791
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -18484,7 +18506,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 9252c92304da55c4dbe78673255ae520, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

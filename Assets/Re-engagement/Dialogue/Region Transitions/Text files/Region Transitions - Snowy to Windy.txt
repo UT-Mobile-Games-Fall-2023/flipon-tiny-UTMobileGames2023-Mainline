@@ -1,4 +1,0 @@
-Character	Name	Emotion	Dialogue
-Notes: Player beats the final level of the region
-Snowy Guardian	Corrupted_Snowy_Guardian_Angry	Impossible!
-Notes: Corrupted Guardian changes to Regular form + Background changes to uncorrupted version

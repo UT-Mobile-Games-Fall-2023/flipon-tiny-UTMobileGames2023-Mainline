@@ -1,4 +1,4 @@
 Character Name	Emotion	Dialogue
-Windy Region	Corrupted_Windy_Guardian_Annoyed	Ugh... what are you doing here Crystal Keeper? Can't you see I'm having my fun with this place?
-Windy Region	Corrupted_Windy_Guardian_Rude	Actually, I don't really care for what you have to say. Just leave me out of... whatever you're doing.
-Windy Region	Corrupted_Windy_Guardian_Cocky	Not like you'll be able to do much. I made sure of that.
+Windy Guardian	Corrupted Windy Guardian Sneer	"Well well well, if it isn't the little crystal keeper, here to ruin my fun."																							
+Windy Guardian	Corrupted Windy Guardian Crazy	"You got lucky with the last two guardians, but me? I'm the real deal!"																							
+Windy Guardian	Corrupted Windy Guardian Sneer	Not like you'll be able to do much. I made sure of that.

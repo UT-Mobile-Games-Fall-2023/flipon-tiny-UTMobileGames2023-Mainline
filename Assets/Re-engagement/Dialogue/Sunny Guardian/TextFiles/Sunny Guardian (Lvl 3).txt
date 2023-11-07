@@ -1,4 +1,4 @@
 Character Name	Emotion	Dialogue
-Sunny Guardian	Corrupted Sunny Guardian_Annoyed	Ugh you're still here? Why won't you just give up already.
-Sunny Guardian	Corrupted Sunny Guardian	Nothing
-Sunny Guardian	Corrupted Sunny Guardian_Deadpan	Whatever, go ahead and take a shot at my defenses. I could use some more disappointment in my life.
+Sunny Guardian	Corrupted Sunny Guardian Annoyed	You’re still here? Why won't you just give up alre-																							
+Sunny Guardian	Corrupted Sunny Guardian Distressed	"No, keep going brave warrior. Bring sunshine back to this region!"	"Make the corrupted guardian ""shake"""																						
+Sunny Guardian	Corrupted Sunny Guardian Annoyed	"Ugh, sunshine's so overrated."		

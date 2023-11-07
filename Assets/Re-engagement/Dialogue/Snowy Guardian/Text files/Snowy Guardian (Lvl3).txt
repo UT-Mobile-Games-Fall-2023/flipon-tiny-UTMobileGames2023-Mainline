@@ -1,3 +1,4 @@
 Character Name	Emotion	Dialogue
-Snowy Guardian	Corrupted Snowy Guardian_Angry	What's this now?! How'd you breach the perimeter of my perimeter? Somebody's getting a citation for this!
-Snowy Guardian	Corrupted Snowy Guardian_Stern	But a lucky break won't save you twice, lawbreaker. So stop your insubooridnation at once?!Snowy Guardian	Corrupted Snowy Guardian_Snobby	According to my daily briefing, you're the rascal responsible for turning the sunny guardian back into an unruly hooligan! Well not on my watch!
+Snowy Guardian	Corrupted Snowy Guardian Serious	What's this now?! How'd you breach the perimeter of my perimeter? Somebody's getting a citation for this																							
+Snowy Guardian	Corrupted Snowy Guardian Distressed	Right on dude, you're totally shredding this bogus magic! Don't quit now brah!"																			
+Snowy Guardian	Corrupted Snowy Guardian Snobby	Agh! Such insolence!								

@@ -692,7 +692,7 @@ namespace Pon
 
 		private void TriggerGameOver()
 		{
-
+			DialogueStageTracker.stageTracker.DOTweenGameObject = DOTweenGameObject;
 			DOTweenGameObject.SetActive(false); //Deactivate DoTween GameObject when moving back to map
 			Log.Warning("Game is ended.");
 			SetPause(true);
@@ -713,8 +713,8 @@ namespace Pon
 						int level = Int32.Parse(Regex.Match(currentLevelName, @"\d+").Value);
 						if(level % 5 == 0)
 						{
-							//DialogueStageTracker.currentStage += 0.01f;
-							DialogueStageTracker.stageTracker.EndRegionDialogue();
+							//DialoguecurrentStage += 0.01f;
+							GameManager.gameManager.endRegion = true;
 						}
 						level++;
 						GameManager.gameManager.CurrentLevel = "Level " + level;
@@ -723,23 +723,6 @@ namespace Pon
 						GameManager.gameManager.SaveLevel("Level " + level);
 					}
 				}
-
-				// music for winning/losing 
-
-
-				/*
-								Firebase.Analytics.FirebaseAnalytics.LogEvent(
-								Firebase.Analytics.FirebaseAnalytics.EventLevelUp,
-								new Firebase.Analytics.Parameter[] {
-									new Firebase.Analytics.Parameter(
-										Firebase.Analytics.FirebaseAnalytics.ParameterLevel, 1),
-
-								}
-							);
-							*/
-
-				// Log Level end (user has won)
-				//GoogleAnalyticsHelper.AnalyticsLevelEnd(currentLevelName);
 				// level ends, go back to map scene
 				SceneManager.LoadSceneAsync("Map_t");
 			}

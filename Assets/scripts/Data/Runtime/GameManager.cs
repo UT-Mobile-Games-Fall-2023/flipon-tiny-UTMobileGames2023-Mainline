@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 	public Image[] CorruptBackgrounds = null;
 	public string CurrentLevel = "Level 1";
 	private int index = 0;
+	public bool endRegion = false;
 	private void Awake()
 	{
 		if (gameManager == null)
@@ -45,11 +46,12 @@ public class GameManager : MonoBehaviour
 		savePath = Path.Combine(Application.persistentDataPath, "playerData.dat");
 		lvlUnlocks.LvlUnlockStates = new bool[lvlParent.childCount];
 		MapUIScript.mapInstance.currentLevelName = LoadLevel();
+
 	}
 
 	private void Update()
 	{
-		if (SceneManager.GetActiveScene().name == "Map_t")
+		if (SceneManager.GetActiveScene().name == "Map_t" && !gameManager.endRegion)
 		{
 			//RevealMap(Int32.Parse(Regex.Match(LoadLevel(), @"\d+").Value));
 			//MapUIScript.mapInstance.currentLevelName = LoadLevel();
@@ -78,7 +80,10 @@ public class GameManager : MonoBehaviour
 		{
 			CorruptBackgrounds = CorruptBackgroundsParent.GetComponentsInChildren<Image>();
 		}
-		DialogueStageTracker.stageTracker.UpdateStage(level);
+		if (!gameManager.endRegion)
+		{
+			DialogueStageTracker.stageTracker.UpdateStage(level);
+		}
 		if (CorruptBackgrounds != null)
 		{
 			int region = level / 5;
@@ -88,18 +93,28 @@ public class GameManager : MonoBehaviour
 			}
 			else if (1 < region && region <= 2)
 			{
+				CorruptBackgrounds[0].fillAmount = 0;
 				CorruptBackgrounds[1].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
 			}
 			else if (2 < region && region <= 3)
 			{
+				CorruptBackgrounds[0].fillAmount = 0;
+				CorruptBackgrounds[1].fillAmount = 0;
 				CorruptBackgrounds[2].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
 			}
 			else if (3 < region && region <= 4)
 			{
+				CorruptBackgrounds[0].fillAmount = 0;
+				CorruptBackgrounds[1].fillAmount = 0;
+				CorruptBackgrounds[2].fillAmount = 0;
 				CorruptBackgrounds[3].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
 			}
 			else if (region > 4)
 			{
+				CorruptBackgrounds[0].fillAmount = 0;
+				CorruptBackgrounds[1].fillAmount = 0;
+				CorruptBackgrounds[2].fillAmount = 0;
+				CorruptBackgrounds[3].fillAmount = 0;
 				CorruptBackgrounds[4].fillAmount = 0;
 			}
 		}
@@ -154,48 +169,13 @@ public class GameManager : MonoBehaviour
 			return "Level 1";
 		}
 	}
-	/*	public void CheckIfStartDialogue(int level)
-		{
-			if(level % 5 == 1)
-			{
-				DialogueManager.dialogueManager.StartDialogue();
-			}
-			if (level % 5 == 3 || level % 5 == 5)
-			{
-				DialogueManager.dialogueManager.StartDialogue();
-			}
-		}
-	*/
+
 	public void LoadUnlocks(int level)
 	{
 		if (SceneManager.GetActiveScene().name == "Map_t")
 		{
 			lvlParent = GameObject.Find("Level Buttons").transform;
 		}
-		/*if (CorruptBackgrounds != null)
-		{
-			int region = level / 5;
-			if (region <= 1)
-			{
-				CorruptBackgrounds[0].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
-			}
-			else if (1 < region && region <= 2)
-			{
-				CorruptBackgrounds[1].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
-			}
-			else if (2 < region && region <= 3)
-			{
-				CorruptBackgrounds[2].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
-			}
-			else if (3 < region && region <= 4)
-			{
-				CorruptBackgrounds[3].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
-			}
-			else if (region > 4)
-			{
-				CorruptBackgrounds[4].fillAmount = 0;
-			}
-		}*/
 		RevealMap(level);
 		for (int i = 0; i < level; i++)
 		{

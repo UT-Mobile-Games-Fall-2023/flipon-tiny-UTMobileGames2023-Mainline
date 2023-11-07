@@ -1,13 +1,21 @@
+using System.Collections.ObjectModel;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class SingleDialogueDataArray : MonoBehaviour
 {
-	public List<SingleDialogueData> DialogueEntries = new List<SingleDialogueData>();
-	public SingleDialogueData[] GetArray()
-	{
-		return DialogueEntries.ToArray();
-	}
+    [SerializeField] private List<SingleDialogueData> dialogueEntries = new List<SingleDialogueData>();
+    public ReadOnlyCollection<SingleDialogueData> DialogueEntriesReadOnly { get; private set; }
+
+    private void Awake()
+    {
+        // Initialize the read-only collection
+        DialogueEntriesReadOnly = new ReadOnlyCollection<SingleDialogueData>(dialogueEntries);
+    }
+
+    public SingleDialogueData[] GetArray()
+    {
+        return dialogueEntries.ToArray();
+    }
 }

@@ -50,11 +50,7 @@ public class MapTouchDetection : MonoBehaviour
 				prevLvl = lvlParent.childCount - 1;
 			}
 			MapLvlButton prevButton = lvlParent.GetChild(prevLvl - 1).GetComponent<MapLvlButton>();
-			MapLvlButton nextButton = lvlParent.GetChild(prevLvl).GetComponent<MapLvlButton>();
-			if(mapManager.wonLastGame && prevLvl % 5 == 1)
-			{
-				Debug.Log("Button To Unlock: " + nextButton.name + "; Previously Played Level: " + prevButton.name);
-			}
+			MapLvlButton nextButton = lvlParent.GetChild(prevLvl).GetComponent<MapLvlButton>();	
 			if (mapManager.wonLastGame && !nextButton.GetUnlocked() && prevLvl < lvlParent.childCount)
 			{
 				//GameManager.gameManager.RevealMap(nextButton.GetLevel());
@@ -105,7 +101,7 @@ public class MapTouchDetection : MonoBehaviour
 			if (Input.touchCount == 1)
 			{
 				// Touch Started
-				if (Input.GetTouch(0).phase == TouchPhase.Began)
+				if (Input.GetTouch(0).phase == TouchPhase.Began && !DialogueStageTracker.stageTracker.isPlaying)
 				{
 					results = new RaycastHit2D[2];
 					Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position), Vector2.zero, conFilter, results);
