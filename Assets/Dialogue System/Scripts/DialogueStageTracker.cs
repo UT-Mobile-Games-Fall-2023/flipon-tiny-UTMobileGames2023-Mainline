@@ -179,7 +179,15 @@ public class DialogueStageTracker : MonoBehaviour
 
 			if (dialogueDataManager.shownDialogues != null)
 			{
-				var lastItem = dialogueDataManager.shownDialogues[dialogueDataManager.shownDialogues.Count - 1];
+        SingleDialogueData lastItem;
+        if (dialogueDataManager.shownDialogues.Count > 0)
+				{
+          lastItem = dialogueDataManager.shownDialogues[dialogueDataManager.shownDialogues.Count - 1];
+        } else
+				{
+          lastItem = ScriptableObject.CreateInstance<SingleDialogueData>();
+          lastItem.name = " ";
+        }
 
 				if (!lastItem.name.Equals(lastPlayedEntryName))
 				{
@@ -192,12 +200,12 @@ public class DialogueStageTracker : MonoBehaviour
 
 						if (!found)
 						{
-							dialogueDataManager.allDialogues.Add(dialogueData);
+              dialogueDataManager.shownDialogues.Add(dialogueData);
 						}
 						else
 						{
-							dialogueDataManager.shownDialogues.Add(dialogueData);
-						}
+              dialogueDataManager.allDialogues.Add(dialogueData);
+            }
 					}
 				}
 			}
