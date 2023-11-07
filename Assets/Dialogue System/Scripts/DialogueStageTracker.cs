@@ -40,10 +40,6 @@ public class DialogueStageTracker : MonoBehaviour
 		}
 		dialogueController = this.GetComponent<DialogueController>();
 		dialogueDataManager = LoadDialogueData();
-		foreach (SingleDialogueData singleDialogue in dialogueDataManager.allDialogues)
-		{
-			dialogueEntries.Add(singleDialogue);
-		}
 	}
 	private void Start()
 	{
@@ -53,6 +49,10 @@ public class DialogueStageTracker : MonoBehaviour
 			level = GameManager.gameManager.CurrentLevel;
 		}
 		currentStage = Int32.Parse(Regex.Match(level, @"\d+").Value) / 5.0f;
+		foreach (SingleDialogueData singleDialogue in dialogueDataManager.allDialogues)
+		{
+			dialogueEntries.Add(singleDialogue);
+		}
 	}
 	public void RemoveEntry()
 	{
