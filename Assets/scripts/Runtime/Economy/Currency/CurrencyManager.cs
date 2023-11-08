@@ -32,7 +32,15 @@ public class CurrencyManager : MonoBehaviour
 
     void Start()
     {
-        LoadCurrency();
+        if (!PlayerPrefs.HasKey("cUnits"))
+        {
+            cUnits = 0; // or any initial amount you wish
+            SaveCurrency();
+        }
+        else
+        {
+            LoadCurrency();
+        }
         UpdateCurrencyDisplay();
     }
 
@@ -124,11 +132,6 @@ public class CurrencyManager : MonoBehaviour
             {
                 Debug.LogError("Failed to parse saved currency data.");
             }
-        }
-        else
-        {
-            cUnits = 0; // or any initial amount you wish
-            SaveCurrency();
         }
     }
 }

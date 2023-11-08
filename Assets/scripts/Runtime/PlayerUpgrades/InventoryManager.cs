@@ -65,7 +65,6 @@ public class InventoryManager : MonoBehaviour
         if (item != null)
         {
             item.isEnabled = true;
-            HandleCosmeticItemEnable(item);
             SaveInventory();
             PopulateInventoryUI();
         }
@@ -78,24 +77,6 @@ public class InventoryManager : MonoBehaviour
             item.isEnabled = false;
             SaveInventory();
             PopulateInventoryUI();
-        }
-    }
-
-    public void HandleCosmeticItemEnable(Item item)
-    {
-        // only enable one cosmetic at a time
-        if (item.itemType == ItemType.Cosmetic)
-        {
-            foreach (var i in playerInventory.items)
-            {
-                // disable other enable cosmetic
-                if (i.itemType == ItemType.Cosmetic && i.isEnabled)
-                {
-                    i.isEnabled = false;
-                }
-            }
-            // reenable selected cosmetic
-            item.isEnabled = true;
         }
     }
 
@@ -116,21 +97,17 @@ public class InventoryManager : MonoBehaviour
         // Now, instantiate new items based on the player's inventory.
         foreach (var item in playerInventory.items)
         {
-            // Debug.Log($"Instantiating UI for item: {item.itemName}");
-            if (item != null)
-            {
-                var itemUI = Instantiate(itemContainerPrefab, itemsParentTransform);
-                itemUI.transform.Find("ItemIcon").GetComponent<Image>().sprite = item.icon;
+            Debug.Log($"Instantiating UI for item: {item.itemName}");
 
-                // Set the enabled state
-                itemUI.transform.Find("EnabledPanel").gameObject.SetActive(item.isEnabled);
+            var itemUI = Instantiate(itemContainerPrefab, itemsParentTransform);
+            itemUI.transform.Find("ItemIcon").GetComponent<Image>().sprite = item.icon;
 
-                // Add the click listener to toggle the enabled state.
-                Button itemButton = itemUI.transform.Find("EnableTap").GetComponent<Button>();
-                itemButton.onClick.AddListener(() => ToggleItemEnabled(item, itemUI));
-            }
+            // Set the enabled state
+            itemUI.transform.Find("EnabledPanel").gameObject.SetActive(item.isEnabled);
 
-            
+            // Add the click listener to toggle the enabled state.
+            Button itemButton = itemUI.transform.Find("EnableTap").GetComponent<Button>();
+            itemButton.onClick.AddListener(() => ToggleItemEnabled(item, itemUI));
         }
     }
 

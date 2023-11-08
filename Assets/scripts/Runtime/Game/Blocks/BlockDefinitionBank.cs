@@ -16,12 +16,7 @@ namespace Pon
     public static BlockDefinitionBank Instance;
     private static sbyte LastId = 1;
 
-    
-    public BlockDefinition[] definitions; // empty list to swap sprites out with
-    public BlockDefinition[] defaultBlocks;
-    public BlockDefinition[] fruitCosmetics;
-    public BlockDefinition[] flowerCosmetics;
-    public BlockDefinition[] candyCosmetics;
+    public BlockDefinition[] definitions;
     public Sprite unknowBlockSprite;
 
     #region Timeline

@@ -15,9 +15,9 @@ public class ClearDataWindow : EditorWindow
 		savePath = Path.Combine(Application.persistentDataPath, "tutorialData.dat");
 		if (File.Exists(savePath))
 		{
-			File.Delete(savePath);
+		  File.Delete(savePath);
 		}
-		savePath = Path.Combine(Application.persistentDataPath, "loginData.dat");
+		savePath = Path.Combine(Application.persistentDataPath, "dialogueDataManager.dat");
 		if (File.Exists(savePath))
 		{
 			File.Delete(savePath);

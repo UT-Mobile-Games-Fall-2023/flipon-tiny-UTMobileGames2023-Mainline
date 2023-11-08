@@ -1,29 +1,20 @@
 {
   "project_info": {
     "project_number": "125322632099",
-    "firebase_url": "https://utmobilegamesfall2023-default-rtdb.firebaseio.com",
     "project_id": "utmobilegamesfall2023",
     "storage_bucket": "utmobilegamesfall2023.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:125322632099:android:3ddf542e46a3ad36241816",
+        "mobilesdk_app_id": "1:125322632099:android:58f835673ddb5f69241816",
         "android_client_info": {
           "package_name": "com.AET333.CloudyCrumble"
         }
       },
       "oauth_client": [
         {
-          "client_id": "125322632099-omr4vt09fqd7k9b1h9bcq4qio2uv6b7n.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.AET333.CloudyCrumble",
-            "certificate_hash": "20f2a44154bd04c4f23310e3773b8c6ae6cedebd"
-          }
-        },
-        {
-          "client_id": "125322632099-dsmdu8emguc88sunaui7pson8j3vhbb6.apps.googleusercontent.com",
+          "client_id": "125322632099-i5li7lfj9g6i4g6j6mcg3rboacuijah8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -36,15 +27,8 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "125322632099-dsmdu8emguc88sunaui7pson8j3vhbb6.apps.googleusercontent.com",
+              "client_id": "125322632099-i5li7lfj9g6i4g6j6mcg3rboacuijah8.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "125322632099-fh3c0cjehdsqndohdni9vi42obv812a7.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.AET333.CloudyCrumble"
-              }
             }
           ]
         }

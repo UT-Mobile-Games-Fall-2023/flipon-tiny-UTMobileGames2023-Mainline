@@ -3,8 +3,7 @@ public enum ItemType
 {
     Upgrade,
     Power,
-    Incremental,
-    Cosmetic
+    Incremental
 }
 
 [CreateAssetMenu(menuName = "Shop/Item")]
