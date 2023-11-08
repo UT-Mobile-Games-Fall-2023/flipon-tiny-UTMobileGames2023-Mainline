@@ -692,7 +692,6 @@ namespace Pon
 
 		private void TriggerGameOver()
 		{
-			DialogueStageTracker.stageTracker.DOTweenGameObject = DOTweenGameObject;
 			DOTweenGameObject.SetActive(false); //Deactivate DoTween GameObject when moving back to map
 			Log.Warning("Game is ended.");
 			SetPause(true);

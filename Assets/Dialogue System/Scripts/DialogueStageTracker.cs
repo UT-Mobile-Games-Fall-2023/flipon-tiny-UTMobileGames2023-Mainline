@@ -26,8 +26,7 @@ public class DialogueStageTracker : MonoBehaviour
 	public float currentStage = 0f;
 	public List<SingleDialogueData> dialogueEntries = new List<SingleDialogueData>();
 	public bool isPlaying = false;
-	public GameObject DOTweenGameObject;
-
+	private int region = 0;
 	private void Awake()
 	{
 		if (stageTracker == null)
@@ -73,13 +72,16 @@ public class DialogueStageTracker : MonoBehaviour
 		}
 		else
 		{
-			if (!(currentStage * 5 <= stageTracker.dialogueDataManager.shownDialogues.Count))
+			if (!(currentStage * 5 + region <= stageTracker.dialogueDataManager.shownDialogues.Count) || currentStage != 0.2f)
 			{
 				switch (currentStage)
 				{
 					case 0.2f:
 						dialoguePrefab.SetActive(true);
 						SetDialogueObjects();
+						Debug.Log(dialogueEntries[0]);
+						stageTracker.dialogueDataManager.allDialogues.Insert(0, stageTracker.dialogueDataManager.shownDialogues[0]);
+						dialogueEntries = dialogueDataManager.allDialogues;
 						dialogueController.StartSingleDialogue(dialogueEntries[0]);
 						currentStage += .01f;
 						break;
@@ -96,6 +98,12 @@ public class DialogueStageTracker : MonoBehaviour
 						currentStage += .1f;
 						break;
 					case 1.2f:
+						dialoguePrefab.SetActive(true);
+						SetDialogueObjects();
+						dialogueController.StartSingleDialogue(dialogueEntries[0]);
+						currentStage += .1f;
+						break;
+					case 1.3f:
 						StartRegionDialogue();
 						currentStage += .1f;
 						break;
@@ -161,6 +169,7 @@ public class DialogueStageTracker : MonoBehaviour
 			}
 		}
 	}
+	/*
 	public DialogueDataManager LoadDialogueData()
 	{
 		if (File.Exists(Application.persistentDataPath + "/dialogueDataManager.dat"))
@@ -179,15 +188,16 @@ public class DialogueStageTracker : MonoBehaviour
 
 			if (dialogueDataManager.shownDialogues != null)
 			{
-        SingleDialogueData lastItem;
-        if (dialogueDataManager.shownDialogues.Count > 0)
+				SingleDialogueData lastItem;
+				if (dialogueDataManager.shownDialogues.Count > 0)
 				{
-          lastItem = dialogueDataManager.shownDialogues[dialogueDataManager.shownDialogues.Count - 1];
-        } else
+					lastItem = dialogueDataManager.shownDialogues[dialogueDataManager.shownDialogues.Count - 1];					
+				}
+				else
 				{
-          lastItem = ScriptableObject.CreateInstance<SingleDialogueData>();
-          lastItem.name = " ";
-        }
+					lastItem = ScriptableObject.CreateInstance<SingleDialogueData>();
+					lastItem.name = " ";
+				}
 
 				if (!lastItem.name.Equals(lastPlayedEntryName))
 				{
@@ -200,12 +210,106 @@ public class DialogueStageTracker : MonoBehaviour
 
 						if (!found)
 						{
-              dialogueDataManager.shownDialogues.Add(dialogueData);
+							dialogueDataManager.shownDialogues.Add(dialogueData);
 						}
 						else
 						{
-              dialogueDataManager.allDialogues.Add(dialogueData);
-            }
+							dialogueDataManager.allDialogues.Add(dialogueData);
+						}
+					}
+				}
+			}
+			else
+			{
+				foreach (SingleDialogueData dialogueData in array.GetArray())
+				{
+					if (dialogueData.name.Equals(lastPlayedEntryName))
+					{
+						found = true;
+					}
+
+					if (!found)
+					{
+						dialogueDataManager.allDialogues.Add(dialogueData);
+					}
+					else
+					{
+						dialogueDataManager.shownDialogues.Add(dialogueData);
+					}
+				}
+			}
+		}
+		else
+		{
+			dialogueDataManager.allDialogues = array.GetArray().ToList<SingleDialogueData>();
+			dialogueDataManager.shownDialogues.Clear();
+		}
+		//SingleDialogueData duplicatedItem = DuplicateSingleDialogueData(dialogueDataManager.shownDialogues[0]);
+		//dialogueDataManager.allDialogues.Insert(0, duplicatedItem);
+		dialogueDataManager.allDialogues.Insert(1, dialogueDataManager.allDialogues[0]);
+
+		return dialogueDataManager;
+	}
+
+	// Helper method to duplicate SingleDialogueData
+	private SingleDialogueData DuplicateSingleDialogueData(SingleDialogueData originalData)
+	{
+		SingleDialogueData duplicateData = ScriptableObject.CreateInstance<SingleDialogueData>();
+		// Copy relevant properties from the originalData to duplicateData
+		duplicateData.name = originalData.name;
+		// Duplicate other properties as needed
+		return duplicateData;
+	}
+
+
+*/
+	public DialogueDataManager LoadDialogueData()
+	{
+		if (File.Exists(Application.persistentDataPath + "/dialogueDataManager.dat"))
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream file = File.Open(Application.persistentDataPath + "/dialogueDataManager.dat", FileMode.Open);
+			DialogueDataManagerData loadedData = (DialogueDataManagerData)bf.Deserialize(file);
+			file.Close();
+
+			// Set the loaded data to the DialogueDataManager
+			string lastPlayedEntryName = loadedData.lastPlayedEntryName;
+			bool found = false;
+			dialogueDataManager.allDialogues.Clear();
+			dialogueDataManager.shownDialogues.Clear();
+			Debug.Log(loadedData.lastPlayedEntryName);
+			Debug.Log(dialogueDataManager.shownDialogues);
+
+			if (dialogueDataManager.shownDialogues != null)
+			{
+				SingleDialogueData lastItem;
+				if (dialogueDataManager.shownDialogues.Count > 0)
+				{
+					lastItem = dialogueDataManager.shownDialogues[dialogueDataManager.shownDialogues.Count - 1];
+				}
+				else
+				{
+					lastItem = ScriptableObject.CreateInstance<SingleDialogueData>();
+					lastItem.name = " ";
+				}
+
+				if (!lastItem.name.Equals(lastPlayedEntryName))
+				{
+					foreach (SingleDialogueData dialogueData in array.GetArray())
+					{
+						if (dialogueData.name.Equals(lastPlayedEntryName))
+						{
+							found = true;
+						}
+
+						if (!found)
+						{
+							dialogueDataManager.shownDialogues.Add(dialogueData);
+						}
+						else
+						{
+							dialogueDataManager.allDialogues.Add(dialogueData);
+						}
 					}
 				}
 			}
@@ -237,89 +341,7 @@ public class DialogueStageTracker : MonoBehaviour
 		return dialogueDataManager;
 	}
 
-	/*
-	public DialogueDataManager LoadDialogueData()
-	{
-		if (File.Exists(Application.persistentDataPath + "/dialogueDataManager.dat"))
-		{
-			BinaryFormatter bf = new BinaryFormatter();
-			FileStream file = File.Open(Application.persistentDataPath + "/dialogueDataManager.dat", FileMode.Open);
-			DialogueDataManagerData loadedData = (DialogueDataManagerData)bf.Deserialize(file);
-			file.Close();
 
-			// Set the loaded data to the DialogueDataManager
-			string lastPlayedEntryName = loadedData.lastPlayedEntryName;
-			bool found = false;
-			Debug.Log(loadedData.lastPlayedEntryName);
-			foreach (SingleDialogueData dialogueData in array.GetArray())
-			{
-				if (dialogueData.name.Equals(lastPlayedEntryName))
-				{
-					found = true;
-				}
-
-				if (!found)
-				{
-					dialogueDataManager.allDialogues.Add(dialogueData);
-				}
-				else
-				{
-					dialogueDataManager.shownDialogues.Add(dialogueData);
-				}
-			}
-		}/*
-			if (dialogueDataManager.shownDialogues != null)
-			{
-				var lastItem = dialogueDataManager.shownDialogues[dialogueDataManager.shownDialogues.Count - 1];
-
-				if (!lastItem.name.Equals(lastPlayedEntryName))
-				{
-					foreach (SingleDialogueData dialogueData in array.GetArray())
-					{
-						if (dialogueData.name.Equals(lastPlayedEntryName))
-						{
-							found = true;
-						}
-
-						if (!found)
-						{
-							dialogueDataManager.allDialogues.Add(dialogueData);
-						}
-						else
-						{
-							dialogueDataManager.shownDialogues.Add(dialogueData);
-						}
-					}
-				}
-			}
-			else
-			{
-				foreach (SingleDialogueData dialogueData in array.GetArray())
-				{
-					if (dialogueData.name.Equals(lastPlayedEntryName))
-					{
-						found = true;
-					}
-
-					if (!found)
-					{
-						dialogueDataManager.allDialogues.Add(dialogueData);
-					}
-					else
-					{
-						dialogueDataManager.shownDialogues.Add(dialogueData);
-					}
-				}
-			}
-		}
-		else
-		{
-			dialogueDataManager.allDialogues = array.GetArray().ToList<SingleDialogueData>();
-			dialogueDataManager.shownDialogues.Clear();
-		}
-		return dialogueDataManager;
-
-	}*/
 	public void ResetProgress()
 	{
 		dialogueDataManager.allDialogues.Clear();
@@ -383,25 +405,6 @@ public class DialogueStageTracker : MonoBehaviour
 	static public void SetStageStage(float desStage)
 	{
 		stageTracker.currentStage = desStage;
-	}
-
-	private Image GetImage()
-	{
-		Image[] diaImgs = dialoguePrefab.GetComponentsInChildren<Image>();
-		foreach (Image child in diaImgs)
-		{
-			return child;
-		}
-		return null;
-	}
-
-	public void Shake(RectTransform rectTransform)
-	{
-		// Reset position to the original position
-		rectTransform.localPosition = rectTransform.localPosition;
-
-		// Apply the shake effect using DoTween
-		rectTransform.DOShakePosition(1f, 10f);
 	}
 
 	private void SetDialogueObjects()
