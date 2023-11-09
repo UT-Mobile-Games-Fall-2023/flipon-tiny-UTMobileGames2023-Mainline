@@ -17,7 +17,7 @@ MonoBehaviour:
   - characterName: Sunny Guardian
     sentence: You just don't know when to quit, do you? I've already had to drag
       myself out of my cave twice now to deal with you.
-    characterSprite: {fileID: 0}
+    characterSprite: {fileID: 21300000, guid: 9252c92304da55c4dbe78673255ae520, type: 3}
   - characterName: Sunny Guardian
     sentence: You must be truly bored if you're still bothering with this fool's
       errand. Not like anything you do will stop the cheerless doom we all face.
