@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0475b1b23837e148ae0aaea66617c01, type: 3}
+  m_Name: Rainy Guardian (Lvl5-2)
+  m_EditorClassIdentifier: 
+  characterName: Rainy Guardian
+  dialogueEntries:
+  - sentence: RAAAAAAGGGGHHHHHH!!!!!!!!!
+    characterSprite: {fileID: 21300000, guid: 53aba987876419b469b9bfca29d5e25c, type: 3}
+  - sentence: Woah, that was pretty intense.
+    characterSprite: {fileID: 21300000, guid: 05008cdec21b00e479b4c7497335baf6, type: 3}
+  - sentence: I was just chilled out and suddenly BAM, crazy thoughts. You're pretty
+      righteous for helping this dragon out.
+    characterSprite: {fileID: 21300000, guid: 05008cdec21b00e479b4c7497335baf6, type: 3}
+  - sentence: You're getting close to the end my friend.
+    characterSprite: {fileID: 21300000, guid: 1e8737589fe5b8649835bade4322889a, type: 3}
+  - sentence: We're all cheering you on from the fog cavern, now go show that stormy
+      dude what you're made of.
+    characterSprite: {fileID: 21300000, guid: 1e8737589fe5b8649835bade4322889a, type: 3}
+  csvDelimiter: 0
+  csvFile: {fileID: 4900000, guid: 0958466ef0735f04fbb2e3f1671fe5cf, type: 3}

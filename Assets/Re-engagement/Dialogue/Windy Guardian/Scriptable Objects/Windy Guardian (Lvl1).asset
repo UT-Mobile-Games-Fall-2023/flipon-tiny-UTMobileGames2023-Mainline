@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0475b1b23837e148ae0aaea66617c01, type: 3}
+  m_Name: Windy Guardian (Lvl1)
+  m_EditorClassIdentifier: 
+  characterName: Windy Guardian
+  dialogueEntries:
+  - sentence: '"Well well well, if it isn''t the little crystal keeper, here to ruin
+      my fun."'
+    characterSprite: {fileID: 21300000, guid: fc9102198b6789f448440885c1ba938a, type: 3}
+  - sentence: '"You got lucky with the last two guardians, but me? I''m the real
+      deal!"'
+    characterSprite: {fileID: 21300000, guid: f7c794a8b45a75845809b99e51828695, type: 3}
+  - sentence: Not like you'll be able to do much. I made sure of that.
+    characterSprite: {fileID: 21300000, guid: fc9102198b6789f448440885c1ba938a, type: 3}
+  csvDelimiter: 0
+  csvFile: {fileID: 4900000, guid: 5d5056a382c44614399421e081798dcc, type: 3}

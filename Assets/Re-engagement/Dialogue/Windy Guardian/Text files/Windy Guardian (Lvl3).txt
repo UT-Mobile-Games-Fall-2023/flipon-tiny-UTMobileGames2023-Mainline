@@ -1,0 +1,4 @@
+Character Name	Emotion	Dialogue
+Windy Guardian	Corrupted Windy Guardian Crazy	"Grrr, why do you insist on wrecking my fun?! Don't you have something better to-"																							
+Windy Guardian	Corrupted Windy Guardian Distressed	"Continue your efforts, crystal keeper. I can feel the winds of change blowing away this corruption."																							
+Windy Guardian	Corrupted Windy Guardian Sneer	Ha! Yeah right!	

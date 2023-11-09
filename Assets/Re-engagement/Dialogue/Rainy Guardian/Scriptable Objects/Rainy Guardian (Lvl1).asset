@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0475b1b23837e148ae0aaea66617c01, type: 3}
+  m_Name: Rainy Guardian (Lvl1)
+  m_EditorClassIdentifier: 
+  characterName: Rainy Guardian
+  dialogueEntries:
+  - sentence: YOU!!! WHO DO YOU THINK YOU ARE?!?!
+    characterSprite: {fileID: 21300000, guid: a4ce1e9b83c40e74db7aa4a4bf52a6e9, type: 3}
+  - sentence: YOU THINK YOU CAN STOP THE LORD OF STORMS YOU WRETCHED FOOL!
+    characterSprite: {fileID: 21300000, guid: 2a2cf73d705e0db4aac01655121b8356, type: 3}
+  - sentence: I'LL MAKE SURE YOUR PATH ENDS HERE!!!
+    characterSprite: {fileID: 21300000, guid: 2a2cf73d705e0db4aac01655121b8356, type: 3}
+  csvDelimiter: 0
+  csvFile: {fileID: 4900000, guid: b169e74a77e446e48b5cff3ad773a7ed, type: 3}

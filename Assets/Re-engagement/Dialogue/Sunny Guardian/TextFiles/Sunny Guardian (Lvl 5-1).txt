@@ -1,0 +1,4 @@
+Character Name	Emotion	Dialogue
+Sunny Guardian	Corrupted Sunny Guarian Annoyed	"You just don't know when to quit, do you? I've already had to drag myself out of my cave twice now to deal with you."																							
+Sunny Guardian	Corrupted Sunny Guardian Deadpan	You must be truly bored if you're still bothering with this fool's errand. Not like anything you do will stop the cheerless doom we all face.																							
+Sunny Guardian	Corrupted Sunny Guardian Annoyed	" Fine, I suppose if it'll get you to leave me alone faster, I'll put in some effort to end this. "		

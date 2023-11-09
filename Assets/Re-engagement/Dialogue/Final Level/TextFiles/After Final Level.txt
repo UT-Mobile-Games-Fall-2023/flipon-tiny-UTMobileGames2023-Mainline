@@ -1,0 +1,9 @@
+Character Name	Emotion	Dialogue
+Lord of Storms	LordOfStorms_Upset	No! H-how is this possible!																							
+Lord of Storms	LordOfStorms_Angry	"Grr, you have not seen the last of me crystal keeper! This kingdom will be mine one day!"																							
+Lord of Storms	LordOfStorms_Angry	Rest assured!
+Cloudy King	CloudKing_Satisfied	Well done crystal keeper! 																							
+Cloudy King	CloudKing_Satisfied	"Thanks to your efforts, our kingdom has been saved! Huzzah!"																							
+Cloudy King	CloudKing_Talking	"However, don't think you have to spend all your time up here now that peace has been restored."																							
+Cloudy King	CloudKing_Talking	Feel free to pop on down to the regions below for more exciting adventures!																							
+Cloudy King	CloudKing_Satisfied	I'm sure many endless opportunities await you! Be well crystal keeper!	

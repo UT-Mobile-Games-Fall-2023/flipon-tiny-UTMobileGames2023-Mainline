@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0475b1b23837e148ae0aaea66617c01, type: 3}
+  m_Name: Windy Guardian (Lvl5-2)
+  m_EditorClassIdentifier: 
+  characterName: Windy Guardian
+  dialogueEntries:
+  - sentence: "Dang it!!!\r"
+    characterSprite: {fileID: 21300000, guid: df7e37ecfd4f9c74e8879fda47a667ef, type: 3}
+  - sentence: What happened? Am I finally free from the Lord of Storm's shackles?
+    characterSprite: {fileID: 21300000, guid: 9cacf0c67e91bfc4a877dfc495936de8, type: 3}
+  - sentence: '"I can''t thank you enough for freeing me, Crystal Keeper. I apologize
+      for anything...unruly I may have said."'
+    characterSprite: {fileID: 21300000, guid: 2778bd875c019e049935b2f8231bbe75, type: 3}
+  - sentence: '"I see great power within you. If you were able to free three of us
+      guardians, you will surely be able to free the last of us."'
+    characterSprite: {fileID: 21300000, guid: 2778bd875c019e049935b2f8231bbe75, type: 3}
+  - sentence: '"Continue forth to the rainy region, and may the winds ever blow in
+      your favor."'
+    characterSprite: {fileID: 21300000, guid: 2778bd875c019e049935b2f8231bbe75, type: 3}
+  csvDelimiter: 0
+  csvFile: {fileID: 4900000, guid: a5869ac982467ed4cb2ce047e2d7d037, type: 3}

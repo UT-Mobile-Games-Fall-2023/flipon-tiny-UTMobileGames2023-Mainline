@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0475b1b23837e148ae0aaea66617c01, type: 3}
+  m_Name: Before Final Level
+  m_EditorClassIdentifier: 
+  characterName: Lord of Storms
+  dialogueEntries:
+  - sentence: Those useless Guardians. I give them immense power and they squandered
+      it!
+    characterSprite: {fileID: 21300000, guid: c99c629e46c473a48b8fa13d8e087165, type: 3}
+  - sentence: I have had enough of your meddling crystal keeper.
+    characterSprite: {fileID: 21300000, guid: 0743960f38a7d084d98e8e7eacd8ae16, type: 3}
+  - sentence: You will not stop me from attaining my rightful place as king.
+    characterSprite: {fileID: 21300000, guid: 0743960f38a7d084d98e8e7eacd8ae16, type: 3}
+  - sentence: '"I, the mighty LORD OF STORMS, challenge YOU Crystal Keeper! En Garde!
+      "'
+    characterSprite: {fileID: 21300000, guid: 3e0d03cd3fe055645a79c638a8d5845c, type: 3}
+  csvDelimiter: 0
+  csvFile: {fileID: 4900000, guid: 227e3157662be60458fc28ca3505ac19, type: 3}

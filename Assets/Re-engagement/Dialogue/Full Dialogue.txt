@@ -1,0 +1,93 @@
+Character Name	Emotion	Dialogue
+Sunny Guardian    Corrupted Sunny Guardian_Annoyed    Ugh, who disrupted my rest? Can’t a lion wallow in peace?
+Sunny Guardian    Corrupted Sunny Guardian_Deadpan    Wait, you must be that new Crystal Keeper. The Lord of Storms said someone might darken my cave today. Lucky me.
+Sunny Guardian    Corrupted Sunny Guardian_Bored    Whatever, we both know you can't actually stop him. But by all means, give it your best shot...
+
+Sunny Guardian    Corrupted Sunny Guardian_Annoyed    Ugh you’re still here? Why won't you just give up already.
+Sunny Guardian    Corrupted Sunny Guardian    
+Sunny Guardian    Corrupted Sunny Guardian_Deadpan    Whatever, go ahead and take a shot at my defenses. I could use some more disappointment in my life.
+
+Sunny Guardian    Corrupted Sunny Guardian_Annoyed    You just don't know when to quit, do you? I've already had to drag myself out of my cave twice now to deal with you.
+Sunny Guardian    Corrupted Sunny Guardian_Bored    You must be truly bored with your life if you're still bothering with this fool's errand. Not like anything you do will stop the inevitable cheerless doom we all face.
+Sunny Guardian    Corrupted Sunny Guardian_Annoyed    Fine, I suppose if it'll get you to leave me alone faster, I'll put in some effort to end this. Though we all know nothing really matters in the end anyway.
+
+Notes: Player beats the final level of the region
+
+Sunny Guardian    Corrupted Sunny Guardian_Deadpan    Man, what a drag.
+
+Notes: Corrupted Guardian changes to Regular form + Background changes to uncorrupted version
+
+Regular Sunny Guardian_Happy    Golly! I can't thank you enough for rescuing me from that gloomy spell, friend! But it seems your work of spreading cheer is only just beginning.
+Sunny Guardian    Corrupted Sunny Guardian_Neutral    Sunny Guardian
+Sunny Guardian    Corrupted Sunny Guardian_Worried    Normally he's quite the upbeat fellow, but I fear the Lord of Storms has made him rather...strict.
+Sunny Guardian    Corrupted Sunny Guardian_Optimistic    Still, with your sparkling spirit I know you'll have him beaming again in no time flat! Best of luck on your adventure, my friend - I know the sunshine will guide your way.
+
+Player makes their way to snowy region
+
+Snowy Guardian    Corrupted Snowy Guardian_Stern    Halt citizen! You are in violation of His Lordship's decrees. No unauthorized personnel past this point!
+Snowy Guardian    Corrupted Snowy Guardian_Snobby    According to my daily briefing, you're the rascal responsible for turning the sunny guardian back into an unruly hooligan! Well not on my watch!
+Snowy Guardian    Corrupted Snowy Guardian_Serious    Order and discipline will be maintained, rulebreaker! I've been appointed by His Lordship to strictly enforce protocol. Your unlawful escapades end here.
+
+Snowy Guardian    Corrupted Snowy Guardian_Angry    What's this now?! How'd you breach the perimeter of my perimeter? Somebody's getting a citation for this!
+Snowy Guardian    Corrupted Snowy Guardian_Stern    But a lucky break won't save you twice, lawbreaker. So stop your insubooridnation at once?!
+
+Snowy Guardian    Corrupted Snowy Guardian_Stern    You've got pluck, I'll grant you that. But the fun and games are over! It's time to enforce proper conduct with maximum strictness.
+Snowy Guardian    Corrupted Snowy Guardian_Serious    You think challenging his Lordship's authority is a joke? He's restoring much needed law and order to this chaos you call a kingdom!
+Snowy Guardian    Corrupted Snowy Guardian_Serious    On your toes, crystal keeper! I've been granted full authority to contain your disruptions through any means necessary. Last chance to surrender before this gets... unpleasant.
+
+Notes: Player beats the final level of the region
+
+Snowy Guardian    Corrupted Snowy Guardian_Angry    Impossible!
+
+Notes: Corrupted Guardian changes to Regular form + Background changes to uncorrupted version
+
+Snowy Guardian    Regular Snowy Guardian_Happy    Whoaaa, major thanks for breaking that dark spell on me! Must've been totally dragging the good vibes down as Lord Buzzkill's henchman. My bad!
+Snowy Guardian    Regular Snowy Guardian_Neutral    Head to the windy region next, crystal dude - gotta save our airborne amiga from that wack storm dude.
+Snowy Guardian    Regular Snowy Guardian_Worried    Word is that he warped the wise old wind guardian's energy big time - turned her into a total loose cannon! And coming from yours truly, that's sayin' something.
+Snowy Guardian    Regular Snowy Guardian_Optimistic    But I know you got the mad skills to twist this storm around, my crystal-cool dude. Best of luck out there and hang ten, brahh!
+
+Notes: Players make their way to windy region
+
+Windy Region    Corrupted_Windy_Guardian_Annoyed    Ugh... what are you doing here Crystal Keeper? Can't you see I'm having my fun with this place?
+Windy Region    Corrupted_Windy_Guardian_Rude    Actually, I don't really care for what you have to say. Just leave me out of... whatever you're doing.
+Windy Region    Corrupted_Windy_Guardian_Cocky    Not like you'll be able to do much. I made sure of that.
+
+Windy Guardian	Corrupted_Windy_Guardian_Furious	Why do you insist on ruining my fun?! Don't you have some other people to bother with your presence?
+Windy Guardian	Corrupted_Windy_Guardian_Resentful	If it wasn't for that Lord of Storms, I would personally stop you right now.
+Windy Guardian	Corrupted_Windy_Guardian_Cocky	You've just gotten lucky though. What comes next surely will stump you for good.
+
+Windy Guardian	Corrupted_Windy_Guardian_Rage	I've just about HAD IT with you!!!
+Windy Guardian	Corrupted_Windy_Guardian_Sinister	If you insist of wrecking my fun, I might as well wreck yours.
+Windy Guardian	Corrupted_Windy_Guardian_Crazy	Oh this is gonna be fun. HAHAHAHAHA!!!
+
+Notes: Player beats the final level of the region
+Windy Guardian	Corrupted_Windy_Guardian_	Dang it!!!		
+Notes: Corrupted Guardian changes to Regular form + Background changes to uncorrupted version
+
+Windy Guardian	Regular_Windy_Guardian_Confused	What happened? Am I finally free from the Lord of Storm's shackles?
+Windy Guardian	Regular_Windy_Guardian_Thankful	You're the one who freed me. I can't thank you enough. I'm also very sorry for anything I may have said.
+Windy Guardian	Regular_Windy_Guardian_Encouraging	I see great power within you. If you were able to free three of us guardians, you will surely be able to free the last of us.
+Windy Guardian	Regular_Windy_Guardian_Encouraging	Continue forth and may the winds ever blow in your favor.
+Notes: Player makes their way to the rainy region
+
+Rainy Guardian	Corrupted_Rainy_Guardian	YOU!!! WHAT ARE YOU DOING IN MY PERFECT REALITY?!?! 
+Rainy Guardian    Corrupted_Rainy_Guardian	How dare you step foot in a place you DON'T belong in.
+Rainy Guardian    Corrupted_Rainy_Guardian	I'm keeping my eyes on you. You best be on your best behavior in my realm.
+
+Rainy Guardian	Corrupted_Rainy_Guardian	How did you get this far! You won't-	
+Rainy Guardian	Corrupted_Rainy_Guardian	Keep doing what you're doing man, bring back those chill vibes, my friend!	
+Rainy Guardian	Corrupted_Rainy_Guardian	NO, there will be no chill vibes, JUST FIERY FURY AND CHAOS!!!	
+
+Rainy Guardian	Corrupted_Rainy_Guardian	AAAAAAAAAHHHHHHHHH!!!!!!!!!	
+Rainy Guardian	Corrupted_Rainy_Guardian	THE LORD OF STORMS WILL NOT BE DENIED!!!	
+Rainy Guardian	Corrupted_Rainy_Guardian	PREPARE TO FACE MY WRATH CRYSTAL KEEPER!!!	
+Rainy Guardian	Corrupted_Rainy_Guardian	RAAAAAAGGGGHHHHHH!!!!!!!!!	
+
+Notes: Player beats the final level of the region																						
+Rainy Guardian	Corrupted_Rainy_Guardian	Angy!(placeholder)
+Notes: Corrupted Guardian changes to Regular form + Background changes to uncorrupted version
+
+Rainy Guardian	Regular_Rainy_Guardian	Woah, that was pretty intense.																							
+Rainy Guardian	Regular_Rainy_Guardian	I was just chilled out and suddenly BAM, crazy thoughts. You're pretty righteous for helping this dragon out.																							
+Rainy Guardian	Regular_Rainy_Guardian	You're getting close to the end my friend.																							
+Rainy Guardian	Regular_Rainy_Guardian	We're all cheering you on from the fog cavern, now go show that stormy dude what you're made of.																							

@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 	public LvlUnlockContainer lvlUnlocks;
 	public Image[] CorruptBackgrounds = null;
 	public GameObject CorruptBackgroundsParent;
+	public string CurrentLevel = "Level 1";
+	public bool endRegion = false;
 
 	private void Awake()
 	{
@@ -44,6 +46,7 @@ public class GameManager : MonoBehaviour
 		lvlUnlocks.LvlUnlockStates = new bool[lvlParent.childCount];
 		MapUIScript.mapInstance.currentLevelName = LoadLevel();
 	}
+	
 	public static void RevealMap(Image mask, float progression)
 	{
 		mask.fillAmount = progression;
@@ -77,7 +80,7 @@ public class GameManager : MonoBehaviour
 	}
 	private void Update()
 	{
-		if (SceneManager.GetActiveScene().name == "Map_t")
+		if (SceneManager.GetActiveScene().name == "Map_t" && !gameManager.endRegion)
 		{
 			//RevealMap(Int32.Parse(Regex.Match(LoadLevel(), @"\d+").Value));
 			//MapUIScript.mapInstance.currentLevelName = LoadLevel();
@@ -95,6 +98,7 @@ public class GameManager : MonoBehaviour
 			}
 		}
 	}
+	
 	public void SaveLevel(string level = null)
 	{
 		PlayerData data = new PlayerData();
@@ -109,6 +113,7 @@ public class GameManager : MonoBehaviour
 		if (data != null)
 		{
 			LoadUnlocks(data.level);
+			gameManager.CurrentLevel = data.level;
 			return data.level;
 		}
 		else
@@ -121,6 +126,11 @@ public class GameManager : MonoBehaviour
 	{
 		string resultString = Regex.Match(levelString, @"\d+").Value;
 		int level = Int32.Parse(resultString);
+		if (!gameManager.endRegion)
+		{
+			DialogueStageTracker.stageTracker.UpdateStage(level);
+		}
+
 		if (CorruptBackgrounds != null)
 		{
 			int region = level / 5;

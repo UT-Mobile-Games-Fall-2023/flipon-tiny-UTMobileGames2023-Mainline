@@ -1,0 +1,4 @@
+Character Name	Emotion	Dialogue
+Snowy Guardian	Corrupted Snowy Guardian Serious	What's this now?! How'd you breach the perimeter of my perimeter? Somebody's getting a citation for this																							
+Snowy Guardian	Corrupted Snowy Guardian Distressed	Right on dude, you're totally shredding this bogus magic! Don't quit now brah!"																			
+Snowy Guardian	Corrupted Snowy Guardian Snobby	Agh! Such insolence!								
