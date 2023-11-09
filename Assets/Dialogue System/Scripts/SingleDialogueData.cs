@@ -9,8 +9,8 @@ public class SingleDialogueData : ScriptableObject
 	[System.Serializable]
 	public class DialogueEntry
 	{
-		[TextArea(3, 10)]
-		public string sentence;
+		public string characterName;
+		[TextArea(3, 10)] public string sentence;
 		public Sprite characterSprite;
 	}
 
@@ -65,6 +65,7 @@ public class SingleDialogueData : ScriptableObject
 	public Sprite[] LoadSpritesFromFolder()
 	{
 		//Sprite[] sprites = (Sprite[])Resources.LoadAll(spriteFolder);
+#if UNITY_EDITOR
 		List<Sprite> sprites = new List<Sprite>();
 		string[] assetPaths = AssetDatabase.FindAssets("t:Sprite", new string[] { spriteFolder });
 		foreach (string assetPath in assetPaths)
@@ -73,6 +74,7 @@ public class SingleDialogueData : ScriptableObject
 			sprites.Add(sprite);
 		}
 		return sprites.ToArray();
+#endif
 		//return sprites;
 	}
 	public void PopulateCharacterToSpriteMap()
@@ -136,6 +138,7 @@ public class SingleDialogueData : ScriptableObject
 					}
 					DialogueEntry entry = new DialogueEntry
 					{
+						characterName = characterName,
 						characterSprite = characterSprite,
 						sentence = fields[2],
 					};
@@ -155,6 +158,7 @@ public class SingleDialogueData : ScriptableObject
 					Sprite characterSprite = GetCharacterSprite(characterName);
 					DialogueEntry entry = new DialogueEntry
 					{
+						characterName = characterName,
 						characterSprite = characterSprite,
 						sentence = fields[2].Replace("\"", ""),
 					};

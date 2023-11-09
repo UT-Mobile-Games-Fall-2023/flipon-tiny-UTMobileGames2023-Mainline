@@ -14,23 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Cloudy King
   dialogueEntries:
-  - sentence: No! H-how is this possible!
+  - characterName: Lord of Storms
+    sentence: No! H-how is this possible!
     characterSprite: {fileID: 21300000, guid: c99c629e46c473a48b8fa13d8e087165, type: 3}
-  - sentence: '"Grr, you have not seen the last of me crystal keeper! This kingdom
-      will be mine one day!"'
+  - characterName: Lord of Storms
+    sentence: Grr, you have not seen the last of me crystal keeper! This kingdom
+      will be mine one day!
     characterSprite: {fileID: 21300000, guid: 3e0d03cd3fe055645a79c638a8d5845c, type: 3}
-  - sentence: "Rest assured!\r"
+  - characterName: Lord of Storms
+    sentence: "Rest assured!\r"
     characterSprite: {fileID: 21300000, guid: 3e0d03cd3fe055645a79c638a8d5845c, type: 3}
-  - sentence: 'Well done crystal keeper! '
+  - characterName: Cloudy King
+    sentence: 'Well done crystal keeper! '
     characterSprite: {fileID: 21300000, guid: 338412435c911b64f93ad0cb4a1210f8, type: 3}
-  - sentence: '"Thanks to your efforts, our kingdom has been saved! Huzzah!"'
+  - characterName: Cloudy King
+    sentence: Thanks to your efforts, our kingdom has been saved! Huzzah!
     characterSprite: {fileID: 21300000, guid: 338412435c911b64f93ad0cb4a1210f8, type: 3}
-  - sentence: '"However, don''t think you have to spend all your time up here now
-      that peace has been restored."'
+  - characterName: Cloudy King
+    sentence: However, don't think you have to spend all your time up here now that
+      peace has been restored.
     characterSprite: {fileID: 21300000, guid: 477ea4f399c861641a8a258a3ec8c1d3, type: 3}
-  - sentence: Feel free to pop on down to the regions below for more exciting adventures!
+  - characterName: Cloudy King
+    sentence: Feel free to pop on down to the regions below for more exciting adventures!
     characterSprite: {fileID: 21300000, guid: 477ea4f399c861641a8a258a3ec8c1d3, type: 3}
-  - sentence: I'm sure many endless opportunities await you! Be well crystal keeper!
+  - characterName: Cloudy King
+    sentence: I'm sure many endless opportunities await you! Be well crystal keeper!
     characterSprite: {fileID: 21300000, guid: 338412435c911b64f93ad0cb4a1210f8, type: 3}
   csvDelimiter: 0
   csvFile: {fileID: 4900000, guid: 554ae292065b0d945aeebe973dc114b1, type: 3}

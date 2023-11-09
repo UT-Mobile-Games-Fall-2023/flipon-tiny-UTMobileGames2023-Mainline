@@ -14,13 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Windy Guardian
   dialogueEntries:
-  - sentence: '"Grrr, why do you insist on wrecking my fun?! Don''t you have something
-      better to-"'
+  - characterName: Windy Guardian
+    sentence: Grrr, why do you insist on wrecking my fun?! Don't you have something
+      better to-
     characterSprite: {fileID: 21300000, guid: f7c794a8b45a75845809b99e51828695, type: 3}
-  - sentence: '"Continue your efforts, crystal keeper. I can feel the winds of change
-      blowing away this corruption."'
+  - characterName: Windy Guardian
+    sentence: Continue your efforts, crystal keeper. I can feel the winds of change
+      blowing away this corruption.
     characterSprite: {fileID: 21300000, guid: df7e37ecfd4f9c74e8879fda47a667ef, type: 3}
-  - sentence: Ha! Yeah right!
+  - characterName: Windy Guardian
+    sentence: Ha! Yeah right!
     characterSprite: {fileID: 21300000, guid: fc9102198b6789f448440885c1ba938a, type: 3}
   csvDelimiter: 0
   csvFile: {fileID: 4900000, guid: f104ca0b2ef66764faec62a7d5e525c3, type: 3}

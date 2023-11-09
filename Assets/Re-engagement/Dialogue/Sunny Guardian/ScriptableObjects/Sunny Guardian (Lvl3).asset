@@ -14,11 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Sunny Guardian
   dialogueEntries:
-  - sentence: "You\uFFFDre still here? Why won't you just give up alre-"
+  - characterName: Sunny Guardian
+    sentence: You're still here? Why won't you just give up alre-
     characterSprite: {fileID: 21300000, guid: 9252c92304da55c4dbe78673255ae520, type: 3}
-  - sentence: '"No, keep going brave warrior. Bring sunshine back to this region!"'
+  - characterName: Sunny Guardian
+    sentence: No, keep going brave warrior. Bring sunshine back to this region!
     characterSprite: {fileID: 21300000, guid: 9c5738534bb6f344b859d995a86e32a8, type: 3}
-  - sentence: '"Ugh, sunshine''s so overrated."'
+  - characterName: Sunny Guardian
+    sentence: Ugh, sunshine's so overrated.
     characterSprite: {fileID: 21300000, guid: 9252c92304da55c4dbe78673255ae520, type: 3}
   csvDelimiter: 0
   csvFile: {fileID: 4900000, guid: 816b786dfa142b345a6183d5a178c5a4, type: 3}

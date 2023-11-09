@@ -14,14 +14,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Snowy Guardian
   dialogueEntries:
-  - sentence: Halt citizen! You are in violation of His Lordship's decrees. No unauthorized
+  - characterName: Sunny Guardian
+    sentence: Man, what a drag.
+    characterSprite: {fileID: 21300000, guid: 9c5738534bb6f344b859d995a86e32a8, type: 3}
+  - characterName: Sunny Guardian
+    sentence: Golly! I can't thank you enough for rescuing me from that gloomy spell,
+      friend! But it seems your work of spreading cheer is only just beginning.
+    characterSprite: {fileID: 21300000, guid: fd366d6728ca1c245b6a4559ef263d8f, type: 3}
+  - characterName: Sunny Guardian
+    sentence: Make your way to the snowy region, where you'll meet our yeti guardian.
+    characterSprite: {fileID: 21300000, guid: fd366d6728ca1c245b6a4559ef263d8f, type: 3}
+  - characterName: Sunny Guardian
+    sentence: Normally he's quite the upbeat fellow, but I fear the Lord of Storms
+      has made him rather...strict.
+    characterSprite: {fileID: 21300000, guid: 12f862382a31bc54ebc75bdbe7c5493c, type: 3}
+  - characterName: Sunny Guardian
+    sentence: Still, with your sparkling spirit I know you'll have him beaming again
+      in no time flat! Best of luck on your adventure, friend!
+    characterSprite: {fileID: 21300000, guid: fd366d6728ca1c245b6a4559ef263d8f, type: 3}
+  - characterName: Snowy Guardian
+    sentence: Halt citizen! You are in violation of His Lordship's decrees. No unauthorized
       personnel past this point!
     characterSprite: {fileID: 21300000, guid: 9a94a71211c52bd419a35ed41c27a507, type: 3}
-  - sentence: According to my daily briefing, you're the rascal responsible for turning
-      the sunny guardian back into an unruly hooligan! Well not on my watch!"
+  - characterName: Snowy Guardian
+    sentence: According to my daily briefing, you're the rascal responsible for turning
+      the sunny guardian back into an unruly hooligan! Well not on my watch!
     characterSprite: {fileID: 21300000, guid: 0b6bfde6915b53b4aa31e9f0bfbaf719, type: 3}
-  - sentence: '"Order and discipline will be maintained, rulebreaker! Your unlawful
-      escapades end here!"'
+  - characterName: Snowy Guardian
+    sentence: Order and discipline will be maintained, rulebreaker! Your unlawful
+      escapades end here!
     characterSprite: {fileID: 21300000, guid: 9a94a71211c52bd419a35ed41c27a507, type: 3}
   csvDelimiter: 0
   csvFile: {fileID: 4900000, guid: b490c83359082fc4388e897fbc5ea33f, type: 3}

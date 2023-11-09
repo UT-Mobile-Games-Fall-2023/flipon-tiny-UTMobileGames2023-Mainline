@@ -14,14 +14,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: Lord of Storms
   dialogueEntries:
-  - sentence: Those useless Guardians. I give them immense power and they squandered
+  - characterName: Rainy Guardian
+    sentence: RAAAAAAGGGGHHHHHH!!!!!!!!!
+    characterSprite: {fileID: 21300000, guid: 53aba987876419b469b9bfca29d5e25c, type: 3}
+  - characterName: Rainy Guardian
+    sentence: Woah, that was pretty intense.
+    characterSprite: {fileID: 21300000, guid: 05008cdec21b00e479b4c7497335baf6, type: 3}
+  - characterName: Rainy Guardian
+    sentence: I was just chilled out and suddenly BAM, crazy thoughts. You're pretty
+      righteous for helping this dragon out.
+    characterSprite: {fileID: 21300000, guid: 05008cdec21b00e479b4c7497335baf6, type: 3}
+  - characterName: Rainy Guardian
+    sentence: You're getting close to the end my friend.
+    characterSprite: {fileID: 21300000, guid: 1e8737589fe5b8649835bade4322889a, type: 3}
+  - characterName: Rainy Guardian
+    sentence: We're all cheering you on from the fog cavern, now go show that stormy
+      dude what you're made of.
+    characterSprite: {fileID: 21300000, guid: 1e8737589fe5b8649835bade4322889a, type: 3}
+  - characterName: Lord of Storms
+    sentence: Those useless Guardians. I give them immense power and they squandered
       it!
     characterSprite: {fileID: 21300000, guid: c99c629e46c473a48b8fa13d8e087165, type: 3}
-  - sentence: I have had enough of your meddling crystal keeper.
+  - characterName: Lord of Storms
+    sentence: I have had enough of your meddling crystal keeper.
     characterSprite: {fileID: 21300000, guid: 0743960f38a7d084d98e8e7eacd8ae16, type: 3}
-  - sentence: You will not stop me from attaining my rightful place as king.
+  - characterName: Lord of Storms
+    sentence: You will not stop me from attaining my rightful place as king.
     characterSprite: {fileID: 21300000, guid: 0743960f38a7d084d98e8e7eacd8ae16, type: 3}
-  - sentence: '"I, the mighty LORD OF STORMS, challenge YOU Crystal Keeper! En Garde!
+  - characterName: Lord of Storms
+    sentence: '"I, the mighty LORD OF STORMS, challenge YOU Crystal Keeper! En Garde!
       "'
     characterSprite: {fileID: 21300000, guid: 3e0d03cd3fe055645a79c638a8d5845c, type: 3}
   csvDelimiter: 0

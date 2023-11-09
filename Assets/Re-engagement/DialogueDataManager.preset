@@ -27,7 +27,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: allDialogues.Array.size
-    value: 18
+    value: 14
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: allDialogues.Array.data[0]
@@ -44,61 +44,45 @@ Preset:
   - target: {fileID: 0}
     propertyPath: allDialogues.Array.data[3]
     value: 
-    objectReference: {fileID: 11400000, guid: 458f59a553365bf499663b51c40605b3, type: 2}
+    objectReference: {fileID: 11400000, guid: 260e6777ae151a14ea7925280287d6ec, type: 2}
   - target: {fileID: 0}
     propertyPath: allDialogues.Array.data[4]
     value: 
-    objectReference: {fileID: 11400000, guid: 260e6777ae151a14ea7925280287d6ec, type: 2}
+    objectReference: {fileID: 11400000, guid: 43e1862f6e3a039478d248b08e7edafc, type: 2}
   - target: {fileID: 0}
     propertyPath: allDialogues.Array.data[5]
     value: 
-    objectReference: {fileID: 11400000, guid: 43e1862f6e3a039478d248b08e7edafc, type: 2}
+    objectReference: {fileID: 11400000, guid: 9db96b009e2759f4ea9b0bac6f2c0892, type: 2}
   - target: {fileID: 0}
     propertyPath: allDialogues.Array.data[6]
     value: 
-    objectReference: {fileID: 11400000, guid: 9db96b009e2759f4ea9b0bac6f2c0892, type: 2}
+    objectReference: {fileID: 11400000, guid: 99b4587fe52a1e94081205bc49b28d6e, type: 2}
   - target: {fileID: 0}
     propertyPath: allDialogues.Array.data[7]
     value: 
-    objectReference: {fileID: 11400000, guid: 10c893e768597f640b0c72e96d71a4dc, type: 2}
+    objectReference: {fileID: 11400000, guid: a488d73d5bc973f418bb1ee386bde799, type: 2}
   - target: {fileID: 0}
     propertyPath: allDialogues.Array.data[8]
     value: 
-    objectReference: {fileID: 11400000, guid: 99b4587fe52a1e94081205bc49b28d6e, type: 2}
+    objectReference: {fileID: 11400000, guid: 5f4f231ab0c25b5428cf331313d55b76, type: 2}
   - target: {fileID: 0}
     propertyPath: allDialogues.Array.data[9]
     value: 
-    objectReference: {fileID: 11400000, guid: a488d73d5bc973f418bb1ee386bde799, type: 2}
+    objectReference: {fileID: 11400000, guid: 65a616aa9a75df745aa6fec506ba00c1, type: 2}
   - target: {fileID: 0}
     propertyPath: allDialogues.Array.data[10]
     value: 
-    objectReference: {fileID: 11400000, guid: 5f4f231ab0c25b5428cf331313d55b76, type: 2}
+    objectReference: {fileID: 11400000, guid: 060527acf4e562042849186eb2114e51, type: 2}
   - target: {fileID: 0}
     propertyPath: allDialogues.Array.data[11]
     value: 
-    objectReference: {fileID: 11400000, guid: b20f2b26025eaf54083b94379dc75d96, type: 2}
+    objectReference: {fileID: 11400000, guid: 0d77a69b1dac69844830475966954300, type: 2}
   - target: {fileID: 0}
     propertyPath: allDialogues.Array.data[12]
     value: 
-    objectReference: {fileID: 11400000, guid: 65a616aa9a75df745aa6fec506ba00c1, type: 2}
-  - target: {fileID: 0}
-    propertyPath: allDialogues.Array.data[13]
-    value: 
-    objectReference: {fileID: 11400000, guid: 060527acf4e562042849186eb2114e51, type: 2}
-  - target: {fileID: 0}
-    propertyPath: allDialogues.Array.data[14]
-    value: 
-    objectReference: {fileID: 11400000, guid: 0d77a69b1dac69844830475966954300, type: 2}
-  - target: {fileID: 0}
-    propertyPath: allDialogues.Array.data[15]
-    value: 
-    objectReference: {fileID: 11400000, guid: b59d5a7e15df2444fac8c3fe0d114285, type: 2}
-  - target: {fileID: 0}
-    propertyPath: allDialogues.Array.data[16]
-    value: 
     objectReference: {fileID: 11400000, guid: 88178da05bf962e42bd35462a349288d, type: 2}
   - target: {fileID: 0}
-    propertyPath: allDialogues.Array.data[17]
+    propertyPath: allDialogues.Array.data[13]
     value: 
     objectReference: {fileID: 11400000, guid: cd7cbbb57c9ad004c9a4218a109bbf20, type: 2}
   - target: {fileID: 0}
