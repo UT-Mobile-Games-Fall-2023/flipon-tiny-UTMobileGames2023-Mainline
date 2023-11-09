@@ -2902,6 +2902,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772180521}
   m_CullTransparentMesh: 1
+--- !u!1 &792664267 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5007054204732675579, guid: 9ec21616ed8f64d468d43c809927d35a,
+    type: 3}
+  m_PrefabInstance: {fileID: 557614059727709907}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &798679167
 GameObject:
   m_ObjectHideFlags: 0
@@ -10006,71 +10012,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 362661503344815807, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 362661503344815807, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 362661503344815807, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 362661503344815807, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 362661503344815807, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Maskable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 362661503344815807, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1039787989356880014, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1208023105692910372, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1208023105692910372, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1208023105692910372, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1208023105692910372, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1208023105692910372, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Maskable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1208023105692910372, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2803748249676711066, guid: 9ec21616ed8f64d468d43c809927d35a,
         type: 3}
       propertyPath: m_Pivot.x
@@ -10154,7 +10095,7 @@ PrefabInstance:
     - target: {fileID: 2803748249676711066, guid: 9ec21616ed8f64d468d43c809927d35a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -995.4399
+      value: -4.72
       objectReference: {fileID: 0}
     - target: {fileID: 2803748249676711066, guid: 9ec21616ed8f64d468d43c809927d35a,
         type: 3}
@@ -10171,120 +10112,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4503893600392133647, guid: 9ec21616ed8f64d468d43c809927d35a,
+    - target: {fileID: 3205605197339129776, guid: 9ec21616ed8f64d468d43c809927d35a,
         type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4503893600392133647, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4503893600392133647, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4503893600392133647, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4503893600392133647, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Maskable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4503893600392133647, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4728930348866803627, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1375987478}
     - target: {fileID: 5007054204732675579, guid: 9ec21616ed8f64d468d43c809927d35a,
         type: 3}
       propertyPath: m_Name
       value: Corrupt backgrounds
-      objectReference: {fileID: 0}
-    - target: {fileID: 5007054204732675579, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5365347533365616930, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5554867894113214768, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5554867894113214768, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5554867894113214768, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5554867894113214768, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5554867894113214768, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Maskable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5554867894113214768, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709500865807890644, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709500865807890644, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709500865807890644, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709500865807890644, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709500865807890644, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_Maskable
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709500865807890644, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6786653665482386763, guid: 9ec21616ed8f64d468d43c809927d35a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18361,6 +18197,7 @@ MonoBehaviour:
   - {fileID: 557614059727709910}
   - {fileID: 557614059727709909}
   - {fileID: 557614059727709908}
+  CorruptBackgroundsParent: {fileID: 792664267}
 --- !u!114 &7209464995172949355
 MonoBehaviour:
   m_ObjectHideFlags: 0

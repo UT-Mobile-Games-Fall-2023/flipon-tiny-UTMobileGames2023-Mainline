@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
 using System;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 	public Transform lvlParent;
 	public LvlUnlockContainer lvlUnlocks;
 	public Image[] CorruptBackgrounds = null;
+	public GameObject CorruptBackgroundsParent;
+
 	private void Awake()
 	{
 		if (gameManager == null)
@@ -33,14 +35,14 @@ public class GameManager : MonoBehaviour
 		{
 			lvlParent = GameObject.FindFirstObjectByType<MapTouchDetection>().lvlParent;
 		}
+		if (CorruptBackgroundsParent != null)
+		{
+			CorruptBackgrounds = CorruptBackgroundsParent.GetComponentsInChildren<Image>();
+		}
 		DontDestroyOnLoad(this.gameObject);
 		savePath = Path.Combine(Application.persistentDataPath, "playerData.dat");
 		lvlUnlocks.LvlUnlockStates = new bool[lvlParent.childCount];
-	}
-	void Start()
-	{
 		MapUIScript.mapInstance.currentLevelName = LoadLevel();
-
 	}
 	public static void RevealMap(Image mask, float progression)
 	{
@@ -71,6 +73,26 @@ public class GameManager : MonoBehaviour
 		{
 			Debug.LogWarning("No save file found.");
 			return null;
+		}
+	}
+	private void Update()
+	{
+		if (SceneManager.GetActiveScene().name == "Map_t")
+		{
+			//RevealMap(Int32.Parse(Regex.Match(LoadLevel(), @"\d+").Value));
+			//MapUIScript.mapInstance.currentLevelName = LoadLevel();
+			if (lvlParent == null)
+			{
+				lvlParent = GameObject.Find("Level Buttons").transform;
+			}
+			if (CorruptBackgroundsParent == null)
+			{
+				CorruptBackgroundsParent = GameObject.Find("Corrupt backgrounds");
+			}
+			if (CorruptBackgroundsParent != null && CorruptBackgrounds == null)
+			{
+				CorruptBackgrounds = CorruptBackgroundsParent.GetComponentsInChildren<Image>();
+			}
 		}
 	}
 	public void SaveLevel(string level = null)
