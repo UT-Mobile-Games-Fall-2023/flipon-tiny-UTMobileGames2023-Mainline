@@ -16,8 +16,10 @@ public class DialogueDataManager : ScriptableObject
         if (!IsDialogueAlreadyShown(dialogue))
         {
             allDialogues.Add(dialogue);
+#if UNITY_EDITOR
             EditorUtility.SetDirty(this); // Mark the scriptable object as dirty.
-		}
+#endif
+        }
 		else
 		{
             shownDialogues.Add(dialogue);
@@ -34,6 +36,8 @@ public class DialogueDataManager : ScriptableObject
     {
         shownDialogues.Clear();
         allDialogues.Clear();
+#if UNITY_EDITOR
         EditorUtility.SetDirty(this); // Mark the scriptable object as dirty.
+#endif
     }
 }

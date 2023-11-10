@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -19,6 +20,7 @@ public class DialogueController : MonoBehaviour
 	public bool isPlaying = false;
 	private SingleDialogueData activeSingleDialogue;
 
+	private Animator shake;
 	void Start()
 	{
 		sentences = new List<string>();
@@ -55,10 +57,10 @@ public class DialogueController : MonoBehaviour
 
 		foreach (SingleDialogueData.DialogueEntry entry in dialogueData.dialogueEntries)
 		{
-			characterName.text = dialogueData.characterName;
+			characterName.text = entry.characterName;
 			characterImage.sprite = entry.characterSprite;
 			sentences.Add(entry.sentence);
-			names.Add(dialogueData.characterName);
+			names.Add(entry.characterName);
 			sprites.Add(entry.characterSprite);
 
 		}
@@ -118,7 +120,20 @@ public class DialogueController : MonoBehaviour
 
 		if (currentIndex < sentences.Count)
 		{
+			DialogueStageTracker stageTracker = GetComponent<DialogueStageTracker>();
+			shake = characterImage.GetComponent<Animator>();
 			DisplayCurrentEntry();
+			if (stageTracker.currentStage - Math.Truncate(stageTracker.currentStage) == .6f && currentIndex ==1)
+			{
+				//shake.Play("Character shake");
+				shake.SetBool("Shake", true);
+			}
+			else
+			{
+				shake.SetBool("Shake", false);
+
+			}
+			Debug.Log(stageTracker.currentStage - Math.Truncate(stageTracker.currentStage));
 		}
 		else
 		{
@@ -170,7 +185,7 @@ public class DialogueController : MonoBehaviour
 				GameManager.gameManager.endRegion = false;
 			}
 		}
-		DialoguePanel.SetActive(false);
+		Destroy(DialoguePanel);
 	}
 
 	public void SetDialogueIndex(int desIndex)

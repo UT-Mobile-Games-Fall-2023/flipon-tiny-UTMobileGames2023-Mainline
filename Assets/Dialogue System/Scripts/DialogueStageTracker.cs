@@ -30,6 +30,7 @@ public class DialogueStageTracker : MonoBehaviour
 
 	private void Awake()
 	{
+		this.transform.GetChild(0).gameObject.SetActive(false);
 		if (stageTracker == null)
 		{
 			stageTracker = this.GetComponent<DialogueStageTracker>();
@@ -48,6 +49,10 @@ public class DialogueStageTracker : MonoBehaviour
 		{
 			level = GameManager.gameManager.CurrentLevel;
 		}
+		else
+		{
+			GameManager.gameManager.lvlParent.gameObject.SetActive(false);
+		}
 		currentStage = Int32.Parse(Regex.Match(level, @"\d+").Value) / 5.0f;
 		foreach (SingleDialogueData singleDialogue in dialogueDataManager.allDialogues)
 		{
@@ -63,7 +68,11 @@ public class DialogueStageTracker : MonoBehaviour
 	private void Update()
 	{
 		stageTracker.isPlaying = dialogueController.isPlaying;
-		if (stageTracker.isPlaying)
+		if(currentStage > 4.4f)
+		{
+			Destroy(this.gameObject);
+		}
+		else if (stageTracker.isPlaying)
 		{
 			CheckTouch();
 		}
@@ -77,45 +86,30 @@ public class DialogueStageTracker : MonoBehaviour
 			{
 				switch (currentStage)
 				{
-					case 0.2f:
-						dialoguePrefab.SetActive(true);
-						SetDialogueObjects();
-						Debug.Log(dialogueEntries[0]);
-						stageTracker.dialogueDataManager.allDialogues.Insert(0, stageTracker.dialogueDataManager.shownDialogues[0]);
-						dialogueEntries = dialogueDataManager.allDialogues;
-						dialogueController.StartSingleDialogue(dialogueEntries[0]);
-						currentStage += .01f;
-						break;
+					/*case 0.2f:
+						
+						break;*/
 					case 0.6f:
-						dialoguePrefab.SetActive(true);
 						SetDialogueObjects();
 						dialogueController.StartSingleDialogue(dialogueEntries[0]);
 						currentStage += .1f;
 						break;
 					case 1.0f:
-						dialoguePrefab.SetActive(true);
 						SetDialogueObjects();
 						dialogueController.StartSingleDialogue(dialogueEntries[0]);
 						currentStage += .1f;
 						break;
 					case 1.2f:
-						dialoguePrefab.SetActive(true);
 						SetDialogueObjects();
 						dialogueController.StartSingleDialogue(dialogueEntries[0]);
 						currentStage += .1f;
 						break;
-					case 1.3f:
-						StartRegionDialogue();
-						currentStage += .1f;
-						break;
 					case 1.6f:
-						dialoguePrefab.SetActive(true);
 						SetDialogueObjects();
 						dialogueController.StartSingleDialogue(dialogueEntries[0]);
 						currentStage += .1f;
 						break;
 					case 2.0f:
-						dialoguePrefab.SetActive(true);
 						SetDialogueObjects();
 						dialogueController.StartSingleDialogue(dialogueEntries[0]);
 						currentStage += .1f;
@@ -125,37 +119,28 @@ public class DialogueStageTracker : MonoBehaviour
 						currentStage += .1f;
 						break;
 					case 2.6f:
-						dialoguePrefab.SetActive(true);
 						SetDialogueObjects();
 						dialogueController.StartSingleDialogue(dialogueEntries[0]);
 						currentStage += .1f;
-
 						break;
 					case 3.0f:
-						dialoguePrefab.SetActive(true);
 						SetDialogueObjects();
 						dialogueController.StartSingleDialogue(dialogueEntries[0]);
 						currentStage += .1f;
-
 						break;
 					case 3.2f:
 						StartRegionDialogue();
 						currentStage += .1f;
-
 						break;
 					case 3.6f:
-						dialoguePrefab.SetActive(true);
 						SetDialogueObjects();
 						dialogueController.StartSingleDialogue(dialogueEntries[0]);
 						currentStage += .1f;
-
 						break;
 					case 4.0f:
-						dialoguePrefab.SetActive(true);
 						SetDialogueObjects();
 						dialogueController.StartSingleDialogue(dialogueEntries[0]);
 						currentStage += .1f;
-
 						break;
 					case 4.2f:
 						StartRegionDialogue();
@@ -165,105 +150,26 @@ public class DialogueStageTracker : MonoBehaviour
 						StartRegionDialogue();
 						currentStage += .1f;
 						break;
+					default:
+						GameManager.gameManager.lvlParent.gameObject.SetActive(true);
+						break;
 				}
 
 			}
 		}
 	}
-	/*
-	public DialogueDataManager LoadDialogueData()
+
+	internal void startFirstDialouge()
 	{
-		if (File.Exists(Application.persistentDataPath + "/dialogueDataManager.dat"))
-		{
-			BinaryFormatter bf = new BinaryFormatter();
-			FileStream file = File.Open(Application.persistentDataPath + "/dialogueDataManager.dat", FileMode.Open);
-			DialogueDataManagerData loadedData = (DialogueDataManagerData)bf.Deserialize(file);
-			file.Close();
-
-			// Set the loaded data to the DialogueDataManager
-			string lastPlayedEntryName = loadedData.lastPlayedEntryName;
-			bool found = false;
-			dialogueDataManager.allDialogues.Clear();
-			dialogueDataManager.shownDialogues.Clear();
-			Debug.Log(loadedData.lastPlayedEntryName);
-
-			if (dialogueDataManager.shownDialogues != null)
-			{
-				SingleDialogueData lastItem;
-				if (dialogueDataManager.shownDialogues.Count > 0)
-				{
-					lastItem = dialogueDataManager.shownDialogues[dialogueDataManager.shownDialogues.Count - 1];					
-				}
-				else
-				{
-					lastItem = ScriptableObject.CreateInstance<SingleDialogueData>();
-					lastItem.name = " ";
-				}
-
-				if (!lastItem.name.Equals(lastPlayedEntryName))
-				{
-					foreach (SingleDialogueData dialogueData in array.GetArray())
-					{
-						if (dialogueData.name.Equals(lastPlayedEntryName))
-						{
-							found = true;
-						}
-
-						if (!found)
-						{
-							dialogueDataManager.shownDialogues.Add(dialogueData);
-						}
-						else
-						{
-							dialogueDataManager.allDialogues.Add(dialogueData);
-						}
-					}
-				}
-			}
-			else
-			{
-				foreach (SingleDialogueData dialogueData in array.GetArray())
-				{
-					if (dialogueData.name.Equals(lastPlayedEntryName))
-					{
-						found = true;
-					}
-
-					if (!found)
-					{
-						dialogueDataManager.allDialogues.Add(dialogueData);
-					}
-					else
-					{
-						dialogueDataManager.shownDialogues.Add(dialogueData);
-					}
-				}
-			}
-		}
-		else
-		{
-			dialogueDataManager.allDialogues = array.GetArray().ToList<SingleDialogueData>();
-			dialogueDataManager.shownDialogues.Clear();
-		}
-		//SingleDialogueData duplicatedItem = DuplicateSingleDialogueData(dialogueDataManager.shownDialogues[0]);
-		//dialogueDataManager.allDialogues.Insert(0, duplicatedItem);
-		dialogueDataManager.allDialogues.Insert(1, dialogueDataManager.allDialogues[0]);
-
-		return dialogueDataManager;
+		this.transform.GetChild(0).gameObject.SetActive(true);
+		Destroy(this.transform.GetChild(0).gameObject);
+		SetDialogueObjects();
+		stageTracker.dialogueDataManager.allDialogues.Insert(0, stageTracker.dialogueDataManager.shownDialogues[0]);
+		dialogueEntries = dialogueDataManager.allDialogues;
+		dialogueController.StartSingleDialogue(dialogueEntries[0]);
+		currentStage += .1f;
 	}
 
-	// Helper method to duplicate SingleDialogueData
-	private SingleDialogueData DuplicateSingleDialogueData(SingleDialogueData originalData)
-	{
-		SingleDialogueData duplicateData = ScriptableObject.CreateInstance<SingleDialogueData>();
-		// Copy relevant properties from the originalData to duplicateData
-		duplicateData.name = originalData.name;
-		// Duplicate other properties as needed
-		return duplicateData;
-	}
-
-
-*/
 	public DialogueDataManager LoadDialogueData()
 	{
 		if (File.Exists(Application.persistentDataPath + "/dialogueDataManager.dat"))
@@ -352,8 +258,10 @@ public class DialogueStageTracker : MonoBehaviour
 		{
 			File.Delete(Application.persistentDataPath + "/dialogueDataManager.dat");
 		}
+#if UNITY_EDITOR
 
 		EditorUtility.SetDirty(dialogueDataManager); // Mark the scriptable object as dirty.
+#endif
 	}
 	public void SaveDialogueData(string name)
 	{
@@ -368,7 +276,7 @@ public class DialogueStageTracker : MonoBehaviour
 	void StartRegionDialogue()
 	{
 		Debug.Log($"UPDATE:{dialogueEntries[0]}");
-		dialoguePrefab.SetActive(true);
+		//dialoguePrefab.SetActive(true);
 		SetDialogueObjects();
 		dialogueController.StartSingleDialogue(stageTracker.dialogueEntries[0]);
 	}
@@ -411,8 +319,10 @@ public class DialogueStageTracker : MonoBehaviour
 	private void SetDialogueObjects()
 	{
 		// if names of children in prefab are different, change name strings below
-		dialogueController.DialoguePanel = dialoguePrefab;
-		Image[] diaImgs = dialoguePrefab.GetComponentsInChildren<Image>();
+		GameManager.gameManager.lvlParent.gameObject.SetActive(false);
+		GameObject dialogueObject = Instantiate(dialoguePrefab);
+		dialogueController.DialoguePanel = dialogueObject;
+		Image[] diaImgs = dialogueObject.GetComponentsInChildren<Image>();
 		foreach (Image child in diaImgs)
 		{
 			if (child.name == "Character Image")
@@ -421,14 +331,14 @@ public class DialogueStageTracker : MonoBehaviour
 				break;
 			}
 		}
-		TMP_Text[] diaText = dialoguePrefab.GetComponentsInChildren<TMP_Text>();
+		TMP_Text[] diaText = dialogueObject.GetComponentsInChildren<TMP_Text>();
 		foreach (TMP_Text child in diaText)
 		{
 			if (child.name == "Name")
 			{
 				dialogueController.characterName = child;
 			}
-			else if (child.name == "Dialogue")
+			else if (child.name == "Dialogue Text")
 			{
 				dialogueController.dialogueText = child;
 			}

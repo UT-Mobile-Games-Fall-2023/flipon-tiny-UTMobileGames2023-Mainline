@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 		{
 			Destroy(this.gameObject);
 		}
+		DontDestroyOnLoad(this.gameObject);
 		if (lvlParent == null)
 		{
 			lvlParent = GameObject.FindFirstObjectByType<MapTouchDetection>().lvlParent;
@@ -41,7 +42,6 @@ public class GameManager : MonoBehaviour
 		{
 			CorruptBackgrounds = CorruptBackgroundsParent.GetComponentsInChildren<Image>();
 		}
-		DontDestroyOnLoad(this.gameObject);
 		savePath = Path.Combine(Application.persistentDataPath, "playerData.dat");
 		lvlUnlocks.LvlUnlockStates = new bool[lvlParent.childCount];
 		MapUIScript.mapInstance.currentLevelName = LoadLevel();
@@ -91,9 +91,6 @@ public class GameManager : MonoBehaviour
 			if (CorruptBackgroundsParent == null)
 			{
 				CorruptBackgroundsParent = GameObject.Find("Corrupt backgrounds");
-			}
-			if (CorruptBackgroundsParent != null && CorruptBackgrounds == null)
-			{
 				CorruptBackgrounds = CorruptBackgroundsParent.GetComponentsInChildren<Image>();
 			}
 		}
@@ -118,7 +115,10 @@ public class GameManager : MonoBehaviour
 		}
 		else
 		{
+
 			// If no save file exists, return a default value.
+			gameManager.lvlParent.gameObject.SetActive(false);
+			DialogueStageTracker.stageTracker.startFirstDialouge();
 			return "Level 1";
 		}
 	}
@@ -130,28 +130,42 @@ public class GameManager : MonoBehaviour
 		{
 			DialogueStageTracker.stageTracker.UpdateStage(level);
 		}
-
+		if (CorruptBackgroundsParent == null)
+		{
+			CorruptBackgroundsParent = GameObject.Find("Corrupt backgrounds");
+			CorruptBackgrounds = CorruptBackgroundsParent.GetComponentsInChildren<Image>();
+		}
 		if (CorruptBackgrounds != null)
 		{
-			int region = level / 5;
+			float region = level / 5.0f;
 			if (region <= 1)
 			{
 				CorruptBackgrounds[0].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
 			}
 			else if (1 < region && region <= 2)
 			{
+				CorruptBackgrounds[0].fillAmount = 0;
 				CorruptBackgrounds[1].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
 			}
 			else if (2 < region && region <= 3)
 			{
+				CorruptBackgrounds[0].fillAmount = 0;
+				CorruptBackgrounds[1].fillAmount = 0;
 				CorruptBackgrounds[2].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
 			}
 			else if (3 < region && region <= 4)
 			{
+				CorruptBackgrounds[0].fillAmount = 0;
+				CorruptBackgrounds[1].fillAmount = 0;
+				CorruptBackgrounds[2].fillAmount = 0;
 				CorruptBackgrounds[3].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
 			}
 			else if (region > 4)
 			{
+				CorruptBackgrounds[0].fillAmount = 0;
+				CorruptBackgrounds[1].fillAmount = 0;
+				CorruptBackgrounds[2].fillAmount = 0;
+				CorruptBackgrounds[3].fillAmount = 0;
 				CorruptBackgrounds[4].fillAmount = 0;
 			}
 		}
@@ -167,6 +181,47 @@ public class GameManager : MonoBehaviour
 		if (lvlParent == null)
 		{
 			lvlParent = GameObject.FindFirstObjectByType<MapTouchDetection>().lvlParent;
+		}
+		if (CorruptBackgroundsParent == null)
+		{
+			CorruptBackgroundsParent = GameObject.Find("Corrupt backgrounds");
+			CorruptBackgrounds = CorruptBackgroundsParent.GetComponentsInChildren<Image>();
+		}
+		string resultString = Regex.Match(CurrentLevel, @"\d+").Value;
+		int level = Int32.Parse(resultString);
+		if (CorruptBackgrounds != null)
+		{
+			float region = level / 5.0f;
+			if (region <= 1)
+			{
+				CorruptBackgrounds[0].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
+			}
+			else if (1 < region && region <= 2)
+			{
+				CorruptBackgrounds[0].fillAmount = 0;
+				CorruptBackgrounds[1].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
+			}
+			else if (2 < region && region <= 3)
+			{
+				CorruptBackgrounds[0].fillAmount = 0;
+				CorruptBackgrounds[1].fillAmount = 0;
+				CorruptBackgrounds[2].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
+			}
+			else if (3 < region && region <= 4)
+			{
+				CorruptBackgrounds[0].fillAmount = 0;
+				CorruptBackgrounds[1].fillAmount = 0;
+				CorruptBackgrounds[2].fillAmount = 0;
+				CorruptBackgrounds[3].fillAmount = 1 - ((level - 1) % 5 * 0.2f);
+			}
+			else if (region > 4)
+			{
+				CorruptBackgrounds[0].fillAmount = 0;
+				CorruptBackgrounds[1].fillAmount = 0;
+				CorruptBackgrounds[2].fillAmount = 0;
+				CorruptBackgrounds[3].fillAmount = 0;
+				CorruptBackgrounds[4].fillAmount = 0;
+			}
 		}
 		//Set Level Values to Array
 		for (int i = 0; i < lvlParent.childCount; i++)

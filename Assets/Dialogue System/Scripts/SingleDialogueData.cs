@@ -64,7 +64,7 @@ public class SingleDialogueData : ScriptableObject
 
 	public Sprite[] LoadSpritesFromFolder()
 	{
-		//Sprite[] sprites = (Sprite[])Resources.LoadAll(spriteFolder);
+		//
 #if UNITY_EDITOR
 		List<Sprite> sprites = new List<Sprite>();
 		string[] assetPaths = AssetDatabase.FindAssets("t:Sprite", new string[] { spriteFolder });
@@ -74,8 +74,11 @@ public class SingleDialogueData : ScriptableObject
 			sprites.Add(sprite);
 		}
 		return sprites.ToArray();
+
+#else
+	Sprite[] sprites = (Sprite[])Resources.LoadAll(spriteFolder);
+	return sprites;
 #endif
-		//return sprites;
 	}
 	public void PopulateCharacterToSpriteMap()
 	{

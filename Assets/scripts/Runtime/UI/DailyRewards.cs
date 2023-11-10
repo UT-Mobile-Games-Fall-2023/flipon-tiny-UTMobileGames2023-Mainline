@@ -51,16 +51,16 @@ public class DailyRewards : MonoBehaviour
     {
         if (dailyRewardsManager == null)
         {
-            dailyRewardsManager = GetComponent<DailyRewards>();
+            dailyRewardsManager = this.GetComponent<DailyRewards>();
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
-        DontDestroyOnLoad(gameObject);
+      //  DontDestroyOnLoad(this.gameObject);
 
         // audio
-        audioSource = GetComponent<AudioSource>();
+        audioSource = this.GetComponent<AudioSource>();
     }
 
     // Start is called before the first frame update
@@ -481,6 +481,9 @@ public class DailyRewards : MonoBehaviour
                     if (i + 1 < currentDay)
                     {
                         rewardButtons[i].transform.GetChild(3).GetComponent<Image>().enabled = false;
+                        rewardButtons[i].transform.GetChild(1).gameObject.SetActive(true); // text
+                        rewardButtons[i].transform.GetChild(2).gameObject.SetActive(true); // coin icon
+
                     }
                 }
             }
@@ -506,6 +509,7 @@ public class DailyRewards : MonoBehaviour
         currentDay = 1;
         daysRemaining = 7;
         rewardButtons[0].interactable = true; // day 1 button
+        rewardButtons[0].GetComponent<Image>().sprite = availableRewardBg;
         for (int i = 1; i < rewardButtons.Length; i++)
         {
             rewardButtons[i].interactable = false; // all other buttons
