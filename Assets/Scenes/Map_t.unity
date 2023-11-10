@@ -7123,7 +7123,7 @@ MonoBehaviour:
   characterName: {fileID: 0}
   dialogueText: {fileID: 0}
   characterImage: {fileID: 0}
-  isPlaying: 1
+  isPlaying: 0
 --- !u!4 &1652303658
 Transform:
   m_ObjectHideFlags: 0
@@ -18060,7 +18060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6673513590988825658
 Transform:
   m_ObjectHideFlags: 0
