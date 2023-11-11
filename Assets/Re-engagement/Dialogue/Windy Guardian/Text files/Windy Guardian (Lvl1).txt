@@ -1,0 +1,9 @@
+Character Name	Emotion	Dialogue
+Snowy Guardian	Corrupted Snowy Guardian Distressed	Impossible!																							
+Snowy Guardian	Snowy Guardian Happy	"Whoaaa, major thanks for breaking that dark spell on me! Must've been totally dragging the good vibes down as Lord Buzzkill's henchman. My bad!"																							
+Snowy Guardian	Snowy Guardian Happy	"Head to the windy region next, crystal dude - gotta save our airborne amiga from that wack storm dude."																							
+Snowy Guardian	Snowy Guardian Worried	"Word is that he warped the wise old wind guardian's energy big time - turned her into a total loose cannon! And coming from yours truly, that's sayin' something. "																							
+Snowy Guardian	Snowy Guardian Happy	"But I know you got the mad skills to twist this storm around, my crystal-cool dude. Best of luck out there and hang ten, brahh!"	
+Windy Guardian	Corrupted Windy Guardian Sneer	"Well well well, if it isn't the little crystal keeper, here to ruin my fun."																							
+Windy Guardian	Corrupted Windy Guardian Crazy	"You got lucky with the last two guardians, but me? I'm the real deal!"																							
+Windy Guardian	Corrupted Windy Guardian Sneer	Not like you'll be able to do much. I made sure of that.

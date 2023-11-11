@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,11 +12,15 @@ public class DialogueController : MonoBehaviour
 	public TMP_Text dialogueText;
 	public Image characterImage;
 
-	private List<string> sentences;
-	private List<string> names;
-	private List<Sprite> sprites;
+	private List<string> sentences = new List<string>();
+	private List<string> names = new List<string>();
+	private List<Sprite> sprites = new List<Sprite>();
 	private bool isMulti = false;
 	private int currentIndex;
+	public bool isPlaying = false;
+	private SingleDialogueData activeSingleDialogue;
+
+	private Animator shake;
 	void Start()
 	{
 		sentences = new List<string>();
@@ -24,21 +29,45 @@ public class DialogueController : MonoBehaviour
 
 	}
 
-	public void StartDialogue(SingleDialogueData dialogueData)
+	public void StartSingleDialogue(SingleDialogueData dialogueData)
 	{
 		isMulti = false;
-		characterName.text = dialogueData.characterName;
-		characterImage.sprite = dialogueData.characterSprite;
+		isPlaying = true;
+		if(activeSingleDialogue == null)
+		{
+			activeSingleDialogue = dialogueData;
+		}
+		if (dialogueData == null)
+		{
+			Debug.LogWarning("Dialogue Data is null. Cannot start dialogue.");
+			return;
+		}
+
+		if (dialogueData.dialogueEntries.Count == 0)
+		{
+			Debug.LogWarning("Dialogue Data does not contain any dialogue entries.");
+			return;
+		}
+
 
 		sentences.Clear();
+		names.Clear();
+		sprites.Clear();
 
-		foreach (string sentence in dialogueData.sentences)
+
+		foreach (SingleDialogueData.DialogueEntry entry in dialogueData.dialogueEntries)
 		{
-			sentences.Add(sentence);
+			characterName.text = entry.characterName;
+			characterImage.sprite = entry.characterSprite;
+			sentences.Add(entry.sentence);
+			names.Add(entry.characterName);
+			sprites.Add(entry.characterSprite);
+
 		}
 		currentIndex = 0;
 		DisplayNextSentenceSingleCharacter();
 	}
+
 
 	public void StartMultiDialogue(MultiDialogueData dialogueData)
 	{
@@ -75,16 +104,48 @@ public class DialogueController : MonoBehaviour
 
 	public void DisplayNextSentenceSingleCharacter()
 	{
+		
 		if (sentences.Count == 0)
+		{
+			if (activeSingleDialogue != null)
+			{
+				StartSingleDialogue(activeSingleDialogue);
+			}
+			else
+			{
+				EndDialogue();
+				return;
+			}
+		}
+
+		if (currentIndex < sentences.Count)
+		{
+			DialogueStageTracker stageTracker = GetComponent<DialogueStageTracker>();
+			shake = DialoguePanel.GetComponentInChildren<Animator>();
+			DisplayCurrentEntry();
+			if (0.6f <= stageTracker.currentStage - Math.Truncate(stageTracker.currentStage) &&
+				stageTracker.currentStage - Math.Truncate(stageTracker.currentStage) <= 0.8f &&
+				currentIndex == 1)
+			{
+				Debug.Log(stageTracker.currentStage - Math.Truncate(stageTracker.currentStage) +" "+ currentIndex);
+
+				shake.Play("Character shake");
+				shake.SetBool("Shake", true);
+			}
+			else
+			{
+				shake.SetBool("Shake", false);
+
+			}
+			Debug.Log(stageTracker.currentStage - Math.Truncate(stageTracker.currentStage));
+		}
+		else
 		{
 			EndDialogue();
 			return;
 		}
-
-		string sentence = sentences[currentIndex];
-		dialogueText.text = sentence;
-    currentIndex++;
-  }
+		currentIndex++;
+	}
 	public void DisplayNextSentenceMultiCharacters()
 	{
 		if (sentences.Count == 0)
@@ -102,37 +163,37 @@ public class DialogueController : MonoBehaviour
 			EndDialogue();
 			return;
 		}
-    currentIndex++;
-  }
+		currentIndex++;
+	}
 	private void DisplayCurrentEntry()
 	{
 		characterName.text = names[currentIndex];
 		dialogueText.text = sentences[currentIndex];
 		characterImage.sprite = sprites[currentIndex];
 	}
-	private void Update()
-	{
-		// Add touch input detection and call DisplayNextSentence when touched.
-		if (Input.GetMouseButtonDown(0))
-		{
-			if (isMulti)
-			{
-				//DisplayNextSentenceMultiCharacters();
-			}
-			else
-			{
-				DisplayNextSentenceSingleCharacter();
-			}
-		}
-	}
 
 	void EndDialogue()
 	{
-		DialoguePanel.SetActive(false);
+		Debug.Log("I'm in EndDialogue");
+		if (!isMulti)
+		{
+			activeSingleDialogue = null;
+			isPlaying = false;
+			Debug.Log(GetComponent<DialogueStageTracker>().dialogueEntries[0].name);
+			string name = GetComponent<DialogueStageTracker>().dialogueEntries[0].name;
+			DialogueStageTracker.stageTracker.SaveDialogueData(name);
+			DialogueStageTracker.stageTracker.RemoveEntry();
+
+			if (GameManager.gameManager.endRegion)
+			{
+				GameManager.gameManager.endRegion = false;
+			}
+		}
+		Destroy(DialoguePanel);
 	}
 
-  public void SetDialogueIndex(int desIndex)
-  {
+	public void SetDialogueIndex(int desIndex)
+	{
 		currentIndex = desIndex;
 	}
 }

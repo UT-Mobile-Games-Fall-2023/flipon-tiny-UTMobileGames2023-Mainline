@@ -1,17 +1,24 @@
 using UnityEngine;
-using UnityEditor;
 using System.Collections.Generic;
+using UnityEditor;
 
-[CreateAssetMenu(fileName = "New  single character Dialogue Data", menuName = "Dialogue System/Dialogue Data for a single character")]
+[System.Serializable]
+[CreateAssetMenu(fileName = "New Single-Character Dialogue Data", menuName = "Dialogue System/Dialogue Data for Single Character")]
 public class SingleDialogueData : ScriptableObject
 {
-	public string characterName;
-	[TextArea(3, 10)] public string[] sentences;
-	public Sprite characterSprite;
-	[HideInInspector] public CSVDelimiter csvDelimiter = CSVDelimiter.Comma; //set to comma as default 
-	public Dictionary<string, Sprite> characterToSpriteMap = new Dictionary<string, Sprite>();
+	[System.Serializable]
+	public class DialogueEntry
+	{
+		public string characterName;
+		[TextArea(3, 10)] public string sentence;
+		public Sprite characterSprite;
+	}
 
-	// Use an enum to define the delimiter options.
+	public string characterName; // Fixed character name
+	public List<DialogueEntry> dialogueEntries = new List<DialogueEntry>();
+
+	[HideInInspector] public CSVDelimiter csvDelimiter = CSVDelimiter.Tab; // Set to tab as default
+
 	public enum CSVDelimiter
 	{
 		Tab,
@@ -21,9 +28,14 @@ public class SingleDialogueData : ScriptableObject
 		Semicolon
 		// Add more options as needed.
 	}
+
 	[SerializeField]
-	[HideInInspector] public TextAsset csvFile;
+	[HideInInspector]
+	public TextAsset csvFile;
+
 	[HideInInspector] public static string spriteFolder { get; set; }
+	public Dictionary<string, Sprite> characterToSpriteMap = new Dictionary<string, Sprite>();
+
 	SingleDialogueData()
 	{
 		spriteFolder = "Assets/Resources/Characters";
@@ -49,10 +61,24 @@ public class SingleDialogueData : ScriptableObject
 				return ',';
 		}
 	}
+
 	public Sprite[] LoadSpritesFromFolder()
 	{
-		Sprite[] sprites = (Sprite[])Resources.LoadAll(spriteFolder);
-		return sprites;
+		//
+#if UNITY_EDITOR
+		List<Sprite> sprites = new List<Sprite>();
+		string[] assetPaths = AssetDatabase.FindAssets("t:Sprite", new string[] { spriteFolder });
+		foreach (string assetPath in assetPaths)
+		{
+			Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(AssetDatabase.GUIDToAssetPath(assetPath));
+			sprites.Add(sprite);
+		}
+		return sprites.ToArray();
+
+#else
+	Sprite[] sprites = (Sprite[])Resources.LoadAll(spriteFolder);
+	return sprites;
+#endif
 	}
 	public void PopulateCharacterToSpriteMap()
 	{
@@ -62,28 +88,28 @@ public class SingleDialogueData : ScriptableObject
 		foreach (Sprite sprite in sprites)
 		{
 			characterToSpriteMap[sprite.name] = sprite;
+			Debug.Log($"The sprite name is: {sprite.name}");
 		}
 	}
 	public void PopulateSentencesFromCSV()
 	{
 		PopulateCharacterToSpriteMap(); // Load sprites before populating sentences.
-		sentences = ReadCSV(csvFile, GetDelimiterCharacter()); // Pass the delimiter.
+		dialogueEntries = ReadCSV(csvFile, GetDelimiterCharacter()); // Pass the delimiter.
 	}
 
-	public string[] ReadCSV(TextAsset csv, char delimiter)
+	public List<DialogueEntry> ReadCSV(TextAsset csv, char delimiter)
 	{
-		string defaultCharacterName = null;
-		List<string> dialogueEntries = new List<string>();
+		List<DialogueEntry> entries = new List<DialogueEntry>();
 
 		if (csv != null)
 		{
+			string defaultCharacterName = null;
 			string[] lines = csv.text.Split('\n');
 			for (int i = 1; i < lines.Length; i++) // Start from index 1 to skip the header
 			{
 				string line = lines[i];
-				if (line == null || string.IsNullOrWhiteSpace(line))
+				if (line == null || string.IsNullOrWhiteSpace(line) || line.StartsWith("Notes"))
 				{
-					i++;
 					continue;
 				}
 				string[] fields = line.Split(delimiter);
@@ -98,7 +124,8 @@ public class SingleDialogueData : ScriptableObject
 					{
 						characterName = defaultCharacterName;
 					}
-					characterSprite = GetCharacterSprite(fields[1]);
+					Sprite characterSprite = GetCharacterSprite(fields[1]);
+					Debug.Log(characterSprite + " " + fields[1]);
 					if (characterSprite == null)
 					{
 						if (fields[1].Contains("_"))
@@ -112,21 +139,46 @@ public class SingleDialogueData : ScriptableObject
 							}
 						}
 					}
-					string sentence = fields[2];
-					dialogueEntries.Add(sentence);
+					DialogueEntry entry = new DialogueEntry
+					{
+						characterName = characterName,
+						characterSprite = characterSprite,
+						sentence = fields[2],
+					};
+					entries.Add(entry);
 				}
 				else
 				{
-					string sentence = fields[1];
-					dialogueEntries.Add(sentence);
+					characterName = fields[0];
+					if (characterName != null && !string.IsNullOrWhiteSpace(characterName))
+					{
+						defaultCharacterName = characterName;
+					}
+					else
+					{
+						characterName = defaultCharacterName;
+					}
+					Sprite characterSprite = GetCharacterSprite(characterName);
+					DialogueEntry entry = new DialogueEntry
+					{
+						characterName = characterName,
+						characterSprite = characterSprite,
+						sentence = fields[2].Replace("\"", ""),
+					};
+					entries.Add(entry);
 				}
 			}
 		}
 
-		return dialogueEntries.ToArray();
+
+		return entries;
 	}
+
 	public Sprite GetCharacterSprite(string characterName)
 	{
+		//Debug.Log(characterName);
+		//Debug.Log(characterToSpriteMap.ToString());
+
 		if (characterToSpriteMap.ContainsKey(characterName))
 		{
 			return characterToSpriteMap[characterName];
@@ -134,4 +186,3 @@ public class SingleDialogueData : ScriptableObject
 		return null;
 	}
 }
-

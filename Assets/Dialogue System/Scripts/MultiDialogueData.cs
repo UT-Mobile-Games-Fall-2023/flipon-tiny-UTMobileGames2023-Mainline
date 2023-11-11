@@ -60,8 +60,17 @@ public class MultiDialogueData : ScriptableObject
 
 	public Sprite[] LoadSpritesFromFolder()
 	{
-		Sprite[] sprites = (Sprite[])Resources.LoadAll(spriteFolder);
-		return sprites;
+		Object[] loadedObjects = Resources.LoadAll(spriteFolder);
+		List<Sprite> sprites = new List<Sprite>();
+
+		foreach (Object obj in loadedObjects)
+		{
+			if (obj is Sprite)
+			{
+				sprites.Add((Sprite)obj);
+			}
+		}
+		return sprites.ToArray();
 	}
 
 	public void PopulateCharacterToSpriteMap()

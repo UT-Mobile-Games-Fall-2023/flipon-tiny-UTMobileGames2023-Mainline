@@ -1,0 +1,10 @@
+Character Name	Emotion	Dialogue
+Rainy Guardian	Corrupted Rainy Guardian Distressed	RAAAAAAGGGGHHHHHH!!!!!!!!!	
+Rainy Guardian	Rainy Guardian Stoned 1	Woah, that was pretty intense.																							
+Rainy Guardian	Rainy Guardian Stoned 1	I was just chilled out and suddenly BAM, crazy thoughts. You're pretty righteous for helping this dragon out.																							
+Rainy Guardian	Rainy Guardian Stoned 2	You're getting close to the end my friend.																							
+Rainy Guardian	Rainy Guardian Stoned 2	We're all cheering you on from the fog cavern, now go show that stormy dude what you're made of.	
+Lord of Storms	LordOfStorms_Upset	Those useless Guardians. I give them immense power and they squandered it!																							
+Lord of Storms	LordOfStorms_Neutral	I have had enough of your meddling crystal keeper.																							
+Lord of Storms	LordOfStorms_Neutral	You will not stop me from attaining my rightful place as king.																							
+Lord of Storms	LordOfStorms_Angry	"I, the mighty LORD OF STORMS, challenge YOU Crystal Keeper! En Garde! "		

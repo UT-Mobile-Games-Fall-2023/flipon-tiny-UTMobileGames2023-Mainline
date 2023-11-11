@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0475b1b23837e148ae0aaea66617c01, type: 3}
+  m_Name: After Final Level
+  m_EditorClassIdentifier: 
+  characterName: Cloudy King
+  dialogueEntries:
+  - characterName: Lord of Storms
+    sentence: No! H-how is this possible!
+    characterSprite: {fileID: 21300000, guid: c99c629e46c473a48b8fa13d8e087165, type: 3}
+  - characterName: Lord of Storms
+    sentence: Grr, you have not seen the last of me crystal keeper! This kingdom
+      will be mine one day!
+    characterSprite: {fileID: 21300000, guid: 3e0d03cd3fe055645a79c638a8d5845c, type: 3}
+  - characterName: Lord of Storms
+    sentence: "Rest assured!\r"
+    characterSprite: {fileID: 21300000, guid: 3e0d03cd3fe055645a79c638a8d5845c, type: 3}
+  - characterName: Cloudy King
+    sentence: 'Well done crystal keeper! '
+    characterSprite: {fileID: 21300000, guid: 338412435c911b64f93ad0cb4a1210f8, type: 3}
+  - characterName: Cloudy King
+    sentence: Thanks to your efforts, our kingdom has been saved! Huzzah!
+    characterSprite: {fileID: 21300000, guid: 338412435c911b64f93ad0cb4a1210f8, type: 3}
+  - characterName: Cloudy King
+    sentence: However, don't think you have to spend all your time up here now that
+      peace has been restored.
+    characterSprite: {fileID: 21300000, guid: 477ea4f399c861641a8a258a3ec8c1d3, type: 3}
+  - characterName: Cloudy King
+    sentence: Feel free to pop on down to the regions below for more exciting adventures!
+    characterSprite: {fileID: 21300000, guid: 477ea4f399c861641a8a258a3ec8c1d3, type: 3}
+  - characterName: Cloudy King
+    sentence: I'm sure many endless opportunities await you! Be well crystal keeper!
+    characterSprite: {fileID: 21300000, guid: 338412435c911b64f93ad0cb4a1210f8, type: 3}
+  csvDelimiter: 0
+  csvFile: {fileID: 4900000, guid: 554ae292065b0d945aeebe973dc114b1, type: 3}

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0475b1b23837e148ae0aaea66617c01, type: 3}
+  m_Name: Rainy Guardian (Lvl5-1)
+  m_EditorClassIdentifier: 
+  characterName: Rainy Guardian
+  dialogueEntries:
+  - characterName: Rainy Guardian
+    sentence: AAAAAAAAAHHHHHHHHH!!!!!!!!!
+    characterSprite: {fileID: 21300000, guid: a4ce1e9b83c40e74db7aa4a4bf52a6e9, type: 3}
+  - characterName: Rainy Guardian
+    sentence: THE LORD OF STORMS WILL NOT BE DENIED!!!
+    characterSprite: {fileID: 21300000, guid: a4ce1e9b83c40e74db7aa4a4bf52a6e9, type: 3}
+  - characterName: Rainy Guardian
+    sentence: PREPARE TO FACE MY WRATH CRYSTAL KEEPER!!!
+    characterSprite: {fileID: 21300000, guid: a4ce1e9b83c40e74db7aa4a4bf52a6e9, type: 3}
+  csvDelimiter: 0
+  csvFile: {fileID: 4900000, guid: e1a318e255b8012489f28b3d08f518db, type: 3}

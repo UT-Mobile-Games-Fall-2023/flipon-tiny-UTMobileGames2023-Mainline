@@ -787,27 +787,16 @@ namespace Pon
 					if (currentLevelName != "")
 					{
 						int level = Int32.Parse(Regex.Match(currentLevelName, @"\d+").Value);
+						if (level % 5 == 0)
+						{
+							//DialoguecurrentStage += 0.01f;
+							GameManager.gameManager.endRegion = true;
+						}
 						level++;
 						GameManager.gameManager.SaveLevel("Level " + level);
 					}
 				}
 
-				// music for winning/losing 
-
-
-				/*
-								Firebase.Analytics.FirebaseAnalytics.LogEvent(
-								Firebase.Analytics.FirebaseAnalytics.EventLevelUp,
-								new Firebase.Analytics.Parameter[] {
-									new Firebase.Analytics.Parameter(
-										Firebase.Analytics.FirebaseAnalytics.ParameterLevel, 1),
-
-								}
-							);
-							*/
-
-				// Log Level end (user has won)
-				//GoogleAnalyticsHelper.AnalyticsLevelEnd(currentLevelName);
 				// level ends, go back to map scene
 				SceneManager.LoadSceneAsync("Map_t");
 			}
@@ -825,6 +814,20 @@ namespace Pon
 			}
 		}
 
+#if UNITY_EDITOR
+		public void SkipGame()
+		{
+			isOver = true;
+			var pWinner = players[0];
+
+			musicSource.PlayOneShot(winMusic);
+			GameOverVersus(pWinner);
+			wonGame = true;
+		}
+
+
+
+#endif
 		#endregion
 
 		#region Properties
