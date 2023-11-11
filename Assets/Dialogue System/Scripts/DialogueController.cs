@@ -121,11 +121,15 @@ public class DialogueController : MonoBehaviour
 		if (currentIndex < sentences.Count)
 		{
 			DialogueStageTracker stageTracker = GetComponent<DialogueStageTracker>();
-			shake = characterImage.GetComponent<Animator>();
+			shake = DialoguePanel.GetComponentInChildren<Animator>();
 			DisplayCurrentEntry();
-			if (stageTracker.currentStage - Math.Truncate(stageTracker.currentStage) == .6f && currentIndex ==1)
+			if (0.6f <= stageTracker.currentStage - Math.Truncate(stageTracker.currentStage) &&
+				stageTracker.currentStage - Math.Truncate(stageTracker.currentStage) <= 0.8f &&
+				currentIndex == 1)
 			{
-				//shake.Play("Character shake");
+				Debug.Log(stageTracker.currentStage - Math.Truncate(stageTracker.currentStage) +" "+ currentIndex);
+
+				shake.Play("Character shake");
 				shake.SetBool("Shake", true);
 			}
 			else

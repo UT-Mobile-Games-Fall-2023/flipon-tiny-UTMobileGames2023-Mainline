@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -46,7 +47,7 @@ public class GameManager : MonoBehaviour
 		lvlUnlocks.LvlUnlockStates = new bool[lvlParent.childCount];
 		MapUIScript.mapInstance.currentLevelName = LoadLevel();
 	}
-	
+
 	public static void RevealMap(Image mask, float progression)
 	{
 		mask.fillAmount = progression;
@@ -95,11 +96,12 @@ public class GameManager : MonoBehaviour
 			}
 		}
 	}
-	
+
 	public void SaveLevel(string level = null)
 	{
 		PlayerData data = new PlayerData();
 		data.level = level;
+		CurrentLevel = level;
 		Debug.Log(data.level);
 		SavePlayerData(data);
 	}
@@ -118,12 +120,13 @@ public class GameManager : MonoBehaviour
 
 			// If no save file exists, return a default value.
 			gameManager.lvlParent.gameObject.SetActive(false);
-			DialogueStageTracker.stageTracker.startFirstDialouge();
+			DialogueStageTracker.stageTracker.StartFirstDialouge();
 			return "Level 1";
 		}
 	}
 	void LoadUnlocks(string levelString)
 	{
+		CurrentLevel = levelString;
 		string resultString = Regex.Match(levelString, @"\d+").Value;
 		int level = Int32.Parse(resultString);
 		if (!gameManager.endRegion)
@@ -169,10 +172,22 @@ public class GameManager : MonoBehaviour
 				CorruptBackgrounds[4].fillAmount = 0;
 			}
 		}
-		for (int i = 0; i < level; i++)
+		Debug.Log("STATE: " + lvlUnlocks.LvlUnlockStates.All(x => x));
+		Debug.Log("STATE1: " + lvlUnlocks.LvlUnlockStates.Any(value => value == false) + " " + CurrentLevel);
+		Debug.Log("STATE2: " + CurrentLevel.Equals("Level 22"));
+
+		if (!lvlUnlocks.LvlUnlockStates.All(x => x) && !CurrentLevel.Equals("Level 22"))
 		{
-			lvlUnlocks.LvlUnlockStates[i] = true;
-			lvlParent.GetChild(i).GetComponent<MapLvlButton>().SetUnlocked(true);
+			for (int i = 0; i < level; i++)
+			{
+				lvlUnlocks.LvlUnlockStates[i] = true;
+				lvlParent.GetChild(i).GetComponent<MapLvlButton>().SetUnlocked(true);
+			}
+		}
+		else
+		{
+			Debug.Log("NOTHING TO UNLOCK");
+
 		}
 	}
 
@@ -223,13 +238,14 @@ public class GameManager : MonoBehaviour
 				CorruptBackgrounds[4].fillAmount = 0;
 			}
 		}
-		//Set Level Values to Array
-		for (int i = 0; i < lvlParent.childCount; i++)
-		{
-			lvlParent.GetChild(i).GetComponent<MapLvlButton>().SetUnlocked(lvlUnlocks.LvlUnlockStates[i]);
-		}
+
+			//Set Level Values to Array
+			for (int i = 0; i < lvlParent.childCount; i++)
+			{
+				lvlParent.GetChild(i).GetComponent<MapLvlButton>().SetUnlocked(lvlUnlocks.LvlUnlockStates[i]);
+			}
+		
 		Debug.Log("Loading Unlocks");
-		lvlUnlocks.PrintArray();
 	}
 
 	public void SaveUnlocks()

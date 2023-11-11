@@ -1,8 +1,4 @@
-using DG.Tweening;
-using DG.Tweening.Core;
-using Pon;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,7 +7,6 @@ using System.Text.RegularExpressions;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DialogueStageTracker : MonoBehaviour
@@ -26,7 +21,6 @@ public class DialogueStageTracker : MonoBehaviour
 	public float currentStage = 0f;
 	public List<SingleDialogueData> dialogueEntries = new List<SingleDialogueData>();
 	public bool isPlaying = false;
-	private int region = 0;
 
 	private void Awake()
 	{
@@ -67,84 +61,120 @@ public class DialogueStageTracker : MonoBehaviour
 	private void Update()
 	{
 		stageTracker.isPlaying = dialogueController.isPlaying;
-		if(currentStage > 4.4f)
-		{
-			Destroy(this.gameObject);
-		}
-		else if (stageTracker.isPlaying)
+		
+		if (stageTracker.isPlaying)
 		{
 			CheckTouch();
 		}
-		else if (GameManager.gameManager.endRegion)
+		else if(currentStage > 4.4f)
 		{
-			EndRegionDialogue();
+			Destroy(this.gameObject);
 		}
 		else
 		{
+			//if (((currentStage * 5 < stageTracker.dialogueDataManager.shownDialogues.Count) && stageTracker.dialogueDataManager.allDialogues.Count >0 )|| currentStage != 0.2f)
 			if (!(currentStage * 5 < stageTracker.dialogueDataManager.shownDialogues.Count) || currentStage != 0.2f)
 			{
 				switch (currentStage)
 				{
-					/*case 0.2f:
-						
-						break;*/
 					case 0.6f:
-						SetDialogueObjects();
-						dialogueController.StartSingleDialogue(dialogueEntries[0]);
-						currentStage += .1f;
+						if (stageTracker.dialogueDataManager.shownDialogues.Count <2)
+						{
+							SetDialogueObjects();
+							dialogueController.StartSingleDialogue(dialogueEntries[0]);
+							currentStage += .1f;
+						}
 						break;
 					case 1.0f:
-						SetDialogueObjects();
-						dialogueController.StartSingleDialogue(dialogueEntries[0]);
-						currentStage += .1f;
+						if (stageTracker.dialogueDataManager.shownDialogues.Count < 3)
+						{
+							SetDialogueObjects();
+							dialogueController.StartSingleDialogue(dialogueEntries[0]);
+							currentStage += .1f;
+						}
 						break;
 					case 1.2f:
-						//Snowy Lvl 1 (Lvl 6)
-						currentStage += .1f;
-            break;
+						if (stageTracker.dialogueDataManager.shownDialogues.Count < 4 && GameManager.gameManager.endRegion)
+						{
+							//Snowy Lvl 1 (Lvl 6)
+							EndRegionDialogue();
+							currentStage += .1f;
+						}
+						break;
 					case 1.6f:
-						SetDialogueObjects();
-						dialogueController.StartSingleDialogue(dialogueEntries[0]);
-						currentStage += .1f;
-            break;
+						if (stageTracker.dialogueDataManager.shownDialogues.Count < 5)
+						{
+							SetDialogueObjects();
+							dialogueController.StartSingleDialogue(dialogueEntries[0]);
+							currentStage += .1f;
+						}
+						break;
 					case 2.0f:
-						SetDialogueObjects();
-						dialogueController.StartSingleDialogue(dialogueEntries[0]);
-						currentStage += .1f;
-            break;
+						if (stageTracker.dialogueDataManager.shownDialogues.Count < 6)
+						{
+							SetDialogueObjects();
+							dialogueController.StartSingleDialogue(dialogueEntries[0]);
+							currentStage += .1f;
+						}
+						break;
 					case 2.2f:
 						//Windy Lvl 1 (Lvl 11)
-						currentStage += .1f;
+						if (stageTracker.dialogueDataManager.shownDialogues.Count < 7 && GameManager.gameManager.endRegion)
+						{
+							EndRegionDialogue();
+							currentStage += .1f;
+						}
 						break;
 					case 2.6f:
-						SetDialogueObjects();
-						dialogueController.StartSingleDialogue(dialogueEntries[0]);
-						currentStage += .1f;
+						if (stageTracker.dialogueDataManager.shownDialogues.Count < 8)
+						{
+							SetDialogueObjects();
+							dialogueController.StartSingleDialogue(dialogueEntries[0]);
+							currentStage += .1f;
+						}
 						break;
 					case 3.0f:
-						SetDialogueObjects();
-						dialogueController.StartSingleDialogue(dialogueEntries[0]);
-						currentStage += .1f;
+						if (stageTracker.dialogueDataManager.shownDialogues.Count < 9)
+						{
+							SetDialogueObjects();
+							dialogueController.StartSingleDialogue(dialogueEntries[0]);
+							currentStage += .1f;
+						}
 						break;
 					case 3.2f:
-						//Swampy Lvl 1 (Lvl 16)
-						currentStage += .1f;
+						if (stageTracker.dialogueDataManager.shownDialogues.Count < 10 && GameManager.gameManager.endRegion)
+						{
+							//Swampy Lvl 1 (Lvl 16)
+							EndRegionDialogue();
+							currentStage += .1f;
+						}
 						break;
 					case 3.6f:
-						SetDialogueObjects();
-						dialogueController.StartSingleDialogue(dialogueEntries[0]);
-						currentStage += .1f;
+						if (stageTracker.dialogueDataManager.shownDialogues.Count < 11)
+						{
+							SetDialogueObjects();
+							dialogueController.StartSingleDialogue(dialogueEntries[0]);
+							currentStage += .1f;
+						}
 						break;
 					case 4.0f:
-						SetDialogueObjects();
-						dialogueController.StartSingleDialogue(dialogueEntries[0]);
-						currentStage += .1f;
+						if (stageTracker.dialogueDataManager.shownDialogues.Count < 12)
+						{
+							SetDialogueObjects();
+							dialogueController.StartSingleDialogue(dialogueEntries[0]);
+							currentStage += .1f;
+						}
 						break;
 					case 4.2f:
-						//Stormy Lvl 1 (Lvl 21)
-						currentStage += .1f;
+						if (stageTracker.dialogueDataManager.shownDialogues.Count < 13 && GameManager.gameManager.endRegion)
+						{
+							//Stormy Lvl 1 (Lvl 21)
+							EndRegionDialogue();
+							currentStage += .1f;
+						}
 						break;
 					case 4.4f:
+						//After Castle Lvl 1 (Lvl 2)
 						StartRegionDialogue();
 						currentStage += .1f;
 						break;
@@ -157,11 +187,9 @@ public class DialogueStageTracker : MonoBehaviour
 		}
 	}
 
-	internal void startFirstDialouge()
+	internal void StartFirstDialouge()
 	{
 		SetDialogueObjects();
-		//stageTracker.dialogueDataManager.allDialogues.Insert(0, stageTracker.dialogueDataManager.shownDialogues[0]);
-		//dialogueEntries = dialogueDataManager.allDialogues;
 		dialogueController.StartSingleDialogue(dialogueDataManager.allDialogues[0]);
 		currentStage += .1f;
 	}
@@ -209,11 +237,11 @@ public class DialogueStageTracker : MonoBehaviour
 							dialogueDataManager.allDialogues.Add(dialogueData);
 						}
 
-            if (dialogueData.name.Equals(lastPlayedEntryName))
-            {
-              found = true;
-            }
-          }
+						if (dialogueData.name.Equals(lastPlayedEntryName))
+						{
+							found = true;
+						}
+					}
 				}
 			}
 			else
