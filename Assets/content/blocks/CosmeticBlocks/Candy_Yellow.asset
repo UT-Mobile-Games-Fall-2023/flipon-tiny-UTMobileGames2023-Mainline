@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d082de2aa31fc474a9308961c6ae722b, type: 3}
   m_Name: Candy_Yellow
   m_EditorClassIdentifier: 
-  id: 0
-  color: {r: 1, g: 0.84503144, b: 0.3537736, a: 0}
+  id: 6
+  color: {r: 1, g: 0.84503144, b: 0.3537736, a: 1}
   sprite: {fileID: 21300000, guid: 877e0acbc4a5bd741b9821883393a97e, type: 3}
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   minWidth: 0

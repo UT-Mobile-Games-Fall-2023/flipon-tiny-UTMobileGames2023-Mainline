@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Pink
   m_EditorClassIdentifier: 
   id: 4
-  color: {r: 0.9921569, g: 0.38823533, b: 0.5529412, a: 1}
+  color: {r: 1, g: 0.33490568, b: 0.9057712, a: 1}
   sprite: {fileID: 21300000, guid: dccce795b1b9e4a4ca6952659945dbae, type: 3}
   material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  minWidth: 0
-  minLevel: 0
+  minWidth: 5
+  minLevel: 9

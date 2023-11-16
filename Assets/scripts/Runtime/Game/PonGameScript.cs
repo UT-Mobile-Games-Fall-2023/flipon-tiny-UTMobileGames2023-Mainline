@@ -22,9 +22,15 @@ namespace Pon
 	{
 		[Header("Inventory")]
 		public InGameInventory inGameInventory;
-		private List<Item> inventoryItems;
+		public List<Item> inventoryItems;
 
-        private static GameObject DOTweenGameObject;
+		[Header("Cosmetic")]
+		public bool isCosmeticFruitEnable = false;
+		public bool isCosmeticCandyEnable = false;
+		public bool isCosmeticFlowerEnable = false;
+
+
+		private static GameObject DOTweenGameObject;
 		static PonGameScript()
 		{
 			UnityLog.Init();
@@ -53,7 +59,8 @@ namespace Pon
 
         private bool lostByFillingScreen = false;
 		private bool wonGame = false;
-    public bool isTutorial = false;
+         public bool isTutorial = false;
+		public bool cosmeticIsApplied;
 
 		private bool incPowerFillSpeed = false;
 		private float incPowerFillSpeedPerc = 0;
@@ -451,10 +458,14 @@ namespace Pon
 
 			return false; // no cosmetics were found active
         }
+		public bool GetCosmeticState()
+		{
+			return cosmeticIsApplied;
+		}
 
-        private void ApplyItemEffects(List<Item> itemList)
+		private void ApplyItemEffects(List<Item> itemList)
         {
-			bool cosmeticIsApplied = CheckCurrentCosmetic(itemList);
+			 cosmeticIsApplied = CheckCurrentCosmetic(itemList);
 
 			foreach (Item item in itemList)
 			{
@@ -513,6 +524,7 @@ namespace Pon
 					case "CosmeticFruit":
 						if (item.isEnabled)
                         {
+							isCosmeticFruitEnable = true;
 							ApplyCosmetics(BlockDefinitionBank.Instance.fruitCosmetics); // fruits
 						}
                         else // only switch back to default if NO COSMETICS APPLIED
@@ -526,6 +538,8 @@ namespace Pon
 					case "CosmeticFlower":
 						if (item.isEnabled)
 						{
+							isCosmeticFlowerEnable = true;
+
 							ApplyCosmetics(BlockDefinitionBank.Instance.flowerCosmetics); // flowers
 						}
 						else
@@ -539,6 +553,7 @@ namespace Pon
 					case "CosmeticCandy":
 						if (item.isEnabled)
 						{
+							isCosmeticCandyEnable = true;
 							ApplyCosmetics(BlockDefinitionBank.Instance.candyCosmetics); // flowers
 						}
 						else

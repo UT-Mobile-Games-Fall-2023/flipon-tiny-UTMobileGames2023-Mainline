@@ -8,411 +8,498 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace Pon
 {
-  public class ObjectiveWidget : MonoBehaviour
-  {
-#pragma warning disable 0649
+	public class ObjectiveWidget : MonoBehaviour
+	{
 
-    [Header("Bindings")]
-    [SerializeField]
-    private GameObject panelIcon;
+		[Header("Bindings")]
+		[SerializeField]
+		private GameObject panelIcon;
 
-    [SerializeField]
-    private TextMeshProUGUI textIcon;
+		[SerializeField]
+		private TextMeshProUGUI textIcon;
 
-    [FormerlySerializedAs("icon")]
-    [SerializeField]
-    private Image objectiveIcon;
+		[FormerlySerializedAs("icon")]
+		[SerializeField]
+		private Image objectiveIcon;
 
-    [SerializeField]
-    private Image tickIcon;
+		[SerializeField]
+		private Image tickIcon;
 
-    [SerializeField]
-    private GameObject panelNoIcon;
+		[SerializeField]
+		private GameObject panelNoIcon;
 
-    [SerializeField]
-    private TextMeshProUGUI textNoIcon;
+		[SerializeField]
+		private TextMeshProUGUI textNoIcon;
 
-    [SerializeField]
-    private Image tickNoIcon;
+		[SerializeField]
+		private Image tickNoIcon;
 
 #pragma warning restore 0649
 
-    private TextMeshProUGUI text;
-    private Image tick;
+		private TextMeshProUGUI text;
+		private Image tick;
 
-    private PlayerScript player;
-    private Objective objective;
-    private ObjectiveStats lastStats;
-    private bool completed;
+		private PlayerScript player;
+		private Objective objective;
+		private ObjectiveStats lastStats;
+		private bool completed;
 
-    private string nextValue;
+		private string nextValue;
 
-    void Awake()
-    {
-      panelIcon.SetActive(false);
-      panelNoIcon.SetActive(false);
-      gameObject.SetActive(false);
-    }
+		void Awake()
+		{
+			panelIcon.SetActive(false);
+			panelNoIcon.SetActive(false);
+			gameObject.SetActive(false);
+		}
 
-    private void Start()
-    {
-      player = GetComponentInParent<PlayerScript>();
-    }
+		private void Start()
+		{
+			player = GetComponentInParent<PlayerScript>();
+		}
 
-    #region Objectives
+		#region Objectives
 
-    /// <summary>
-    /// Display objective and progression
-    /// </summary>
-    public void SetObjective(Objective obj)
-    {
-      bool active = (obj != null);
-      gameObject.SetActive(active);
+		/// <summary>
+		/// Display objective and progression
+		/// </summary>
+		public void SetObjective(Objective obj)
+		{
+			bool active = (obj != null);
+			gameObject.SetActive(active);
 
-      completed = false;
-      objective = obj;
-      if (active)
-      {
-        if (obj.IsMultiObjectives)
-        {
-          Log.Error("Widget cannot display a multiple objective... divide it first!");
-          return;
-        }
+			completed = false;
+			objective = obj;
+			if (active)
+			{
+				if (obj.IsMultiObjectives)
+				{
+					Log.Error("Widget cannot display a multiple objective... divide it first!");
+					return;
+				}
 
-        UpdateDisplay(objective.GetObjectiveType(), objective.stats, new ObjectiveStats(), objective.StartStats, true);
-      }
-    }
+				UpdateDisplay(objective.GetObjectiveType(), objective.stats, new ObjectiveStats(), objective.StartStats, true);
+			}
+		}
 
-    public void UpdateObjective(PlayerScript player, ObjectiveStats current)
-    {
-      if (completed) return;
-      if (objective == null) return;
+		public void UpdateObjective(PlayerScript player, ObjectiveStats current)
+		{
+			if (completed) return;
+			if (objective == null) return;
 
-      UpdateDisplay(objective.GetObjectiveType(), objective.stats, current, objective.StartStats, IsImmediateUpdate);
+			UpdateDisplay(objective.GetObjectiveType(), objective.stats, current, objective.StartStats, IsImmediateUpdate);
 
-      if (objective.Succeed(player, current))
-      {
-        CompleteObjective(true);
-      }
-    }
+			if (objective.Succeed(player, current))
+			{
+				CompleteObjective(true);
+			}
+		}
 
-    public void CompleteObjective(bool success)
-    {
-      if (gameObject.activeInHierarchy)
-      {
-        completed = true;
+		public void CompleteObjective(bool success)
+		{
+			if (gameObject.activeInHierarchy)
+			{
+				completed = true;
 
-        if (success)
-        {
-          var seq = DOTween.Sequence();
-          seq.AppendInterval(1f);
-          seq.Append(text.DOFade(0f, 0.5f).SetEase(Ease.OutQuart));
+				if (success)
+				{
+					var seq = DOTween.Sequence();
+					seq.AppendInterval(1f);
+					seq.Append(text.DOFade(0f, 0.5f).SetEase(Ease.OutQuart));
 
-          seq.AppendCallback(() =>
-          {
-            tick.gameObject.SetActive(true);
-            tick.color = tick.color.SetAlpha(0f);
-            tick.DOFade(1f, 0.5f).SetEase(Ease.OutQuart);
-          });
-        }
-        else
-        {
-          text.color = Color.red;
+					seq.AppendCallback(() =>
+					{
+						tick.gameObject.SetActive(true);
+						tick.color = tick.color.SetAlpha(0f);
+						tick.DOFade(1f, 0.5f).SetEase(Ease.OutQuart);
+					});
+				}
+				else
+				{
+					text.color = Color.red;
 
-          var seq = DOTween.Sequence();
-          seq.AppendInterval(1f);
-          seq.Append(text.DOFade(0f, 0.5f).SetEase(Ease.OutQuart));
-          seq.AppendInterval(2f);
-          seq.AppendCallback(() =>
-          {
-            panelNoIcon.SetActive(false);
-            panelIcon.SetActive(false);
-          });
-        }
-      }
-    }
+					var seq = DOTween.Sequence();
+					seq.AppendInterval(1f);
+					seq.Append(text.DOFade(0f, 0.5f).SetEase(Ease.OutQuart));
+					seq.AppendInterval(2f);
+					seq.AppendCallback(() =>
+					{
+						panelNoIcon.SetActive(false);
+						panelIcon.SetActive(false);
+					});
+				}
+			}
+		}
 
-    #endregion
+		#endregion
 
-    #region Display
+		#region Display
 
-    private void UpdateDisplay(ObjectiveStatType type, ObjectiveStats target, ObjectiveStats current,
-      ObjectiveStats start, bool immediate)
-    {
-      gameObject.SetActive(true);
+		private void UpdateDisplay(ObjectiveStatType type, ObjectiveStats target, ObjectiveStats current,
+		  ObjectiveStats start, bool immediate)
+		{
+			gameObject.SetActive(true);
 
-      // Build text
-      string t = string.Empty;
-      Sprite s = null;
-      if (type == ObjectiveStatType.HighestMultiplier)
-      {
-        t = "x" + target.highestCombo;
+			// Build text
+			string t = string.Empty;
+			Sprite s = null;
+			if (type == ObjectiveStatType.HighestMultiplier)
+			{
+				t = "x" + target.highestCombo;
+			}
 
-        // Disable icon for now
-        // t = (target.highestCombo - current.highestCombo).ToString();
-        // s = ObjectiveData.GetIcon("combo_best");
+			if (type == ObjectiveStatType.Score)
+			{
+				t = "<b>" + Mathf.Max(0, target.score - (current.score - start.score)) + "</b> PTS";
+				s = ObjectiveData.GetIcon("score");
+			}
 
-        // if (current.highestCombo == 0 && lastStats.highestCombo > 0)
-        // {
-        //   Reset();
-        //   immediate = true;
-        //
-        //   // Create a bunch of ejected stars
-        //   for (int i = 0; i < lastStats.highestCombo; i++)
-        //   {
-        //     var image = GameUIScript.CreateObjectiveIcon(player.grid, this, transform.position);
-        //     var p = transform.position + RandomEx.GetVector3(-4, 4f, 0f, 3f, 0, 0);
-        //     image.transform.DOMove(p, 0.35f)
-        //       .SetEase(Ease.OutCubic).OnComplete(() =>
-        //       {
-        //         image.transform.DOScale(Vector3.zero, 0.15f)
-        //           .OnComplete(() => { Destroy(image.gameObject); });
-        //       });
-        //   }
-        // }
-      }
+			if (type == ObjectiveStatType.TotalCombos)
+			{
+				t = Mathf.Max(0, target.totalCombos - (current.totalCombos - start.totalCombos)).ToString();
+				s = ObjectiveData.GetIcon("combo_total");
+			}
 
-      if (type == ObjectiveStatType.Score)
-      {
-        t = "<b>" + Mathf.Max(0, target.score - (current.score - start.score)) + "</b> PTS";
-        s = ObjectiveData.GetIcon("score");
-      }
+			if (type == ObjectiveStatType.Total4Combos)
+			{
+				t = Mathf.Max(0, target.total4Combos - (current.total4Combos - start.total4Combos)).ToString();
+				s = ObjectiveData.GetIcon("combo_4");
+			}
 
-      if (type == ObjectiveStatType.TotalCombos)
-      {
-        t = Mathf.Max(0, target.totalCombos - (current.totalCombos - start.totalCombos)).ToString();
-        s = ObjectiveData.GetIcon("combo_total");
-      }
+			if (type == ObjectiveStatType.Total5Combos)
+			{
+				t = Mathf.Max(0, target.total5Combos - (current.total5Combos - start.total5Combos)).ToString();
+				s = ObjectiveData.GetIcon("combo_5");
+			}
 
-      if (type == ObjectiveStatType.Total4Combos)
-      {
-        t = Mathf.Max(0, target.total4Combos - (current.total4Combos - start.total4Combos)).ToString();
-        s = ObjectiveData.GetIcon("combo_4");
-      }
+			if (type == ObjectiveStatType.TotalLCombos)
+			{
+				t = Mathf.Max(0, target.totalLCombos - (current.totalLCombos - start.totalLCombos)).ToString();
+				s = ObjectiveData.GetIcon("combo_L");
+			}
 
-      if (type == ObjectiveStatType.Total5Combos)
-      {
-        t = Mathf.Max(0, target.total5Combos - (current.total5Combos - start.total5Combos)).ToString();
-        s = ObjectiveData.GetIcon("combo_5");
-      }
+			if (type == ObjectiveStatType.Time)
+			{
+				t = target.timeReached + "'";
+				// s = ObjectiveData.GetIcon("time"); -> null
+			}
 
-      if (type == ObjectiveStatType.TotalLCombos)
-      {
-        t = Mathf.Max(0, target.totalLCombos - (current.totalLCombos - start.totalLCombos)).ToString();
-        s = ObjectiveData.GetIcon("combo_L");
-      }
+			if (type == ObjectiveStatType.TimeLimit)
+			{
+				t = (int)target.timeMax + "'";
+				// s = ObjectiveData.GetIcon("time"); -> null
+			}
 
-      if (type == ObjectiveStatType.Time)
-      {
-        t = target.timeReached + "'";
-        // s = ObjectiveData.GetIcon("time"); -> null
-      }
+			if (type == ObjectiveStatType.Level)
+			{
+				t = target.speedLevel.ToString();
+				s = ObjectiveData.GetIcon("level");
+			}
 
-      if (type == ObjectiveStatType.TimeLimit)
-      {
-        t = (int) target.timeMax + "'";
-        // s = ObjectiveData.GetIcon("time"); -> null
-      }
+			if (type == ObjectiveStatType.TotalChains)
+			{
+				t = Mathf.Max(0, target.totalChains - (current.totalChains - start.totalChains)).ToString();
+				s = ObjectiveData.GetIcon("chain");
+			}
 
-      if (type == ObjectiveStatType.Level)
-      {
-        t = target.speedLevel.ToString();
-        s = ObjectiveData.GetIcon("level");
-      }
+			if (type == ObjectiveStatType.HighestChain)
+			{
+				throw new NotImplementedException("Highest chains not used yet");
+			}
 
-      if (type == ObjectiveStatType.TotalChains)
-      {
-        t = Mathf.Max(0, target.totalChains - (current.totalChains - start.totalChains)).ToString();
-        s = ObjectiveData.GetIcon("chain");
-      }
+			if (type == ObjectiveStatType.Height)
+			{
+				s = ObjectiveData.GetIcon("height");
 
-      if (type == ObjectiveStatType.HighestChain)
-      {
-        throw new NotImplementedException("Highest chains not used yet");
-      }
+				if (player == null)
+				{
+					player = FindObjectOfType<PlayerScript>();
+				}
 
-      if (type == ObjectiveStatType.Height)
-      {
-        s = ObjectiveData.GetIcon("height");
+				if (player != null)
+				{
+					int ch = player.grid.HighestY;
+					int th = player.grid.targetHeight;
 
-        if (player == null)
-        {
-          player = FindObjectOfType<PlayerScript>();
-        }
+					t = (Mathf.Abs(th - ch) + 1).ToString();
+				}
+				else
+				{
+					t = target.digHeight.ToString();
+				}
+			}
 
-        if (player != null)
-        {
-          int ch = player.grid.HighestY;
-          int th = player.grid.targetHeight;
+			if (type == ObjectiveStatType.NumBlock1Break)
+			{
+				t = Mathf.Max(0, target.numBlock1Broken - (current.numBlock1Broken - start.numBlock1Broken)).ToString();
+				if (PonGameScript.instance.GetCosmeticState())
+				{
+					if (PonGameScript.instance.isCosmeticFlowerEnable)
+					{
+						s = BlockDefinitionBank.Instance.flowerCosmetics[0].sprite;
+					}
+					else if (PonGameScript.instance.isCosmeticCandyEnable)
+					{
+						s = BlockDefinitionBank.Instance.candyCosmetics[0].sprite;
+					}
+					else
+					{
+						s = BlockDefinitionBank.Instance.fruitCosmetics[0].sprite;
+					}
+				}
+				else
+				{
+					s = ObjectiveData.GetIcon("block1");
+				}
+			}
 
-          t = (Mathf.Abs(th - ch) + 1).ToString();
-        }
-        else
-        {
-          t = target.digHeight.ToString();
-        }
-      }
+			if (type == ObjectiveStatType.NumBlock2Break)
+			{
+				t = Mathf.Max(0, target.numBlock2Broken - (current.numBlock2Broken - start.numBlock2Broken)).ToString();
+				if (PonGameScript.instance.GetCosmeticState())
+				{
+					if (PonGameScript.instance.isCosmeticFlowerEnable)
+					{
+						s = BlockDefinitionBank.Instance.flowerCosmetics[1].sprite;
+					}
+					else if (PonGameScript.instance.isCosmeticCandyEnable)
+					{
+						s = BlockDefinitionBank.Instance.candyCosmetics[1].sprite;
+					}
+					else
+					{
+						s = BlockDefinitionBank.Instance.fruitCosmetics[1].sprite;
+					}
+				}
+				else
+				{
+					s = ObjectiveData.GetIcon("block2");
+				}
+			}
 
-      if (type == ObjectiveStatType.NumBlock1Break)
-      {
-        t = Mathf.Max(0, target.numBlock1Broken - (current.numBlock1Broken - start.numBlock1Broken)).ToString();
-        s = ObjectiveData.GetIcon("block1");
-      }
+			if (type == ObjectiveStatType.NumBlock3Break)
+			{
+				t = Mathf.Max(0, target.numBlock3Broken - (current.numBlock3Broken - start.numBlock3Broken)).ToString();
+				if (PonGameScript.instance.GetCosmeticState())
+				{
+					if (PonGameScript.instance.isCosmeticFlowerEnable)
+					{
+						s = BlockDefinitionBank.Instance.flowerCosmetics[2].sprite;
+					}
+					else if (PonGameScript.instance.isCosmeticCandyEnable)
+					{
+						s = BlockDefinitionBank.Instance.candyCosmetics[2].sprite;
+					}
+					else
+					{
+						s = BlockDefinitionBank.Instance.fruitCosmetics[2].sprite;
+					}
+				}
+				else
+				{
+					s = ObjectiveData.GetIcon("block3");
+				}
+			}
 
-      if (type == ObjectiveStatType.NumBlock2Break)
-      {
-        t = Mathf.Max(0, target.numBlock2Broken - (current.numBlock2Broken - start.numBlock2Broken)).ToString();
-        s = ObjectiveData.GetIcon("block2");
-      }
+			if (type == ObjectiveStatType.NumBlock4Break)
+			{
+				t = Mathf.Max(0, target.numBlock4Broken - (current.numBlock4Broken - start.numBlock4Broken)).ToString();
+				if (PonGameScript.instance.GetCosmeticState())
+				{
+					if (PonGameScript.instance.isCosmeticFlowerEnable)
+					{
+						s = BlockDefinitionBank.Instance.flowerCosmetics[3].sprite;
+					}
+					else if (PonGameScript.instance.isCosmeticCandyEnable)
+					{
+						s = BlockDefinitionBank.Instance.candyCosmetics[3].sprite;
+					}
+					else
+					{
+						s = BlockDefinitionBank.Instance.fruitCosmetics[3].sprite;
+					}
+				}
+				else
+				{
+					s = ObjectiveData.GetIcon("block4");
+				}
+			}
 
-      if (type == ObjectiveStatType.NumBlock3Break)
-      {
-        t = Mathf.Max(0, target.numBlock3Broken - (current.numBlock3Broken - start.numBlock3Broken)).ToString();
-        s = ObjectiveData.GetIcon("block3");
-      }
+			if (type == ObjectiveStatType.NumBlock5Break)
+			{
+				t = Mathf.Max(0, target.numBlock5Broken - (current.numBlock5Broken - start.numBlock5Broken)).ToString();
+				if (PonGameScript.instance.GetCosmeticState())
+				{
+					if (PonGameScript.instance.isCosmeticFlowerEnable)
+					{
+						s = BlockDefinitionBank.Instance.flowerCosmetics[4].sprite;
+					}
+					else if (PonGameScript.instance.isCosmeticCandyEnable)
+					{
+						s = BlockDefinitionBank.Instance.candyCosmetics[4].sprite;
+					}
+					else
+					{
+						s = BlockDefinitionBank.Instance.fruitCosmetics[4].sprite;
+					}
+				}
+				else
+				{
+					s = ObjectiveData.GetIcon("block5");
+				}
+			}
 
-      if (type == ObjectiveStatType.NumBlock4Break)
-      {
-        t = Mathf.Max(0, target.numBlock4Broken - (current.numBlock4Broken - start.numBlock4Broken)).ToString();
-        s = ObjectiveData.GetIcon("block4");
-      }
+			if (type == ObjectiveStatType.NumBlock6Break)
+			{
+				t = Mathf.Max(0, target.numBlock6Broken - (current.numBlock6Broken - start.numBlock6Broken)).ToString();
+				Debug.Log("COSMETIC: " + PonGameScript.instance.GetCosmeticState());
+				if (PonGameScript.instance.GetCosmeticState())
+				{
+					if (PonGameScript.instance.isCosmeticFlowerEnable)
+					{
+						s = BlockDefinitionBank.Instance.flowerCosmetics[5].sprite;
+					}
+					else if (PonGameScript.instance.isCosmeticCandyEnable)
+					{
+						s = BlockDefinitionBank.Instance.candyCosmetics[5].sprite;
+					}
+					else
+					{
+						s = BlockDefinitionBank.Instance.fruitCosmetics[5].sprite;
+					}
+				}
 
-      if (type == ObjectiveStatType.NumBlock5Break)
-      {
-        t = Mathf.Max(0, target.numBlock5Broken - (current.numBlock5Broken - start.numBlock5Broken)).ToString();
-        s = ObjectiveData.GetIcon("block5");
-      }
+				else
+				{
+					s = ObjectiveData.GetIcon("block6");
+				}
+			}
 
-      if (type == ObjectiveStatType.NumBlock6Break)
-      {
-        t = Mathf.Max(0, target.numBlock6Broken - (current.numBlock6Broken - start.numBlock6Broken)).ToString();
-        s = ObjectiveData.GetIcon("block6");
-      }
+			if (type == ObjectiveStatType.TimesPowerUsed)
+			{
+				t = Mathf.Max(0, target.timesPowerUsed - (current.timesPowerUsed - start.timesPowerUsed)).ToString();
+				s = ObjectiveData.GetIcon("powerButton");
+			}
 
-      if (type == ObjectiveStatType.TimesPowerUsed)
-      {
-        t = Mathf.Max(0, target.timesPowerUsed - (current.timesPowerUsed - start.timesPowerUsed)).ToString();
-        s = ObjectiveData.GetIcon("powerButton");
-      }
+			if (completed == false)
+			{
+				if (immediate)
+				{
+					if (s != null)
+					{
+						SetWithIcon(s, t);
+					}
+					else
+					{
+						SetWithoutIcon(t);
+					}
+				}
+				else
+				{
+					nextValue = t;
+				}
+			}
 
-      if (completed == false)
-      {
-        if (immediate)
-        {
-          if (s != null)
-          {
-            SetWithIcon(s, t);
-          }
-          else
-          {
-            SetWithoutIcon(t);
-          }
-        }
-        else
-        {
-          nextValue = t;
-        }
-      }
+			lastStats = current;
+		}
 
-      lastStats = current;
-    }
+		private void SetWithIcon(Sprite s, string t)
+		{
+			if (panelIcon.activeInHierarchy == false)
+			{
+				panelIcon.SetActive(true);
+				panelNoIcon.SetActive(false);
+				text = textIcon;
+				text.color = text.color.SetAlpha(1f);
+				tick = tickIcon;
+				objectiveIcon.color = objectiveIcon.color.SetAlpha(1f);
 
-    private void SetWithIcon(Sprite s, string t)
-    {
-      if (panelIcon.activeInHierarchy == false)
-      {
-        panelIcon.SetActive(true);
-        panelNoIcon.SetActive(false);
-        text = textIcon;
-        text.color = text.color.SetAlpha(1f);
-        tick = tickIcon;
-        objectiveIcon.color = objectiveIcon.color.SetAlpha(1f);
+				text.gameObject.SetActive(true);
+				objectiveIcon.gameObject.SetActive(true);
+				tick.gameObject.SetActive(false);
+			}
 
-        text.gameObject.SetActive(true);
-        objectiveIcon.gameObject.SetActive(true);
-        tick.gameObject.SetActive(false);
-      }
+			text.text = t;
+			objectiveIcon.sprite = s;
+		}
 
-      text.text = t;
-      objectiveIcon.sprite = s;
-    }
+		private void SetWithoutIcon(string t)
+		{
+			if (panelNoIcon.activeInHierarchy == false)
+			{
+				panelIcon.SetActive(false);
+				panelNoIcon.SetActive(true);
+				text = textNoIcon;
+				text.color = text.color.SetAlpha(1f);
+				text.gameObject.SetActive(true);
+				tick = tickNoIcon;
+				tick.gameObject.SetActive(false);
+			}
 
-    private void SetWithoutIcon(string t)
-    {
-      if (panelNoIcon.activeInHierarchy == false)
-      {
-        panelIcon.SetActive(false);
-        panelNoIcon.SetActive(true);
-        text = textNoIcon;
-        text.color = text.color.SetAlpha(1f);
-        text.gameObject.SetActive(true);
-        tick = tickNoIcon;
-        tick.gameObject.SetActive(false);
-      }
+			text.text = t;
+			objectiveIcon = null;
+		}
 
-      text.text = t;
-      objectiveIcon = null;
-    }
+		private Sequence sequence;
 
-    private Sequence sequence;
+		public void Highlight()
+		{
+			if (sequence != null) sequence.Kill();
 
-    public void Highlight()
-    {
-      if (sequence != null) sequence.Kill();
+			if (IsCompleted == false)
+			{
+				text.text = nextValue;
+				text.color = Color.white;
+				text.transform.DOKill();
+				text.transform.localScale = Vector3.one;
+				text.transform.DOPunchScale(Vector3.one * 1.15f, 0.5f, 1);
+			}
+		}
 
-      if (IsCompleted == false)
-      {
-        text.text = nextValue;
-        text.color = Color.white;
-        text.transform.DOKill();
-        text.transform.localScale = Vector3.one;
-        text.transform.DOPunchScale(Vector3.one * 1.15f, 0.5f, 1);
-      }
-    }
+		public void Reset()
+		{
+			if (sequence != null) sequence.Kill();
 
-    public void Reset()
-    {
-      if (sequence != null) sequence.Kill();
+			text.transform.DOKill();
+			text.transform.localScale = Vector3.one;
 
-      text.transform.DOKill();
-      text.transform.localScale = Vector3.one;
+			sequence = DOTween.Sequence();
+			sequence.Append(text.DOColor(Color.red, 0.25f).SetEase(Ease.OutCubic));
+			sequence.Join(text.transform.DOPunchPosition(new Vector3(25, 0, 0), 0.5f, 25));
+			sequence.Append(text.DOColor(Color.white, 0.25f).SetEase(Ease.OutCubic));
+		}
 
-      sequence = DOTween.Sequence();
-      sequence.Append(text.DOColor(Color.red, 0.25f).SetEase(Ease.OutCubic));
-      sequence.Join(text.transform.DOPunchPosition(new Vector3(25, 0, 0), 0.5f, 25));
-      sequence.Append(text.DOColor(Color.white, 0.25f).SetEase(Ease.OutCubic));
-    }
+		#endregion
 
-    #endregion
+		public Objective Objective => objective;
 
-    public Objective Objective => objective;
+		public TextMeshProUGUI Text => text;
+		public Image Icon => objectiveIcon;
 
-    public TextMeshProUGUI Text => text;
-    public Image Icon => objectiveIcon;
+		public bool IsCompleted => completed;
 
-    public bool IsCompleted => completed;
+		private bool IsImmediateUpdate
+		{
+			get
+			{
+				var type = objective.GetObjectiveType();
+				switch (type)
+				{
+					case ObjectiveStatType.Score:
+					case ObjectiveStatType.TotalCombos:
+					case ObjectiveStatType.Total4Combos:
+					case ObjectiveStatType.Total5Combos:
+					case ObjectiveStatType.TotalLCombos:
+					case ObjectiveStatType.HighestMultiplier:
+						return false;
+				}
 
-    private bool IsImmediateUpdate
-    {
-      get
-      {
-        var type = objective.GetObjectiveType();
-        switch (type)
-        {
-          case ObjectiveStatType.Score:
-          case ObjectiveStatType.TotalCombos:
-          case ObjectiveStatType.Total4Combos:
-          case ObjectiveStatType.Total5Combos:
-          case ObjectiveStatType.TotalLCombos:
-          case ObjectiveStatType.HighestMultiplier:
-            return false;
-        }
-
-        return true;
-      }
-    }
-  }
+				return true;
+			}
+		}
+	}
 }
